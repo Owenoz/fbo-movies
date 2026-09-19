@@ -3,7 +3,6 @@ import https from 'https'
 import zlib from 'zlib'
 import { getNaraCatalogServer } from '@/lib/narabox'
 
-// Runtime scrape cache (for movies not in pre-validated catalog)
 const scrapeCache = new Map<string, { data: MovieData; ts: number }>()
 const TTL = 1000 * 60 * 60 * 6
 

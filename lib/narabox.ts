@@ -1,36 +1,25 @@
 // ─── NaraBox VJ Catalog (pre-validated) ──────────────────────────────────────
-// Only movies confirmed to have a real MP4 on nbxgen.naraboxtv.com
-// 462 movies — VJ Junior (211), VJ Emmy (64), VJ Mark (52), VJ Ice P (20)...
+// Import JSON directly so it works on Vercel serverless (no fs.readFileSync)
+import catalogData from '../public/narabox_catalog.json'
 
 export interface NaraMovie {
   title: string
   vj: string
   slug: string
   url: string
-  // from NaraBox scrape
   mp4?: string | null
   poster?: string | null
   overview?: string | null
-  // enriched from TMDB
   poster_path?: string | null
   backdrop_path?: string | null
   release_date?: string
   vote_average?: number
 }
 
-let _catalog: NaraMovie[] | null = null
+const _catalog: NaraMovie[] = catalogData as NaraMovie[]
 
 export async function getNaraCatalogServer(): Promise<NaraMovie[]> {
-  if (_catalog) return _catalog
-  try {
-    const fs   = await import('fs')
-    const path = await import('path')
-    const file = path.join(process.cwd(), 'public', 'narabox_catalog.json')
-    _catalog   = JSON.parse(fs.readFileSync(file, 'utf-8'))
-    return _catalog!
-  } catch {
-    return []
-  }
+  return _catalog
 }
 
 export function getVJStats(catalog: NaraMovie[]) {
