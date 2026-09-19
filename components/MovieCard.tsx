@@ -2,8 +2,9 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Star, Clock, Play, Mic } from 'lucide-react'
+import { Star, Clock, Play, Mic, Heart } from 'lucide-react'
 import { tmdbImage, formatRating, getYear } from '@/lib/api'
+import { useWatchlist } from '@/lib/useUserData'
 
 interface MovieCardProps {
   id: number
@@ -26,14 +27,25 @@ export default function MovieCard({
   id, title, posterPath, posterUrl, rating = 0, year, releaseDate,
   type = 'movie', runtime, overview, vj, index = 0, sourceType = 'tmdb', slug,
 }: MovieCardProps) {
+  // Link to details page for NaraBox movies, direct to watch for others
   const href = sourceType === 'narabox' && slug
-    ? `/watch/${slug}`
+    ? `/movie/${slug}`
     : `/${type === 'tv' ? 'tv' : 'movie'}/${id}`
 
-  // Priority: full URL from NaraBox portal → TMDB path → empty
   const imgSrc = posterUrl || (posterPath ? tmdbImage(posterPath, 'w342') : '')
   const displayYear = year || (releaseDate ? getYear(releaseDate) : '')
   const vjLabel = vj?.replace(/^VJ\s*/i, '')
+
+  const { isInWatchlist, toggleWatchlist, loaded } = useWatchlist()
+  const inWatchlist = loaded && slug && isInWatchlist(slug)
+
+  const handleWatchlistClick = (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    if (slug) {
+      toggleWatchlist({ slug, title, vj: vj || '', poster: posterUrl || undefined })
+    }
+  }
 
   return (
     <motion.div
@@ -65,6 +77,18 @@ export default function MovieCard({
           {/* hover overlay */}
           <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             style={{ background: 'linear-gradient(to top,rgba(0,0,0,0.9) 0%,rgba(0,0,0,0.15) 50%,transparent 100%)' }} />
+
+          {/* Watchlist heart - top right */}
+          {sourceType === 'narabox' && slug && (
+            <motion.button
+              whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}
+              onClick={handleWatchlistClick}
+              className="absolute top-2 right-2 w-8 h-8 rounded-full flex items-center justify-center z-10 transition-colors"
+              style={{ background: inWatchlist ? 'rgba(236,72,153,0.9)' : 'rgba(0,0,0,0.6)', backdropFilter: 'blur(6px)' }}
+            >
+              <Heart className={`w-4 h-4 ${inWatchlist ? 'fill-white text-white' : 'text-white'}`} />
+            </motion.button>
+          )}
 
           {/* play btn */}
           <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">

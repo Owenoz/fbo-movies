@@ -8,6 +8,7 @@ import {
   Maximize, Minimize, SkipForward, SkipBack,
   Loader2, AlertCircle, Settings, Mic
 } from 'lucide-react'
+import { useWatchHistory } from '@/lib/useUserData'
 
 interface MovieData {
   slug: string
@@ -41,6 +42,9 @@ export default function WatchClient({ slug }: { slug: string }) {
   const [loading,   setLoading]   = useState(true)
   const [error,     setError]     = useState<string | null>(null)
 
+  // Watch history hook
+  const { addToHistory, updateProgress, getProgress } = useWatchHistory()
+
   // player state
   const videoRef   = useRef<HTMLVideoElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -55,6 +59,7 @@ export default function WatchClient({ slug }: { slug: string }) {
   const [buffering, setBuffering] = useState(false)
   const [quality,   setQuality]   = useState('720p')
   const ctrlTimer  = useRef<ReturnType<typeof setTimeout>>()
+  const progressSaveTimer = useRef<ReturnType<typeof setTimeout>>()
 
   // fetch movie data from our scraper API
   useEffect(() => {
@@ -68,6 +73,43 @@ export default function WatchClient({ slug }: { slug: string }) {
       .catch(e => setError(e.message))
       .finally(() => setLoading(false))
   }, [slug])
+
+  // Add to watch history when video metadata loads
+  useEffect(() => {
+    if (data?.mp4 && duration > 0) {
+      const vj = parseVJ(slug)
+      addToHistory({
+        slug,
+        title: data.title || cleanTitle(slug),
+        vj,
+        poster: data.poster ?? undefined,
+        progress: 0,
+        duration,
+      })
+      
+      // Resume from saved progress
+      const saved = getProgress(slug)
+      if (saved && saved.progress > 5 && saved.progress < 95 && videoRef.current) {
+        const resumeTime = (saved.duration * saved.progress) / 100
+        videoRef.current.currentTime = resumeTime
+      }
+    }
+  }, [data, duration, slug, addToHistory, getProgress])
+
+  // Track progress every 5 seconds while playing
+  useEffect(() => {
+    if (!playing || duration === 0) return
+    
+    clearTimeout(progressSaveTimer.current)
+    progressSaveTimer.current = setTimeout(() => {
+      const progress = (current / duration) * 100
+      if (progress > 0 && progress < 100) {
+        updateProgress(slug, progress, duration)
+      }
+    }, 5000)
+
+    return () => clearTimeout(progressSaveTimer.current)
+  }, [current, duration, playing, slug, updateProgress])
 
   // auto-hide controls
   const showControls = () => {

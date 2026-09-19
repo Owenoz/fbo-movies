@@ -1,5 +1,6 @@
 import HeroBanner from '@/components/HeroBanner'
 import ContentRow from '@/components/ContentRow'
+import ContinueWatching from '@/components/ContinueWatching'
 import { getNaraCatalogServer, getVJStats, slugToId } from '@/lib/narabox'
 
 export const revalidate = 3600
@@ -47,6 +48,9 @@ export default async function HomeContent() {
       <HeroBanner items={heroMovies} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-14">
+
+        {/* Continue Watching - client component */}
+        <ContinueWatching />
 
         {/* Stats bar */}
         <div className="flex flex-wrap items-center gap-3">

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head><title>Icon Generator</title></head>
+<body>
+<canvas id="c" width="512" height="512"></canvas>
+<script>
+const c = document.getElementById('c');
+const ctx = c.getContext('2d');
+
+// Purple gradient background
+const grad = ctx.createLinearGradient(0,0,512,512);
+grad.addColorStop(0, '#9333ea');
+grad.addColorStop(1, '#3b82f6');
+ctx.fillStyle = grad;
+ctx.fillRect(0,0,512,512);
+
+// White lightning bolt
+ctx.fillStyle = 'white';
+ctx.beginPath();
+ctx.moveTo(216, 156);
+ctx.lineTo(276, 156);
+ctx.lineTo(236, 256);
+ctx.lineTo(296, 256);
+ctx.lineTo(196, 356);
+ctx.lineTo(236, 276);
+ctx.lineTo(176, 276);
+ctx.closePath();
+ctx.fill();
+
+// FBO text
+ctx.fillStyle = 'white';
+ctx.font = 'bold 80px Arial';
+ctx.textAlign = 'center';
+ctx.fillText('FBO', 256, 450);
+
+console.log(c.toDataURL('image/png'));
+</script>
+</body>
+</html>
