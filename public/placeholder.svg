@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="450" viewBox="0 0 300 450">
+  <rect width="300" height="450" fill="#190033"/>
+  <rect x="100" y="175" width="100" height="100" rx="50" fill="#9333ea" opacity="0.3"/>
+  <text x="150" y="230" text-anchor="middle" fill="#9333ea" font-size="40" font-family="sans-serif" opacity="0.5">🎬</text>
+</svg>
