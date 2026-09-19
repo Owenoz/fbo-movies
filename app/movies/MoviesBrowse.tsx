@@ -11,6 +11,7 @@ interface Movie {
   vj: string
   slug: string
   poster?: string | null
+  posterUrl?: string | null
   poster_path?: string | null
   vote_average?: number
   release_date?: string
@@ -78,7 +79,7 @@ export default function MoviesBrowse() {
               exit={{ opacity:0 }} transition={{ duration:0.3, delay:(i%12)*0.04 }}>
               <MovieCard
                 id={m.id} title={m.title}
-                posterUrl={m.poster ?? undefined}
+                posterUrl={m.posterUrl ?? m.poster ?? undefined}
                 posterPath={m.poster_path ?? undefined}
                 rating={m.vote_average} releaseDate={m.release_date}
                 type="movie" overview={m.overview ?? undefined}
