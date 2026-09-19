@@ -12,6 +12,8 @@ export interface NaraMovie {
   mp4?: string | null
   poster?: string | null
   overview?: string | null
+  runtime?: number  // in minutes
+  addedAt?: number  // timestamp when added to catalog
 }
 
 // Return verified catalog only — all movies confirmed to have working MP4

@@ -9,6 +9,7 @@ import {
   Loader2, AlertCircle, Settings, Mic
 } from 'lucide-react'
 import { useWatchHistory } from '@/lib/useUserData'
+import { useAnalytics } from '@/lib/useAnalytics'
 
 interface MovieData {
   slug: string
@@ -44,6 +45,7 @@ export default function WatchClient({ slug }: { slug: string }) {
 
   // Watch history hook
   const { addToHistory, updateProgress, getProgress } = useWatchHistory()
+  const { trackView } = useAnalytics()
 
   // player state
   const videoRef   = useRef<HTMLVideoElement>(null)
@@ -78,14 +80,19 @@ export default function WatchClient({ slug }: { slug: string }) {
   useEffect(() => {
     if (data?.mp4 && duration > 0) {
       const vj = parseVJ(slug)
+      const title = data.title || cleanTitle(slug)
+      
       addToHistory({
         slug,
-        title: data.title || cleanTitle(slug),
+        title,
         vj,
         poster: data.poster ?? undefined,
         progress: 0,
         duration,
       })
+
+      // Track view for analytics
+      trackView(slug, title, vj)
       
       // Resume from saved progress
       const saved = getProgress(slug)
@@ -94,7 +101,7 @@ export default function WatchClient({ slug }: { slug: string }) {
         videoRef.current.currentTime = resumeTime
       }
     }
-  }, [data, duration, slug, addToHistory, getProgress])
+  }, [data, duration, slug, addToHistory, getProgress, trackView])
 
   // Track progress every 5 seconds while playing
   useEffect(() => {
@@ -274,8 +281,8 @@ export default function WatchClient({ slug }: { slug: string }) {
       {/* ── Video player ── */}
       <div
         ref={containerRef}
-        className="relative w-full select-none"
-        style={{ background: '#000', minHeight: '100svh' }}
+        className="relative w-full select-none bg-black"
+        style={{ minHeight: '100svh' }}
         onMouseMove={showControls}
         onTouchStart={showControls}
         onClick={togglePlay}
@@ -284,8 +291,7 @@ export default function WatchClient({ slug }: { slug: string }) {
           ref={videoRef}
           src={data!.mp4!}
           poster={data?.backdrop || data?.poster || undefined}
-          className="w-full"
-          style={{ minHeight: '100svh', maxHeight: '100svh', objectFit: 'contain' }}
+          className="w-full h-screen object-contain"
           playsInline
           preload="metadata"
         />

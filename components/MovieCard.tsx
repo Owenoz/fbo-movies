@@ -10,7 +10,7 @@ interface MovieCardProps {
   id: number
   title: string
   posterPath?: string | null
-  posterUrl?: string | null   // NaraBox portal poster URL (full URL)
+  posterUrl?: string | null
   rating?: number
   year?: string
   releaseDate?: string
@@ -21,11 +21,12 @@ interface MovieCardProps {
   index?: number
   sourceType?: 'kawogo' | 'tmdb' | 'narabox'
   slug?: string
+  isNew?: boolean  // Show "NEW" badge if added in last 7 days
 }
 
 export default function MovieCard({
   id, title, posterPath, posterUrl, rating = 0, year, releaseDate,
-  type = 'movie', runtime, overview, vj, index = 0, sourceType = 'tmdb', slug,
+  type = 'movie', runtime, overview, vj, index = 0, sourceType = 'tmdb', slug, isNew = false,
 }: MovieCardProps) {
   // Link to details page for NaraBox movies, direct to watch for others
   const href = sourceType === 'narabox' && slug
@@ -112,6 +113,25 @@ export default function MovieCard({
                 style={{ background: type === 'tv' ? 'rgba(59,130,246,0.85)' : 'rgba(147,51,234,0.85)' }}>
                 {type === 'tv' ? 'TV' : 'FILM'}
               </span>
+            </div>
+          )}
+
+          {/* NEW badge - below VJ badge */}
+          {isNew && (
+            <div className="absolute top-12 left-2">
+              <span className="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded text-white animate-pulse"
+                style={{ background: 'rgba(16,185,129,0.9)' }}>
+                NEW
+              </span>
+            </div>
+          )}
+
+          {/* Runtime/Duration - bottom left */}
+          {runtime && (
+            <div className="absolute bottom-2 left-2 flex items-center gap-1 px-1.5 py-0.5 rounded text-white"
+              style={{ background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(4px)' }}>
+              <Clock className="w-3 h-3" />
+              <span className="text-[10px] font-medium">{runtime}m</span>
             </div>
           )}
 

@@ -20,13 +20,15 @@ export async function GET(req: NextRequest) {
   }
 
   const total   = filtered.length
+  const sevenDaysAgo = Date.now() - (7 * 24 * 60 * 60 * 1000)
+  
   const results = filtered
     .slice((page - 1) * limit, page * limit)
     .map(m => ({
       ...m,
       id: slugToId(m.slug),
-      // poster field from NaraBox portal — use directly as posterUrl in MovieCard
       posterUrl: m.poster ?? null,
+      isNew: m.addedAt ? m.addedAt > sevenDaysAgo : false,
     }))
 
   return NextResponse.json({

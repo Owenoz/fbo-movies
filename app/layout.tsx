@@ -61,6 +61,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 navigator.serviceWorker.register('/sw.js')
                   .then(reg => console.log('[PWA] Service Worker registered'))
                   .catch(err => console.log('[PWA] Service Worker registration failed:', err));
+                
+                // Setup notifications after a delay
+                setTimeout(() => {
+                  if ('Notification' in window && Notification.permission === 'default') {
+                    Notification.requestPermission();
+                  }
+                }, 30000); // Ask after 30 seconds
               });
             }
           `
