@@ -1,0 +1,129 @@
+name: Update NaraBox Movie Catalog
+
+on:
+  schedule:
+    - cron: '0 3 * * 0'  # Every Sunday at 3am UTC
+  workflow_dispatch:       # Allow manual trigger from GitHub UI
+
+jobs:
+  update-catalog:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Scan NaraBox for movies with MP4
+        run: |
+          node << 'SCRIPT'
+          const https = require('https');
+          const zlib  = require('zlib');
+          const fs    = require('fs');
+
+          function fetchPage(slug) {
+            return new Promise((resolve) => {
+              const opts = {
+                hostname: 'naraboxtv.com',
+                path: '/movies/' + encodeURIComponent(slug).replace(/%2F/g, '/'),
+                headers: {
+                  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0.0.0 Safari/537.36',
+                  'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+                  'Accept-Encoding': 'gzip, deflate, br',
+                  'Accept-Language': 'en-US,en;q=0.9',
+                },
+                timeout: 15000,
+              };
+              try {
+                const req = https.get(opts, res => {
+                  const chunks = [];
+                  res.on('data', c => chunks.push(c));
+                  res.on('end', () => {
+                    try {
+                      const buf = Buffer.concat(chunks);
+                      const enc = res.headers['content-encoding'] || '';
+                      if (enc.includes('br')) zlib.brotliDecompress(buf, (e,r) => resolve(e?'':r.toString()));
+                      else if (enc.includes('gz')) zlib.gunzip(buf, (e,r) => resolve(e?'':r.toString()));
+                      else resolve(buf.toString());
+                    } catch { resolve(''); }
+                  });
+                });
+                req.on('error', () => resolve(''));
+                req.on('timeout', () => { req.destroy(); resolve(''); });
+              } catch { resolve(''); }
+            });
+          }
+
+          function parseSlug(url) {
+            const slug = url.replace('https://naraboxtv.com/movies/', '').trim();
+            if (!slug) return null;
+            const vjMatch = slug.match(/-vj-([a-z0-9]+(?:-[a-z0-9]+)*)(?:-vj-[a-z0-9-]+)?$/);
+            if (!vjMatch) return null;
+            const vj = 'VJ ' + vjMatch[1].replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
+            const titleSlug = slug.slice(0, vjMatch.index).replace(/-\d+$/, '');
+            const title = titleSlug.replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
+            return { title, vj, slug, url: `https://naraboxtv.com/movies/${slug}` };
+          }
+
+          async function main() {
+            // Fetch sitemap
+            const sitemapRes = await new Promise((resolve) => {
+              https.get('https://naraboxtv.com/sitemap.xml', {
+                headers: { 'User-Agent': 'Mozilla/5.0 (compatible; FBOBot/1.0)' }
+              }, res => {
+                const chunks = [];
+                res.on('data', c => chunks.push(c));
+                res.on('end', () => resolve(Buffer.concat(chunks).toString()));
+              }).on('error', () => resolve(''));
+            });
+
+            const urls = Array.from(sitemapRes.matchAll(/https:\/\/naraboxtv\.com\/movies\/([^<\s]+)/g), m => m[0]);
+            console.log(`Found ${urls.length} movie URLs in sitemap`);
+
+            const valid = [];
+            const CONCURRENCY = 8;
+            let idx = 0;
+
+            async function worker() {
+              while (idx < urls.length) {
+                const url = urls[idx++];
+                const parsed = parseSlug(url);
+                if (!parsed) continue;
+                const html = await fetchPage(parsed.slug);
+                const mp4Match = html.match(/https:\/\/nbxgen\.naraboxtv\.com\/[^\s"'\\<>]+\.mp4/i);
+                if (mp4Match) {
+                  const mp4 = mp4Match[0].replace(/\\/g,'');
+                  const poster = (html.match(/https:\/\/portal\.naraboxtv\.com\/[^\s"'\\<>]+\.(?:jpg|png|webp)/i)||[])[0]||null;
+                  const overview = (html.match(/name="description"\s+content="([^"]+)"/) || [])[1] || null;
+                  valid.push({ ...parsed, mp4, poster, overview });
+                }
+                if (idx % 100 === 0) console.log(`${idx}/${urls.length} scanned | ${valid.length} with MP4`);
+              }
+            }
+
+            await Promise.all(Array.from({length: CONCURRENCY}, () => worker()));
+            console.log(`\nTotal: ${valid.length} movies with MP4`);
+            fs.writeFileSync('./public/narabox_catalog.json', JSON.stringify(valid, null, 2));
+
+            // VJ stats
+            const vjCounts = {};
+            valid.forEach(m => { vjCounts[m.vj] = (vjCounts[m.vj]||0)+1; });
+            Object.entries(vjCounts).sort((a,b)=>b[1]-a[1]).slice(0,8).forEach(([vj,c]) => console.log(`  ${vj}: ${c}`));
+          }
+
+          main().catch(console.error);
+          SCRIPT
+
+      - name: Commit updated catalog
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/narabox_catalog.json
+          git diff --staged --quiet || git commit -m "chore: update NaraBox catalog [$(date +'%Y-%m-%d')]"
+          git push
