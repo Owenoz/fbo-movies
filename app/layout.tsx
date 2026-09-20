@@ -3,6 +3,7 @@ import './globals.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import GalaxyBackground from '@/components/GalaxyBackground'
+import { SubscriptionBanner } from '@/components/SubscriptionPaywall'
 import { AuthProvider } from '@/lib/AuthContext'
 
 export const metadata: Metadata = {
@@ -49,6 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <AuthProvider>
           <GalaxyBackground />
           <Navbar />
+          <SubscriptionBanner />
           <main className="relative pt-16 min-h-screen" style={{ zIndex: 10 }}>
             {children}
           </main>

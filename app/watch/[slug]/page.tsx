@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import WatchClient from './WatchClient'
+import SubscriptionPaywall from '@/components/SubscriptionPaywall'
 
 interface Props { params: { slug: string } }
 
@@ -8,5 +9,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default function WatchPage({ params }: Props) {
-  return <WatchClient slug={params.slug} />
+  return (
+    <SubscriptionPaywall requireSubscription={true}>
+      <WatchClient slug={params.slug} />
+    </SubscriptionPaywall>
+  )
 }

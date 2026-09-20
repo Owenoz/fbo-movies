@@ -4,8 +4,9 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Search, Film, Tv, Home, Menu, X, Zap } from 'lucide-react'
+import { Search, Film, Tv, Home, Menu, X, Crown } from 'lucide-react'
 import Logo from './Logo'
+import { checkSubscriptionStatus } from '@/lib/subscription'
 
 const navLinks = [
   { href: '/',        label: 'Home',     icon: Home },
@@ -19,11 +20,17 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [searchVal, setSearchVal] = useState('')
+  const [hasSubscription, setHasSubscription] = useState(false)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10)
     window.addEventListener('scroll', onScroll)
     return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  useEffect(() => {
+    const { hasAccess } = checkSubscriptionStatus()
+    setHasSubscription(hasAccess)
   }, [])
 
   return (
@@ -78,7 +85,7 @@ export default function Navbar() {
               })}
             </div>
 
-            {/* ── Desktop Search ── */}
+            {/* ── Desktop Search & Subscribe ── */}
             <div className="hidden md:flex items-center gap-3">
               <form onSubmit={e => { e.preventDefault(); if (searchVal.trim()) window.location.href=`/search?q=${encodeURIComponent(searchVal)}` }}>
                 <div className="relative flex items-center">
@@ -88,6 +95,16 @@ export default function Navbar() {
                     style={{ background:'rgba(255,255,255,0.07)', backdropFilter:'blur(10px)' }} />
                 </div>
               </form>
+              
+              {!hasSubscription && (
+                <Link
+                  href="/subscribe"
+                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-500 hover:to-purple-400 text-white font-bold text-sm shadow-lg shadow-purple-500/30 transition-all hover:scale-105"
+                >
+                  <Crown className="w-4 h-4" />
+                  Subscribe
+                </Link>
+              )}
             </div>
 
             {/* ── Mobile Toggle ── */}
@@ -139,6 +156,17 @@ export default function Navbar() {
                 style={{ background: 'rgba(255,255,255,0.07)' }}
               />
             </form>
+
+            {!hasSubscription && (
+              <Link
+                href="/subscribe"
+                onClick={() => setMobileOpen(false)}
+                className="flex items-center justify-center gap-2 w-full mb-3 px-4 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-purple-500 text-white font-bold text-sm shadow-lg"
+              >
+                <Crown className="w-4 h-4" />
+                Subscribe Now
+              </Link>
+            )}
 
             {navLinks.map(({ href, label, icon: Icon }) => (
               <Link
