@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Search, Film, Tv, Home, Menu, X, Zap } from 'lucide-react'
+import Logo from './Logo'
 
 const navLinks = [
   { href: '/',        label: 'Home',     icon: Home },
@@ -44,11 +45,7 @@ export default function Navbar() {
 
             {/* ── Logo ── */}
             <Link href="/" className="flex items-center gap-2.5 group flex-none">
-              <img 
-                src="/logo.jpg" 
-                alt="FBO Movies" 
-                className="h-10 w-auto object-contain transition-transform group-hover:scale-105"
-              />
+              <Logo size={45} showText={false} />
             </Link>
 
             {/* ── Desktop Links ── */}

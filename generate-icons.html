@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Generate FBO Movies Icons</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #0d001a;
+      color: white;
+    }
+    canvas {
+      border: 2px solid #8b5cf6;
+      margin: 10px;
+      border-radius: 8px;
+    }
+    button {
+      background: linear-gradient(135deg, #8b5cf6, #6366f1);
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 5px;
+    }
+    button:hover {
+      opacity: 0.9;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    h1 {
+      color: #a78bfa;
+    }
+    .instructions {
+      background: rgba(139, 92, 246, 0.1);
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #8b5cf6;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎬 FBO Movies - Icon Generator</h1>
+    
+    <div class="instructions">
+      <h3>Instructions:</h3>
+      <ol>
+        <li>Click the "Generate All Icons" button below</li>
+        <li>Right-click each canvas image and "Save As..."</li>
+        <li>Save them with the exact names shown below each icon</li>
+        <li>Place all icons in the <code>/public</code> folder of your app</li>
+      </ol>
+    </div>
+
+    <button onclick="generateAllIcons()">🚀 Generate All Icons</button>
+    
+    <div id="output"></div>
+  </div>
+
+  <script>
+    function drawLogo(canvas, size) {
+      const ctx = canvas.getContext('2d');
+      canvas.width = size;
+      canvas.height = size;
+      
+      // Create gradient
+      const gradient = ctx.createLinearGradient(0, 0, size, size);
+      gradient.addColorStop(0, '#8b5cf6');
+      gradient.addColorStop(1, '#6366f1');
+      
+      // Background with rounded corners
+      const radius = size * 0.22;
+      ctx.fillStyle = gradient;
+      ctx.beginPath();
+      ctx.roundRect(0, 0, size, size, radius);
+      ctx.fill();
+      
+      // Film reel decoration
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+      ctx.lineWidth = size * 0.02;
+      ctx.beginPath();
+      ctx.arc(size/2, size/2, size * 0.36, 0, Math.PI * 2);
+      ctx.stroke();
+      
+      // Play button triangle
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      const playX = size * 0.39;
+      const playY = size * 0.31;
+      const playWidth = size * 0.31;
+      const playHeight = size * 0.375;
+      ctx.moveTo(playX, playY);
+      ctx.lineTo(playX, playY + playHeight);
+      ctx.lineTo(playX + playWidth, playY + playHeight/2);
+      ctx.closePath();
+      ctx.fill();
+      
+      // FBO Text
+      ctx.fillStyle = '#ffffff';
+      ctx.font = `900 ${size * 0.167}px Arial, sans-serif`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.letterSpacing = `${size * 0.01}px`;
+      ctx.fillText('FBO', size/2, size * 0.86);
+    }
+    
+    function generateIcon(size, filename) {
+      const canvas = document.createElement('canvas');
+      drawLogo(canvas, size);
+      
+      const container = document.createElement('div');
+      container.style.display = 'inline-block';
+      container.style.textAlign = 'center';
+      container.style.margin = '10px';
+      
+      const label = document.createElement('p');
+      label.textContent = `${filename} (${size}x${size})`;
+      label.style.marginTop = '5px';
+      
+      const downloadBtn = document.createElement('button');
+      downloadBtn.textContent = '💾 Download';
+      downloadBtn.onclick = () => {
+        const link = document.createElement('a');
+        link.download = filename;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      };
+      
+      container.appendChild(canvas);
+      container.appendChild(document.createElement('br'));
+      container.appendChild(label);
+      container.appendChild(downloadBtn);
+      
+      return container;
+    }
+    
+    function generateAllIcons() {
+      const output = document.getElementById('output');
+      output.innerHTML = '<h2>Generated Icons:</h2>';
+      
+      const icons = [
+        { size: 32, name: 'favicon-32x32.png' },
+        { size: 180, name: 'apple-touch-icon.png' },
+        { size: 192, name: 'icon-192.png' },
+        { size: 512, name: 'icon-512.png' },
+      ];
+      
+      icons.forEach(icon => {
+        output.appendChild(generateIcon(icon.size, icon.name));
+      });
+      
+      const note = document.createElement('div');
+      note.className = 'instructions';
+      note.innerHTML = '<h3>✅ Icons Generated!</h3><p>Right-click each canvas image above and select "Save image as..." to download them.</p>';
+      output.appendChild(note);
+    }
+  </script>
+</body>
+</html>

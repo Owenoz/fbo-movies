@@ -1,0 +1,40 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient circle -->
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6366f1;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#a78bfa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Outer circle with gradient -->
+  <circle cx="256" cy="256" r="240" fill="url(#grad1)"/>
+  
+  <!-- Film reel outer ring -->
+  <circle cx="256" cy="256" r="200" fill="none" stroke="#ffffff" stroke-width="8" opacity="0.2"/>
+  <circle cx="256" cy="256" r="220" fill="none" stroke="#ffffff" stroke-width="4" opacity="0.15"/>
+  
+  <!-- Film reel holes (decorative) -->
+  <circle cx="256" cy="100" r="12" fill="#ffffff" opacity="0.3"/>
+  <circle cx="356" cy="156" r="12" fill="#ffffff" opacity="0.3"/>
+  <circle cx="356" cy="356" r="12" fill="#ffffff" opacity="0.3"/>
+  <circle cx="256" cy="412" r="12" fill="#ffffff" opacity="0.3"/>
+  <circle cx="156" cy="356" r="12" fill="#ffffff" opacity="0.3"/>
+  <circle cx="156" cy="156" r="12" fill="#ffffff" opacity="0.3"/>
+  
+  <!-- Play button triangle (centered) -->
+  <path d="M 210 180 L 210 332 L 340 256 Z" fill="#ffffff" opacity="0.95"/>
+  
+  <!-- Inner shadow circle -->
+  <circle cx="256" cy="256" r="180" fill="none" stroke="#000000" stroke-width="2" opacity="0.1"/>
+  
+  <!-- FBO Text -->
+  <text x="256" y="440" font-family="Arial, sans-serif" font-size="80" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="8">FBO</text>
+  
+  <!-- MOVIES text -->
+  <text x="256" y="480" font-family="Arial, sans-serif" font-size="28" font-weight="600" fill="#ffffff" text-anchor="middle" letter-spacing="12" opacity="0.9">MOVIES</text>
+</svg>
