@@ -1,5 +1,5 @@
 // Sports API Integration for Live Football Matches
-// Using multiple free sources for live sports data
+// Using AK47 Sports API (khhjjshv.com) for real live match data
 
 export interface LiveMatch {
   id: string
@@ -16,14 +16,14 @@ export interface LiveMatch {
   thumbnail?: string
 }
 
-// Free sports data aggregator
+// Main function to get live matches
 export async function getLiveMatches(): Promise<LiveMatch[]> {
   try {
-    // Method 1: Try API-Football (free tier)
-    const matches = await fetchFromApiFootball()
+    // Try AK47 Sports API first
+    const matches = await fetchFromAK47Sports()
     if (matches.length > 0) return matches
     
-    // Method 2: Fallback to mock data with real-time structure
+    // Fallback if API fails
     return getFallbackMatches()
   } catch (error) {
     console.error('Error fetching live matches:', error)
@@ -31,47 +31,105 @@ export async function getLiveMatches(): Promise<LiveMatch[]> {
   }
 }
 
-async function fetchFromApiFootball(): Promise<LiveMatch[]> {
+async function fetchFromAK47Sports(): Promise<LiveMatch[]> {
   try {
-    // This uses a free public endpoint that doesn't require API key
-    // It aggregates from multiple sources
-    const response = await fetch('https://www.thesportsdb.com/api/v1/json/3/livescore.php?l=4328', {
-      next: { revalidate: 60 } // Cache for 1 minute
+    // AK47 Sports API endpoint
+    const response = await fetch('https://khhjjshv.com/api/matches', {
+      next: { revalidate: 60 }, // Cache for 1 minute
+      headers: {
+        'Accept': 'application/json',
+      }
     })
     
-    if (!response.ok) throw new Error('Failed to fetch')
+    if (!response.ok) {
+      // Try alternative endpoint
+      return await fetchAlternativeEndpoint()
+    }
     
     const data = await response.json()
     
-    if (!data.events) return []
+    if (!data || !data.matches) return []
     
-    return data.events.slice(0, 20).map((event: any) => ({
-      id: event.idEvent,
-      title: `${event.strHomeTeam} vs ${event.strAwayTeam}`,
-      homeTeam: event.strHomeTeam,
-      awayTeam: event.strAwayTeam,
-      homeLogo: event.strHomeTeamBadge,
-      awayLogo: event.strAwayTeamBadge,
-      league: event.strLeague || 'Football',
-      status: event.strStatus === 'Match Finished' ? 'finished' : 
-              event.strStatus === 'Not Started' ? 'upcoming' : 'live',
-      score: event.intHomeScore && event.intAwayScore ? 
-             `${event.intHomeScore} - ${event.intAwayScore}` : undefined,
-      startTime: event.strTimestamp || event.dateEvent,
-      thumbnail: event.strThumb || event.strHomeTeamBadge,
-      streamUrl: generateStreamUrl(event.idEvent, event.strHomeTeam, event.strAwayTeam)
+    return data.matches.slice(0, 30).map((match: any) => ({
+      id: match.id || match.matchId || `match-${Date.now()}-${Math.random()}`,
+      title: match.title || `${match.homeTeam} vs ${match.awayTeam}`,
+      homeTeam: match.homeTeam || match.home,
+      awayTeam: match.awayTeam || match.away,
+      homeLogo: match.homeLogo || match.homeTeamLogo,
+      awayLogo: match.awayLogo || match.awayTeamLogo,
+      league: match.league || match.competition || 'Football',
+      status: determineStatus(match),
+      score: match.score || (match.homeScore !== undefined && match.awayScore !== undefined ? 
+             `${match.homeScore} - ${match.awayScore}` : undefined),
+      startTime: match.startTime || match.date || new Date().toISOString(),
+      thumbnail: match.thumbnail || match.image,
+      streamUrl: `/sports/watch/${match.id || match.matchId}?stream=${encodeURIComponent(match.streamUrl || '')}`
     }))
   } catch (error) {
-    console.error('API-Football error:', error)
+    console.error('AK47 Sports API error:', error)
     return []
   }
 }
 
+async function fetchAlternativeEndpoint(): Promise<LiveMatch[]> {
+  try {
+    // Try direct pro.m3u8 listing endpoint
+    const response = await fetch('https://khhjjshv.com/live', {
+      next: { revalidate: 60 }
+    })
+    
+    if (!response.ok) return []
+    
+    const data = await response.json()
+    return parseAlternativeFormat(data)
+  } catch (error) {
+    return []
+  }
+}
+
+function parseAlternativeFormat(data: any): LiveMatch[] {
+  if (!data || !Array.isArray(data)) return []
+  
+  return data.slice(0, 30).map((item: any, idx: number) => ({
+    id: item.id || `live-${idx}`,
+    title: item.name || item.title || 'Live Match',
+    homeTeam: extractTeam(item.name || item.title, 0),
+    awayTeam: extractTeam(item.name || item.title, 1),
+    league: item.category || item.league || 'Sports',
+    status: 'live' as const,
+    startTime: new Date().toISOString(),
+    thumbnail: item.logo || item.icon,
+    streamUrl: `/sports/watch/${item.id || `live-${idx}`}`
+  }))
+}
+
+function extractTeam(title: string, index: number): string {
+  const teams = title.split(/\s+vs\s+|\s+v\s+|-\s+/i)
+  return teams[index] || (index === 0 ? 'Home Team' : 'Away Team')
+}
+
+function determineStatus(match: any): 'live' | 'upcoming' | 'finished' {
+  if (match.status) {
+    const status = match.status.toLowerCase()
+    if (status.includes('live') || status.includes('playing')) return 'live'
+    if (status.includes('finished') || status.includes('ended')) return 'finished'
+    if (status.includes('upcoming') || status.includes('scheduled')) return 'upcoming'
+  }
+  
+  if (match.isLive) return 'live'
+  if (match.finished) return 'finished'
+  
+  // Check time
+  const startTime = new Date(match.startTime || match.date)
+  const now = new Date()
+  if (startTime > now) return 'upcoming'
+  if (startTime < new Date(now.getTime() - 7200000)) return 'finished' // 2 hours ago
+  
+  return 'live'
+}
+
 function generateStreamUrl(matchId: string, homeTeam: string, awayTeam: string): string {
-  // Generate embed-friendly stream URL
-  // This will open popular free streaming sites in iframe-friendly format
-  const slug = `${homeTeam}-vs-${awayTeam}`.toLowerCase().replace(/\s+/g, '-')
-  return `/sports/watch/${matchId}?match=${encodeURIComponent(slug)}`
+  return `/sports/watch/${matchId}`
 }
 
 function getFallbackMatches(): LiveMatch[] {

@@ -26,30 +26,68 @@ export default function SportsPlayer({ matchId }: { matchId: string }) {
       setLoading(true)
       setError(null)
       
-      // In a real implementation, this would fetch from your backend API
-      // which aggregates streams from multiple free sources
-      const mockSources: StreamSource[] = [
-        {
-          name: 'HD Stream 1',
-          url: `https://sportshd.stream/match/${matchId}`,
-          quality: '720p',
-          type: 'embed'
-        },
-        {
-          name: 'HD Stream 2',
-          url: `https://streamonsport.lat/match/${matchId}`,
-          quality: '1080p',
-          type: 'embed'
-        },
-        {
-          name: 'Mobile Stream',
-          url: `https://mobile.livesport.stream/${matchId}`,
-          quality: '480p',
-          type: 'embed'
-        }
-      ]
+      // Get stream URL from URL params
+      const params = new URLSearchParams(window.location.search)
+      const streamParam = params.get('stream')
       
-      setSources(mockSources)
+      // Fetch from AK47 Sports API
+      const ak47Sources: StreamSource[] = []
+      
+      if (streamParam) {
+        // Direct stream URL provided
+        ak47Sources.push({
+          name: 'AK47 HD Stream',
+          url: streamParam,
+          quality: '1080p',
+          type: 'direct'
+        })
+      }
+      
+      // Try to fetch additional streams from API
+      try {
+        const response = await fetch(`https://khhjjshv.com/api/match/${matchId}/streams`)
+        if (response.ok) {
+          const data = await response.json()
+          if (data.streams && Array.isArray(data.streams)) {
+            data.streams.forEach((stream: any, idx: number) => {
+              ak47Sources.push({
+                name: stream.name || `HD Stream ${idx + 1}`,
+                url: stream.url,
+                quality: stream.quality || '720p',
+                type: 'embed'
+              })
+            })
+          }
+        }
+      } catch (apiError) {
+        console.log('Could not fetch additional streams from API')
+      }
+      
+      // If no streams found, add fallback options
+      if (ak47Sources.length === 0) {
+        ak47Sources.push(
+          {
+            name: 'Stream 1',
+            url: `https://khhjjshv.com/embed/${matchId}`,
+            quality: '720p',
+            type: 'embed'
+          },
+          {
+            name: 'Stream 2',
+            url: `https://sportshd.me/live/${matchId}`,
+            quality: '1080p',
+            type: 'embed'
+          },
+          {
+            name: 'Mobile Stream',
+            url: `https://mobile.livesport.stream/${matchId}`,
+            quality: '480p',
+            type: 'embed'
+          }
+        )
+      }
+      
+      setSources(ak47Sources)
     } catch (err) {
       setError('Failed to load stream sources')
     } finally {
