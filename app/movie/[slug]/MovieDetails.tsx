@@ -83,26 +83,26 @@ export default function MovieDetails({ slug }: MovieDetailsProps) {
   const progress = getProgress(slug)
 
   return (
-    <div className="min-h-screen pt-16">
+    <div className="min-h-screen">
       {/* Backdrop */}
       {movie.poster && (
-        <div className="absolute inset-0 w-full h-[60vh] overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0d001a]/80 to-[#0d001a]" style={{ zIndex: 1 }} />
-          <img src={movie.poster} alt="" className="w-full h-full object-cover opacity-20 blur-xl" />
+        <div className="fixed inset-0 w-full h-screen overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0d001a]/60 via-[#0d001a]/85 to-[#0d001a]" style={{ zIndex: 1 }} />
+          <img src={movie.poster} alt="" className="w-full h-full object-cover opacity-20 blur-2xl scale-110" />
         </div>
       )}
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12" style={{ zIndex: 10 }}>
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12" style={{ zIndex: 10 }}>
         
         {/* Back button */}
         <motion.button
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           onClick={() => router.back()}
-          className="flex items-center gap-2 text-white/60 hover:text-white mb-8 transition-colors"
+          className="flex items-center gap-2 px-3 py-2 rounded-lg bg-black/40 hover:bg-black/60 backdrop-blur-md border border-white/10 text-white mb-6 transition-all hover:scale-105 active:scale-95"
         >
           <ArrowLeft className="w-5 h-5" />
-          <span>Back</span>
+          <span className="font-medium">Back</span>
         </motion.button>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
@@ -113,24 +113,24 @@ export default function MovieDetails({ slug }: MovieDetailsProps) {
             animate={{ opacity: 1, y: 0 }}
             className="lg:col-span-1"
           >
-            <div className="sticky top-24">
-              <div className="aspect-[2/3] rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+            <div className="lg:sticky lg:top-24">
+              <div className="aspect-[2/3] rounded-2xl overflow-hidden border-2 border-white/20 shadow-2xl shadow-purple-500/20 glow-box-purple">
                 {movie.poster ? (
                   <img src={movie.poster} alt={movie.title} className="w-full h-full object-cover" />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-900/40 to-blue-900/40">
-                    <Play className="w-16 h-16 text-white/20" />
+                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-900/50 to-blue-900/50">
+                    <Play className="w-20 h-20 text-white/30" />
                   </div>
                 )}
               </div>
               
               {/* Action Buttons */}
-              <div className="mt-6 flex gap-3">
+              <div className="mt-4 flex gap-3">
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                   onClick={() => router.push(`/watch/${slug}`)}
-                  className="flex-1 btn-primary flex items-center justify-center gap-2 py-3 rounded-xl font-semibold"
+                  className="flex-1 bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-500 hover:to-purple-400 flex items-center justify-center gap-2 py-3.5 rounded-xl font-bold text-white shadow-lg shadow-purple-500/40 transition-all"
                 >
                   <Play className="w-5 h-5 fill-current" />
                   {progress && progress.progress > 5 ? 'Continue' : 'Watch Now'}
@@ -140,7 +140,7 @@ export default function MovieDetails({ slug }: MovieDetailsProps) {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => toggleWatchlist({ slug: movie.slug, title: movie.title, vj: movie.vj, poster: movie.poster ?? undefined })}
-                  className={`btn-glass p-3 rounded-xl ${inWatchlist ? 'text-pink-500' : 'text-white'}`}
+                  className={`glass-card p-3.5 rounded-xl transition-all ${inWatchlist ? 'text-pink-500 border-pink-500/30' : 'text-white'}`}
                 >
                   <Heart className={`w-6 h-6 ${inWatchlist ? 'fill-current' : ''}`} />
                 </motion.button>
@@ -149,23 +149,31 @@ export default function MovieDetails({ slug }: MovieDetailsProps) {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={handleShare}
-                  className="btn-glass p-3 rounded-xl"
+                  className="glass-card p-3.5 rounded-xl text-white"
                 >
                   <Share2 className="w-6 h-6" />
                 </motion.button>
               </div>
 
               {progress && progress.progress > 0 && (
-                <div className="mt-4 glass-card p-3 rounded-xl">
-                  <div className="flex items-center justify-between text-sm text-white/60 mb-2">
-                    <span>Progress</span>
-                    <span>{Math.round(progress.progress)}%</span>
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mt-4 glass-card p-4 rounded-xl border border-purple-500/20"
+                >
+                  <div className="flex items-center justify-between text-sm text-white/70 mb-2">
+                    <span className="font-medium">Your Progress</span>
+                    <span className="text-purple-400 font-bold">{Math.round(progress.progress)}%</span>
                   </div>
                   <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-                    <div className="h-full bg-gradient-to-r from-purple-500 to-pink-500 transition-all"
-                      style={{ width: `${progress.progress}%` }} />
+                    <motion.div 
+                      initial={{ width: 0 }}
+                      animate={{ width: `${progress.progress}%` }}
+                      transition={{ duration: 0.8, ease: "easeOut" }}
+                      className="h-full bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg shadow-purple-500/50"
+                    />
                   </div>
-                </div>
+                </motion.div>
               )}
             </div>
           </motion.div>
@@ -175,101 +183,147 @@ export default function MovieDetails({ slug }: MovieDetailsProps) {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="lg:col-span-2 space-y-6"
+            className="lg:col-span-2 space-y-5"
           >
-            <div>
-              <h1 className="font-orbitron font-bold text-4xl md:text-5xl text-white mb-3">{movie.title}</h1>
+            <div className="space-y-3">
+              <h1 className="font-orbitron font-bold text-3xl sm:text-4xl md:text-5xl text-white leading-tight drop-shadow-lg">
+                {movie.title}
+              </h1>
               
-              <div className="flex flex-wrap items-center gap-4 text-white/60">
-                <div className="flex items-center gap-1.5">
-                  <User className="w-4 h-4 text-purple-400" />
-                  <span className="text-purple-400 font-semibold">{movie.vj}</span>
+              <div className="flex flex-wrap items-center gap-3">
+                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-600/30 to-purple-500/30 border border-purple-500/40 backdrop-blur-md">
+                  <User className="w-4 h-4 text-purple-300" />
+                  <span className="text-purple-200 font-bold text-sm">{movie.vj}</span>
                 </div>
               </div>
             </div>
 
             {movie.overview && (
-              <div className="glass-card p-6 rounded-2xl">
-                <h2 className="font-semibold text-xl text-white mb-3">Overview</h2>
-                <p className="text-white/70 leading-relaxed">{movie.overview}</p>
-              </div>
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2 }}
+                className="glass-card p-5 sm:p-6 rounded-2xl border border-white/15"
+              >
+                <h2 className="font-bold text-lg text-white mb-3 flex items-center gap-2">
+                  <div className="w-1 h-5 bg-gradient-to-b from-purple-500 to-pink-500 rounded-full" />
+                  Overview
+                </h2>
+                <p className="text-white/80 leading-relaxed">{movie.overview}</p>
+              </motion.div>
             )}
 
             {/* Rating Section */}
-            <div className="glass-card p-6 rounded-2xl">
-              <h2 className="font-semibold text-xl text-white mb-4">Your Rating</h2>
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              className="glass-card p-5 sm:p-6 rounded-2xl border border-white/15"
+            >
+              <h2 className="font-bold text-lg text-white mb-4 flex items-center gap-2">
+                <div className="w-1 h-5 bg-gradient-to-b from-amber-500 to-orange-500 rounded-full" />
+                Your Rating
+              </h2>
               
               <div className="flex items-center gap-2 mb-4">
                 {[1, 2, 3, 4, 5].map(star => (
-                  <button
+                  <motion.button
                     key={star}
                     onClick={() => { setUserRating(star); setShowReviewForm(true); }}
-                    className="transition-transform hover:scale-110"
+                    whileHover={{ scale: 1.15 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="transition-all"
                   >
                     <Star
-                      className={`w-8 h-8 ${star <= userRating ? 'text-amber-400 fill-amber-400' : 'text-white/20'}`}
+                      className={`w-8 h-8 ${star <= userRating ? 'text-amber-400 fill-amber-400 drop-shadow-lg' : 'text-white/20'}`}
                     />
-                  </button>
+                  </motion.button>
                 ))}
                 {userRating > 0 && (
-                  <span className="ml-2 text-white/60">{userRating}/5</span>
+                  <span className="ml-2 text-white/80 font-semibold">{userRating}/5</span>
                 )}
               </div>
 
               {showReviewForm && (
-                <div className="space-y-3">
+                <motion.div 
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  className="space-y-3"
+                >
                   <textarea
                     value={review}
                     onChange={e => setReview(e.target.value)}
                     placeholder="Write your review (optional)..."
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 outline-none focus:border-purple-500/50 transition-colors resize-none"
+                    className="w-full bg-white/5 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/40 outline-none focus:border-purple-500/60 focus:bg-white/10 transition-all resize-none"
                     rows={3}
                   />
                   <div className="flex gap-3">
-                    <button onClick={handleRatingSubmit} className="btn-primary px-6 py-2 rounded-lg font-semibold">
+                    <button 
+                      onClick={handleRatingSubmit} 
+                      className="bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-500 hover:to-purple-400 px-6 py-2.5 rounded-lg font-bold text-white shadow-lg shadow-purple-500/30 transition-all"
+                    >
                       Save Rating
                     </button>
-                    <button onClick={() => setShowReviewForm(false)} className="btn-glass px-6 py-2 rounded-lg">
+                    <button 
+                      onClick={() => setShowReviewForm(false)} 
+                      className="glass-card px-6 py-2.5 rounded-lg font-medium text-white/80 hover:text-white transition-all"
+                    >
                       Cancel
                     </button>
                   </div>
-                </div>
+                </motion.div>
               )}
 
               {userRating > 0 && review && !showReviewForm && (
-                <div className="mt-4 p-4 bg-white/5 rounded-xl border border-white/10">
-                  <p className="text-white/70 italic">"{review}"</p>
+                <motion.div 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="mt-4 p-4 bg-white/5 rounded-xl border border-white/15"
+                >
+                  <p className="text-white/80 italic leading-relaxed">"{review}"</p>
                   <button
                     onClick={() => setShowReviewForm(true)}
-                    className="mt-2 text-sm text-purple-400 hover:text-purple-300"
+                    className="mt-3 text-sm text-purple-400 hover:text-purple-300 font-medium"
                   >
-                    Edit
+                    Edit Review
                   </button>
-                </div>
+                </motion.div>
               )}
-            </div>
+            </motion.div>
 
             {/* Similar Movies */}
             {similar.length > 0 && (
-              <div className="pt-8">
-                <h2 className="font-semibold text-2xl text-white mb-6 flex items-center gap-2">
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4 }}
+                className="pt-6"
+              >
+                <h2 className="font-bold text-2xl text-white mb-5 flex items-center gap-3">
+                  <div className="w-1 h-6 bg-gradient-to-b from-blue-500 to-cyan-500 rounded-full" />
                   More from {movie.vj}
                 </h2>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4">
                   {similar.map((m, i) => (
-                    <MovieCard
+                    <motion.div
                       key={m.slug}
-                      id={i}
-                      title={m.title}
-                      posterUrl={m.poster ?? undefined}
-                      vj={m.vj}
-                      slug={m.slug}
-                      sourceType="narabox"
-                      index={i}
-                    />
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.05 * i }}
+                    >
+                      <MovieCard
+                        id={i}
+                        title={m.title}
+                        posterUrl={m.poster ?? undefined}
+                        vj={m.vj}
+                        slug={m.slug}
+                        sourceType="narabox"
+                        index={i}
+                      />
+                    </motion.div>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             )}
           </motion.div>
         </div>
