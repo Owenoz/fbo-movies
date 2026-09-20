@@ -3,8 +3,8 @@ import ExploreClient from './ExploreClient'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Explore 53k+ VJ Movies',
-  description: 'Browse 53,000+ Luganda-translated movies from LugaFlix and NaraBox. Stream VJ Junior, VJ Emmy, VJ Ice P and more.',
+  title: 'Explore More VJ Movies',
+  description: 'Browse thousands of Luganda-translated movies. Stream VJ Junior, VJ Emmy, VJ Ice P and more.',
 }
 
 export default function ExplorePage() {

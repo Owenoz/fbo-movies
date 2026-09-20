@@ -67,34 +67,21 @@ export default async function HomeContent() {
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-4"
               style={{ background: 'rgba(147,51,234,0.2)', border: '1px solid rgba(147,51,234,0.3)' }}>
               <Sparkles className="w-4 h-4 text-purple-400" />
-              <span className="text-sm font-bold text-purple-300 uppercase tracking-wider">New</span>
+              <span className="text-sm font-bold text-purple-300 uppercase tracking-wider">Discover</span>
             </div>
             <h2 className="font-orbitron font-bold text-3xl md:text-4xl text-white mb-4">
-              Explore 53,000+ VJ Movies
+              Explore More VJ Movies
             </h2>
             <p className="text-white/70 text-lg mb-8 max-w-2xl mx-auto">
-              Beyond our verified collection, discover thousands more Luganda-translated movies from LugaFlix. 
-              Stream VJ Junior, VJ Emmy, VJ Ice P and 20+ more translators.
+              Discover thousands more Luganda-translated movies. 
+              Stream from VJ Junior, VJ Emmy, VJ Ice P and 20+ more translators.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Link href="/explore" 
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-white transition-all hover:scale-105"
-                style={{ background: 'linear-gradient(135deg, #9333ea 0%, #3b82f6 100%)', boxShadow: '0 10px 40px rgba(147,51,234,0.3)' }}>
-                Browse All Movies
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-              <div className="flex items-center gap-6 text-sm">
-                <div>
-                  <div className="text-2xl font-bold text-white">462</div>
-                  <div className="text-white/50">Verified</div>
-                </div>
-                <div className="w-px h-12 bg-white/20" />
-                <div>
-                  <div className="text-2xl font-bold text-white">53k+</div>
-                  <div className="text-white/50">Streaming</div>
-                </div>
-              </div>
-            </div>
+            <Link href="/explore" 
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-white transition-all hover:scale-105"
+              style={{ background: 'linear-gradient(135deg, #9333ea 0%, #3b82f6 100%)', boxShadow: '0 10px 40px rgba(147,51,234,0.3)' }}>
+              Browse All Movies
+              <ArrowRight className="w-5 h-5" />
+            </Link>
           </div>
         </div>
 

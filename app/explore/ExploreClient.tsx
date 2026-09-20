@@ -68,11 +68,11 @@ export default function ExploreClient() {
           <div className="flex items-center gap-3 mb-4">
             <Sparkles className="w-10 h-10 text-purple-400" />
             <h1 className="font-orbitron font-bold text-4xl md:text-5xl text-white">
-              Explore All VJ Movies
+              Explore More Movies
             </h1>
           </div>
           <p className="text-white/60 text-lg">
-            Browse {total.toLocaleString()}+ Luganda-translated movies from multiple sources
+            Browse {total.toLocaleString()}+ Luganda-translated movies
           </p>
         </motion.div>
 
@@ -96,34 +96,6 @@ export default function ExploreClient() {
               />
             </div>
           </form>
-
-          {/* Source Filter */}
-          <div className="mb-6">
-            <label className="block text-sm font-medium text-white/70 mb-3 flex items-center gap-2">
-              <Database className="w-4 h-4" />
-              Source
-            </label>
-            <div className="flex gap-3">
-              {[
-                { value: 'all', label: 'All Sources', count: total },
-                { value: 'narabox', label: 'NaraBox (Verified)', count: 462 },
-                { value: 'lugaflix', label: 'LugaFlix', count: 53085 },
-              ].map(({ value, label, count }) => (
-                <button
-                  key={value}
-                  onClick={() => { setSource(value as any); setPage(1); }}
-                  className={`px-4 py-2 rounded-lg font-medium transition-all ${
-                    source === value
-                      ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white'
-                      : 'bg-white/5 text-white/60 hover:bg-white/10'
-                  }`}
-                >
-                  {label}
-                  <span className="ml-2 text-xs opacity-70">({count.toLocaleString()})</span>
-                </button>
-              ))}
-            </div>
-          </div>
 
           {/* VJ Filter */}
           <div>

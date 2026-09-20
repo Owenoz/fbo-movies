@@ -63,17 +63,44 @@ export default function WatchClient({ slug }: { slug: string }) {
   const ctrlTimer  = useRef<ReturnType<typeof setTimeout>>()
   const progressSaveTimer = useRef<ReturnType<typeof setTimeout>>()
 
-  // fetch movie data from our scraper API
+  // fetch movie data
   useEffect(() => {
     setLoading(true)
-    fetch(`/api/movie-data?slug=${encodeURIComponent(slug)}`)
-      .then(r => r.json())
-      .then(d => {
-        if (d.error) throw new Error(d.error)
-        setData(d)
-      })
-      .catch(e => setError(e.message))
-      .finally(() => setLoading(false))
+    
+    // Check if it's a LugaFlix movie (slug starts with "lugaflix-")
+    if (slug.startsWith('lugaflix-')) {
+      const lugaflixId = slug.replace('lugaflix-', '')
+      // Fetch from LugaFlix API
+      fetch(`https://movies.mruodel.com/api/movies`)
+        .then(r => r.json())
+        .then(apiData => {
+          const movie = apiData.data?.items?.find((m: any) => m.id.toString() === lugaflixId)
+          if (movie) {
+            setData({
+              slug,
+              title: movie.title,
+              mp4: movie.url,
+              poster: movie.thumbnail_url,
+              backdrop: movie.thumbnail_url,
+              overview: movie.description,
+            })
+          } else {
+            setError('Movie not found')
+          }
+        })
+        .catch(e => setError(e.message))
+        .finally(() => setLoading(false))
+    } else {
+      // Fetch from NaraBox scraper
+      fetch(`/api/movie-data?slug=${encodeURIComponent(slug)}`)
+        .then(r => r.json())
+        .then(d => {
+          if (d.error) throw new Error(d.error)
+          setData(d)
+        })
+        .catch(e => setError(e.message))
+        .finally(() => setLoading(false))
+    }
   }, [slug])
 
   // Add to watch history when video metadata loads
