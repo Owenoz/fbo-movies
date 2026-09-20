@@ -59,8 +59,34 @@ export default function WatchClient({ slug }: { slug: string }) {
   const [buffering, setBuffering] = useState(false)
   const [playbackRate, setPlaybackRate] = useState(1)
   const [showSettings, setShowSettings] = useState(false)
+  const [orientation, setOrientation] = useState<'landscape' | 'portrait'>('landscape')
   const ctrlTimer = useRef<ReturnType<typeof setTimeout>>()
   const progressSaveTimer = useRef<ReturnType<typeof setTimeout>>()
+
+  // Handle screen orientation
+  useEffect(() => {
+    const handleOrientation = () => {
+      if (window.screen.orientation) {
+        const type = window.screen.orientation.type
+        setOrientation(type.includes('landscape') ? 'landscape' : 'portrait')
+      } else if (window.orientation !== undefined) {
+        setOrientation(Math.abs(window.orientation as number) === 90 ? 'landscape' : 'portrait')
+      }
+    }
+
+    handleOrientation()
+    window.addEventListener('orientationchange', handleOrientation)
+    if (window.screen.orientation) {
+      window.screen.orientation.addEventListener('change', handleOrientation)
+    }
+
+    return () => {
+      window.removeEventListener('orientationchange', handleOrientation)
+      if (window.screen.orientation) {
+        window.screen.orientation.removeEventListener('change', handleOrientation)
+      }
+    }
+  }, [])
 
   // Fetch movie data
   useEffect(() => {
@@ -259,8 +285,34 @@ export default function WatchClient({ slug }: { slug: string }) {
     if (!containerRef.current) return
     if (!document.fullscreenElement) {
       await containerRef.current.requestFullscreen().catch(() => {})
+      // Lock to landscape on mobile when entering fullscreen
+      if (window.screen.orientation && window.screen.orientation.lock) {
+        try {
+          await window.screen.orientation.lock('landscape').catch(() => {})
+        } catch {}
+      }
     } else {
       await document.exitFullscreen()
+      // Unlock orientation when exiting fullscreen
+      if (window.screen.orientation && window.screen.orientation.unlock) {
+        try {
+          window.screen.orientation.unlock()
+        } catch {}
+      }
+    }
+  }
+
+  const toggleOrientation = async () => {
+    if (!window.screen.orientation || !window.screen.orientation.lock) return
+    
+    try {
+      if (orientation === 'landscape') {
+        await window.screen.orientation.lock('portrait')
+      } else {
+        await window.screen.orientation.lock('landscape')
+      }
+    } catch (err) {
+      console.log('Orientation lock not supported')
     }
   }
 
@@ -431,6 +483,17 @@ export default function WatchClient({ slug }: { slug: string }) {
                         </div>
                       )}
                     </div>
+                    {fullscreen && (
+                      <button
+                        onClick={toggleOrientation}
+                        className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+                        title="Rotate screen"
+                      >
+                        <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                        </svg>
+                      </button>
+                    )}
                     <button onClick={toggleFullscreen} className="p-2 hover:bg-white/10 rounded-lg transition-colors">
                       {fullscreen ? <Minimize className="w-5 h-5 text-white" /> : <Maximize className="w-5 h-5 text-white" />}
                     </button>
