@@ -1,5 +1,9 @@
-// Internet Archive API Integration
-// Fetches public domain movies and classic films
+// Internet Archive API Integration with Authentication
+// Using S3-like API keys for enhanced access
+
+// API Keys (from user's Internet Archive account)
+const IA_ACCESS_KEY = 'vO79UA3Jqy2uPELT'
+const IA_SECRET_KEY = 'ha9Y2soCpr8WndjX'
 
 export interface ArchiveMovie {
   id: string
@@ -17,22 +21,25 @@ export interface ArchiveMovie {
   stream_url?: string
 }
 
-// Search Internet Archive for movies
+// Search Internet Archive for movies with authentication
 export async function searchArchiveMovies(query: string = '', page: number = 1): Promise<ArchiveMovie[]> {
   try {
-    const rows = 50 // Items per page
+    const rows = 100 // Items per page
     const start = (page - 1) * rows
     
     // Build search query for movies
-    let searchQuery = 'mediatype:movies'
+    let searchQuery = 'mediatype:movies AND format:mpeg4'
     if (query) {
-      searchQuery = `(${query}) AND mediatype:movies`
+      searchQuery = `(${query}) AND mediatype:movies AND format:mpeg4`
     }
     
     const url = `https://archive.org/advancedsearch.php?q=${encodeURIComponent(searchQuery)}&fl[]=identifier,title,description,year,creator,runtime,downloads,format&sort[]=downloads+desc&rows=${rows}&page=${page}&output=json`
     
     const response = await fetch(url, {
-      next: { revalidate: 3600 } // Cache for 1 hour
+      next: { revalidate: 1800 }, // Cache for 30 minutes
+      headers: {
+        'Authorization': `LOW ${IA_ACCESS_KEY}:${IA_SECRET_KEY}`,
+      }
     })
     
     if (!response.ok) {
@@ -67,19 +74,16 @@ export async function searchArchiveMovies(query: string = '', page: number = 1):
 // Get popular/featured movies from Internet Archive
 export async function getFeaturedArchiveMovies(): Promise<ArchiveMovie[]> {
   try {
-    // Query for popular classic movies
-    const queries = [
-      'collection:moviesandfilms',
-      'collection:feature_films',
-      'collection:classic_films',
-    ]
+    // Query for popular movies with MP4 format
+    const searchQuery = '(collection:moviesandfilms OR collection:feature_films OR collection:classic_films) AND mediatype:movies AND format:mpeg4'
     
-    const searchQuery = queries.join(' OR ')
-    
-    const url = `https://archive.org/advancedsearch.php?q=${encodeURIComponent(searchQuery)}&fl[]=identifier,title,description,year,creator,runtime,downloads,format&sort[]=downloads+desc&rows=100&output=json`
+    const url = `https://archive.org/advancedsearch.php?q=${encodeURIComponent(searchQuery)}&fl[]=identifier,title,description,year,creator,runtime,downloads,format&sort[]=downloads+desc&rows=200&output=json`
     
     const response = await fetch(url, {
-      next: { revalidate: 3600 }
+      next: { revalidate: 1800 },
+      headers: {
+        'Authorization': `LOW ${IA_ACCESS_KEY}:${IA_SECRET_KEY}`,
+      }
     })
     
     if (!response.ok) return []
@@ -110,14 +114,17 @@ export async function getFeaturedArchiveMovies(): Promise<ArchiveMovie[]> {
 }
 
 // Get movies by category/collection
-export async function getArchiveMoviesByCollection(collection: string, limit: number = 50): Promise<ArchiveMovie[]> {
+export async function getArchiveMoviesByCollection(collection: string, limit: number = 100): Promise<ArchiveMovie[]> {
   try {
-    const searchQuery = `collection:${collection}`
+    const searchQuery = `collection:${collection} AND mediatype:movies AND format:mpeg4`
     
     const url = `https://archive.org/advancedsearch.php?q=${encodeURIComponent(searchQuery)}&fl[]=identifier,title,description,year,creator,runtime,downloads,format&sort[]=downloads+desc&rows=${limit}&output=json`
     
     const response = await fetch(url, {
-      next: { revalidate: 3600 }
+      next: { revalidate: 1800 },
+      headers: {
+        'Authorization': `LOW ${IA_ACCESS_KEY}:${IA_SECRET_KEY}`,
+      }
     })
     
     if (!response.ok) return []
@@ -147,13 +154,16 @@ export async function getArchiveMoviesByCollection(collection: string, limit: nu
   }
 }
 
-// Get movie details by identifier
+// Get movie details by identifier with authentication
 export async function getArchiveMovieDetails(identifier: string): Promise<ArchiveMovie | null> {
   try {
     const url = `https://archive.org/metadata/${identifier}`
     
     const response = await fetch(url, {
-      next: { revalidate: 3600 }
+      next: { revalidate: 3600 },
+      headers: {
+        'Authorization': `LOW ${IA_ACCESS_KEY}:${IA_SECRET_KEY}`,
+      }
     })
     
     if (!response.ok) return null
@@ -163,8 +173,19 @@ export async function getArchiveMovieDetails(identifier: string): Promise<Archiv
     const metadata = data.metadata || {}
     const files = data.files || []
     
-    // Find MP4 file
-    const mp4File = files.find((f: any) => f.format === 'h.264' || f.name?.endsWith('.mp4'))
+    // Find best quality MP4 file
+    const mp4Files = files.filter((f: any) => 
+      f.format === 'h.264' || 
+      f.format === 'MPEG4' ||
+      f.name?.endsWith('.mp4')
+    )
+    
+    // Prefer higher quality files
+    const mp4File = mp4Files.find((f: any) => 
+      f.name?.includes('512kb') || 
+      f.name?.includes('_512kb') ||
+      f.format === 'h.264'
+    ) || mp4Files[0]
     
     return {
       id: identifier,
@@ -195,4 +216,6 @@ export const POPULAR_COLLECTIONS = [
   { id: 'horror_films', name: 'Horror Films', description: 'Classic horror movies' },
   { id: 'sci-fi_films', name: 'Sci-Fi Films', description: 'Science fiction classics' },
   { id: 'westerns', name: 'Westerns', description: 'Classic western movies' },
+  { id: 'action_films', name: 'Action Films', description: 'Action-packed classics' },
+  { id: 'drama_films', name: 'Drama Films', description: 'Dramatic masterpieces' },
 ]
