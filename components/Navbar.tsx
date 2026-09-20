@@ -8,10 +8,10 @@ import { Search, Film, Tv, Home, Menu, X, Zap } from 'lucide-react'
 import Logo from './Logo'
 
 const navLinks = [
-  { href: '/',        label: 'Home',        icon: Home },
-  { href: '/movies',  label: 'Movies',      icon: Film },
-  { href: '/tv',      label: 'Live Sports', icon: Tv },
-  { href: '/search',  label: 'Search',      icon: Search },
+  { href: '/',        label: 'Home',     icon: Home },
+  { href: '/movies',  label: 'Movies',   icon: Film },
+  { href: '/tv',      label: 'TV Shows', icon: Tv },
+  { href: '/search',  label: 'Search',   icon: Search },
 ]
 
 export default function Navbar() {

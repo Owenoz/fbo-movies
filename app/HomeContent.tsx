@@ -1,7 +1,6 @@
 import HeroBanner from '@/components/HeroBanner'
 import ContentRow from '@/components/ContentRow'
 import ContinueWatching from '@/components/ContinueWatching'
-import LiveSportsBanner from '@/components/LiveSportsBanner'
 import Link from 'next/link'
 import { Sparkles, ArrowRight } from 'lucide-react'
 import { getNaraCatalogServer, getVJStats, slugToId } from '@/lib/narabox'
@@ -54,9 +53,6 @@ export default async function HomeContent() {
 
         {/* Continue Watching - client component */}
         <ContinueWatching />
-
-        {/* Live Sports Banner */}
-        <LiveSportsBanner />
 
         {/* Explore More CTA */}
         <div className="relative overflow-hidden rounded-2xl border border-white/10 mb-14"
