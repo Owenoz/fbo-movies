@@ -44,25 +44,11 @@ export default function Navbar() {
 
             {/* ── Logo ── */}
             <Link href="/" className="flex items-center gap-2.5 group flex-none">
-              <motion.div
-                whileHover={{ rotate: 15, scale: 1.1 }}
-                transition={{ type: 'spring', stiffness: 300 }}
-                className="w-9 h-9 rounded-xl flex items-center justify-center shadow-[0_0_15px_rgba(147,51,234,0.6)]"
-                style={{ background: 'linear-gradient(135deg, #9333ea, #3b82f6)' }}
-              >
-                <Zap className="w-5 h-5 text-white fill-white" />
-              </motion.div>
-              <span
-                className="font-orbitron font-bold text-xl tracking-widest"
-                style={{
-                  background: 'linear-gradient(135deg, #fff 0%, #c084fc 50%, #818cf8 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                }}
-              >
-                FBO
-              </span>
+              <img 
+                src="/logo.jpg" 
+                alt="FBO Movies" 
+                className="h-10 w-auto object-contain transition-transform group-hover:scale-105"
+              />
             </Link>
 
             {/* ── Desktop Links ── */}

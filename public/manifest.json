@@ -1,7 +1,7 @@
 {
   "name": "FBO Movies - VJ Translated Movies",
   "short_name": "FBO Movies",
-  "description": "Watch 462+ VJ-translated Ugandan movies with full MP4 streaming",
+  "description": "Watch VJ-translated Ugandan movies with full MP4 streaming",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0a0118",
@@ -20,13 +20,19 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
+    },
+    {
+      "src": "/logo.jpg",
+      "sizes": "1280x698",
+      "type": "image/jpeg",
+      "purpose": "any"
     }
   ],
   "screenshots": [
     {
-      "src": "/screenshot.png",
-      "sizes": "1080x1920",
-      "type": "image/png"
+      "src": "/logo.jpg",
+      "sizes": "1280x698",
+      "type": "image/jpeg"
     }
   ],
   "categories": ["entertainment", "video"],
