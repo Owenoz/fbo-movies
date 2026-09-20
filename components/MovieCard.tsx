@@ -19,17 +19,18 @@ interface MovieCardProps {
   overview?: string
   vj?: string
   index?: number
-  sourceType?: 'kawogo' | 'tmdb' | 'narabox'
+  sourceType?: 'kawogo' | 'tmdb' | 'narabox' | 'lugaflix'
   slug?: string
-  isNew?: boolean  // Show "NEW" badge if added in last 7 days
+  isNew?: boolean
+  source?: string  // Source name e.g. "NaraBox TV", "LugaFlix"
 }
 
 export default function MovieCard({
   id, title, posterPath, posterUrl, rating = 0, year, releaseDate,
-  type = 'movie', runtime, overview, vj, index = 0, sourceType = 'tmdb', slug, isNew = false,
+  type = 'movie', runtime, overview, vj, index = 0, sourceType = 'tmdb', slug, isNew = false, source,
 }: MovieCardProps) {
-  // Link to details page for NaraBox movies, direct to watch for others
-  const href = sourceType === 'narabox' && slug
+  // Link to details page for VJ movies (NaraBox, LugaFlix)
+  const href = (sourceType === 'narabox' || sourceType === 'lugaflix') && slug
     ? `/movie/${slug}`
     : `/${type === 'tv' ? 'tv' : 'movie'}/${id}`
 
@@ -122,6 +123,19 @@ export default function MovieCard({
               <span className="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded text-white animate-pulse"
                 style={{ background: 'rgba(16,185,129,0.9)' }}>
                 NEW
+              </span>
+            </div>
+          )}
+
+          {/* Source badge - top right below heart */}
+          {source && (sourceType === 'narabox' || sourceType === 'lugaflix') && (
+            <div className="absolute top-12 right-2">
+              <span className="text-[8px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded text-white"
+                style={{ 
+                  background: sourceType === 'narabox' ? 'rgba(147,51,234,0.85)' : 'rgba(59,130,246,0.85)',
+                  backdropFilter: 'blur(4px)'
+                }}>
+                {sourceType === 'narabox' ? 'VERIFIED' : 'STREAM'}
               </span>
             </div>
           )}
