@@ -1,78 +1,52 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-// Initialize Flutterwave only if keys are provided
-let flw: any = null
-try {
-  if (process.env.FLW_PUBLIC_KEY && process.env.FLW_SECRET_KEY) {
-    const Flutterwave = require('flutterwave-node-v3')
-    flw = new Flutterwave(
-      process.env.FLW_PUBLIC_KEY,
-      process.env.FLW_SECRET_KEY
-    )
-  }
-} catch (error) {
-  console.warn('Flutterwave initialization failed:', error)
-}
+// Manual Mobile Money Payment - Simple & Direct
+// Admin approves payments after verifying transaction reference
 
 export async function POST(request: NextRequest) {
-  if (!flw) {
-    return NextResponse.json(
-      { error: 'Payment service not configured. Please set up Flutterwave API keys.' },
-      { status: 503 }
-    )
-  }
-
   try {
     const body = await request.json()
-    const { email, phone_number, network, amount } = body
+    const { email, phone_number, network, transaction_reference, amount } = body
 
     // Validate input
-    if (!email || !phone_number || !network) {
+    if (!email || !phone_number || !network || !transaction_reference) {
       return NextResponse.json(
-        { error: 'Missing required fields' },
+        { error: 'Please fill all fields including transaction reference' },
         { status: 400 }
       )
     }
 
-    // Generate unique transaction reference
-    const tx_ref = `FBO-${Date.now()}-${Math.random().toString(36).substring(7)}`
+    // Generate unique submission ID
+    const submissionId = `FBO-${Date.now()}-${Math.random().toString(36).substring(7)}`
 
-    // Prepare payment payload for Uganda Mobile Money
-    const payload = {
-      tx_ref,
-      amount: amount || 5000, // 5000 UGX
-      currency: 'UGX',
+    // Create payment submission record
+    const paymentData = {
+      submissionId,
       email,
       phone_number,
-      network, // 'MTN' or 'AIRTEL'
-      redirect_url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://fbo-movies.vercel.app'}/payment/callback`,
-      meta: {
-        consumer_id: email,
-        consumer_mac: 'kjs9s8ss7dd'
-      },
-      customer: {
-        email,
-        phonenumber: phone_number,
-        name: email.split('@')[0]
-      }
+      network,
+      transaction_reference,
+      amount: amount || 5000,
+      status: 'pending',
+      submittedAt: new Date().toISOString()
     }
 
-    // Make payment request to Flutterwave
-    const response = await flw.MobileMoney.uganda(payload)
+    console.log('💰 Payment submission received:', paymentData)
+    console.log('📧 Admin should verify transaction:', transaction_reference)
+    console.log('👉 Admin approval URL: /admin/approve')
+    console.log('📱 Payment sent to: 0793854272')
 
-    if (response.status === 'success') {
-      return NextResponse.json({
-        success: true,
-        data: response.data,
-        tx_ref,
-        link: response.data.link || response.meta?.authorization?.redirect
-      })
-    } else {
-      return NextResponse.json(
-        { error: response.message || 'Payment initiation failed' },
-        { status: 400 }
-      )
-    }
+    // In production: Save to database
+    // await db.payments.create(paymentData)
+
+    // Return success - payment is pending approval
+    return NextResponse.json({
+      success: true,
+      submissionId,
+      status: 'pending',
+      message: 'Payment submitted! Your subscription will be activated once we verify your transaction.',
+      paymentData // Include data so client can store in localStorage
+    })
   } catch (error: any) {
     console.error('Subscription error:', error)
     return NextResponse.json(
@@ -82,43 +56,28 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// Verify payment
+// Verify payment status (for checking if admin approved)
 export async function GET(request: NextRequest) {
-  if (!flw) {
-    return NextResponse.json(
-      { error: 'Payment service not configured' },
-      { status: 503 }
-    )
-  }
-
   try {
     const { searchParams } = new URL(request.url)
-    const transaction_id = searchParams.get('transaction_id')
-    const tx_ref = searchParams.get('tx_ref')
+    const submissionId = searchParams.get('submissionId')
+    const transactionRef = searchParams.get('transactionRef')
 
-    if (!transaction_id && !tx_ref) {
+    if (!submissionId && !transactionRef) {
       return NextResponse.json(
-        { error: 'Missing transaction ID' },
+        { error: 'Missing submission ID or transaction reference' },
         { status: 400 }
       )
     }
 
-    // Verify transaction with Flutterwave
-    const response = await flw.Transaction.verify({ id: transaction_id || tx_ref })
-
-    if (response.data.status === 'successful' && response.data.amount >= 5000) {
-      return NextResponse.json({
-        success: true,
-        verified: true,
-        data: response.data
-      })
-    } else {
-      return NextResponse.json({
-        success: false,
-        verified: false,
-        message: 'Payment not verified'
-      })
-    }
+    // In production, check database for approval status
+    // For now, return pending status
+    return NextResponse.json({
+      success: true,
+      verified: false,
+      status: 'pending',
+      message: 'Payment is pending verification by admin'
+    })
   } catch (error: any) {
     console.error('Verification error:', error)
     return NextResponse.json(

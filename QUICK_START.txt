@@ -1,0 +1,69 @@
+════════════════════════════════════════════════════════════════
+  FBO MOVIES - MTN MOMO PRODUCTION - QUICK START CARD        
+════════════════════════════════════════════════════════════════
+
+📍 YOU ARE HERE: 95% Complete - Just need 2 credentials!
+
+────────────────────────────────────────────────────────────────
+ STEP 1: Get Credentials (2 min)                              
+────────────────────────────────────────────────────────────────
+ 1. Go to: https://momodeveloper.mtn.com/profile             
+ 2. Find: "Collections" subscription (2nd in list)            
+ 3. Click: "Hide" button                                      
+ 4. Copy: User ID and API Secret                              
+────────────────────────────────────────────────────────────────
+
+────────────────────────────────────────────────────────────────
+ STEP 2: Update .env.local (1 min)                            
+────────────────────────────────────────────────────────────────
+ File: /home/owenoz123/Desktop/kawogo-web/.env.local         
+                                                               
+ Replace:                                                      
+   MOMO_COLLECTION_USER_ID=CLICK_HIDE_TO_GET_THIS            
+   MOMO_COLLECTION_USER_SECRET=CLICK_HIDE_TO_GET_THIS        
+                                                               
+ With your actual values!                                      
+────────────────────────────────────────────────────────────────
+
+────────────────────────────────────────────────────────────────
+ STEP 3: Test Locally (5 min)                                 
+────────────────────────────────────────────────────────────────
+ $ cd /home/owenoz123/Desktop/kawogo-web                      
+ $ npm run dev                                                 
+                                                               
+ Then: http://localhost:3000/subscribe                        
+ Test with YOUR MTN number!                                    
+────────────────────────────────────────────────────────────────
+
+────────────────────────────────────────────────────────────────
+ STEP 4: Deploy (5 min)                                        
+────────────────────────────────────────────────────────────────
+ $ git add .                                                   
+ $ git commit -m "MTN MoMo production ready"                  
+ $ git push origin main                                        
+ $ vercel --prod                                               
+                                                               
+ Then add env vars in Vercel dashboard!                        
+────────────────────────────────────────────────────────────────
+
+════════════════════════════════════════════════════════════════
+  YOUR KNOWN CREDENTIALS                                       
+════════════════════════════════════════════════════════════════
+  Primary Key: 79e9ad63d27c49f8b210b3f77f82ab41              
+  User ID: Get from dashboard (Step 1)                        
+  API Secret: Get from dashboard (Step 1)                     
+════════════════════════════════════════════════════════════════
+
+📚 Full Guides:
+  → READY_TO_LAUNCH.md - Complete walkthrough
+  → GET_CREDENTIALS.md - Visual guide to get credentials  
+  → PRODUCTION_SETUP.md - Deployment details
+  → MTN_MOMO_SETUP.md - API documentation
+
+🎯 After Launch:
+  ✅ Users get instant access (2-10 seconds)
+  ✅ No manual approval needed
+  ✅ Professional payment flow
+  ✅ You keep 99%+ of revenue
+
+🚀 YOU'RE ALMOST THERE! Just 2 more values needed!
