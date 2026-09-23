@@ -282,22 +282,203 @@ function getStreams(sport: string, league: string): StreamSource[] {
   
   const streams: StreamSource[] = []
   
-  // Sport-specific streams
+  // Football/Soccer streams by league
   if (sportLower.includes('football') || sportLower.includes('soccer')) {
-    streams.push({ name: 'XTREME HD', url: 'https://sportzonline.to/channels/uk/sky-sports-football.php', quality: '1080p' })
-    streams.push({ name: 'SERVER 1', url: 'https://yashintv.xyz', quality: '720p' })
-    streams.push({ name: 'SERVER 2', url: 'https://www.stream2watch.com', quality: '720p' })
-  } else if (sportLower.includes('basketball')) {
-    streams.push({ name: 'XTREME HD', url: 'https://sportzonline.to/channels/us/nba-tv.php', quality: '1080p' })
-    streams.push({ name: 'SERVER 1', url: 'https://yashintv.xyz', quality: '720p' })
-  } else if (sportLower.includes('cricket')) {
-    streams.push({ name: 'XTREME HD', url: 'https://sportzonline.to/channels/uk/sky-sports-cricket.php', quality: '1080p' })
-    streams.push({ name: 'SERVER 1', url: 'https://yashintv.xyz', quality: '720p' })
-  } else {
-    // Generic streams for other sports
-    streams.push({ name: 'XTREME HD', url: 'https://sportzonline.to', quality: '1080p' })
-    streams.push({ name: 'SERVER 1', url: 'https://yashintv.xyz', quality: '720p' })
+    if (leagueLower.includes('premier') || leagueLower.includes('epl')) {
+      streams.push(
+        { name: 'Sky Sports PL', url: 'https://sportzonline.to/channels/uk/sky-sports-premier-league.php', quality: '1080p' },
+        { name: 'NBC Sports', url: 'https://sportzonline.to/channels/us/nbc-sports.php', quality: '1080p' },
+        { name: 'DAZN', url: 'https://yashintv.xyz', quality: '720p' }
+      )
+    } else if (leagueLower.includes('la liga') || leagueLower.includes('spanish')) {
+      streams.push(
+        { name: 'LaLiga TV', url: 'https://sportzonline.to/channels/es/movistar-laliga.php', quality: '1080p' },
+        { name: 'BeIN Sports', url: 'https://sportzonline.to/channels/fr/bein-sports-1-fr.php', quality: '1080p' },
+        { name: 'ESPN+', url: 'https://yashintv.xyz', quality: '720p' }
+      )
+    } else if (leagueLower.includes('bundesliga') || leagueLower.includes('german')) {
+      streams.push(
+        { name: 'Sky Sport DE', url: 'https://sportzonline.to/channels/de/sky-sport-bundesliga-1.php', quality: '1080p' },
+        { name: 'DAZN DE', url: 'https://sportzonline.to/channels/de/dazn-1-de.php', quality: '1080p' },
+        { name: 'ESPN+', url: 'https://yashintv.xyz', quality: '720p' }
+      )
+    } else if (leagueLower.includes('serie a') || leagueLower.includes('italian')) {
+      streams.push(
+        { name: 'Sky Sport IT', url: 'https://sportzonline.to/channels/it/sky-sport-calcio.php', quality: '1080p' },
+        { name: 'DAZN IT', url: 'https://sportzonline.to/channels/it/dazn-1-it.php', quality: '1080p' },
+        { name: 'Paramount+', url: 'https://yashintv.xyz', quality: '720p' }
+      )
+    } else if (leagueLower.includes('ligue 1') || leagueLower.includes('french')) {
+      streams.push(
+        { name: 'Canal+ FR', url: 'https://sportzonline.to/channels/fr/canal-plus-sport-fr.php', quality: '1080p' },
+        { name: 'BeIN Sports FR', url: 'https://sportzonline.to/channels/fr/bein-sports-1-fr.php', quality: '1080p' },
+        { name: 'Amazon Prime', url: 'https://yashintv.xyz', quality: '720p' }
+      )
+    } else if (leagueLower.includes('champions') || leagueLower.includes('uefa')) {
+      streams.push(
+        { name: 'BT Sport', url: 'https://sportzonline.to/channels/uk/bt-sport-1.php', quality: '1080p' },
+        { name: 'CBS Sports', url: 'https://sportzonline.to/channels/us/cbs-sports-network.php', quality: '1080p' },
+        { name: 'DAZN', url: 'https://sportzonline.to/channels/de/dazn-1-de.php', quality: '1080p' },
+        { name: 'Paramount+', url: 'https://yashintv.xyz', quality: '720p' }
+      )
+    } else if (leagueLower.includes('europa')) {
+      streams.push(
+        { name: 'BT Sport', url: 'https://sportzonline.to/channels/uk/bt-sport-2.php', quality: '1080p' },
+        { name: 'DAZN', url: 'https://sportzonline.to/channels/de/dazn-2-de.php', quality: '1080p' },
+        { name: 'Paramount+', url: 'https://yashintv.xyz', quality: '720p' }
+      )
+    } else if (leagueLower.includes('mls') || leagueLower.includes('major league')) {
+      streams.push(
+        { name: 'Apple TV', url: 'https://sportzonline.to/channels/us/espn.php', quality: '1080p' },
+        { name: 'ESPN', url: 'https://sportzonline.to/channels/us/espn2.php', quality: '1080p' },
+        { name: 'FOX Sports', url: 'https://yashintv.xyz', quality: '720p' }
+      )
+    } else if (leagueLower.includes('world cup') || leagueLower.includes('fifa')) {
+      streams.push(
+        { name: 'BBC Sport', url: 'https://sportzonline.to/channels/uk/bbc-one.php', quality: '1080p' },
+        { name: 'FOX Sports', url: 'https://sportzonline.to/channels/us/fox-sports-1.php', quality: '1080p' },
+        { name: 'beIN Sports', url: 'https://sportzonline.to/channels/fr/bein-sports-1-fr.php', quality: '1080p' },
+        { name: 'ITV Sport', url: 'https://yashintv.xyz', quality: '720p' }
+      )
+    } else {
+      // Generic football channels
+      streams.push(
+        { name: 'Sky Sports', url: 'https://sportzoneline.to/channels/uk/sky-sports-football.php', quality: '1080p' },
+        { name: 'ESPN', url: 'https://sportzonline.to/channels/us/espn.php', quality: '1080p' },
+        { name: 'DAZN', url: 'https://yashintv.xyz', quality: '720p' }
+      )
+    }
   }
+  
+  // Basketball streams
+  else if (sportLower.includes('basketball')) {
+    if (leagueLower.includes('nba')) {
+      streams.push(
+        { name: 'NBA TV', url: 'https://sportzonline.to/channels/us/nba-tv.php', quality: '1080p' },
+        { name: 'ESPN', url: 'https://sportzonline.to/channels/us/espn.php', quality: '1080p' },
+        { name: 'TNT', url: 'https://sportzonoline.to/channels/us/tnt.php', quality: '1080p' },
+        { name: 'ABC', url: 'https://yashintv.xyz', quality: '720p' }
+      )
+    } else if (leagueLower.includes('euroleague') || leagueLower.includes('euro')) {
+      streams.push(
+        { name: 'Euroleague TV', url: 'https://sportzonoline.to/channels/eu/eurosport-1.php', quality: '1080p' },
+        { name: 'DAZN', url: 'https://yashintv.xyz', quality: '720p' }
+      )
+    } else {
+      streams.push(
+        { name: 'ESPN', url: 'https://sportzonoline.to/channels/us/espn2.php', quality: '1080p' },
+        { name: 'DAZN', url: 'https://yashintv.xyz', quality: '720p' }
+      )
+    }
+  }
+  
+  // Cricket streams
+  else if (sportLower.includes('cricket')) {
+    if (leagueLower.includes('ipl') || leagueLower.includes('indian')) {
+      streams.push(
+        { name: 'Star Sports', url: 'https://sportzonoline.to/channels/in/star-sports-1.php', quality: '1080p' },
+        { name: 'Hotstar', url: 'https://sportzonoline.to/channels/in/star-sports-2.php', quality: '1080p' },
+        { name: 'JioCinema', url: 'https://yashintv.xyz', quality: '720p' }
+      )
+    } else if (leagueLower.includes('test') || leagueLower.includes('international')) {
+      streams.push(
+        { name: 'Sky Sports Cricket', url: 'https://sportzonoline.to/channels/uk/sky-sports-cricket.php', quality: '1080p' },
+        { name: 'Star Sports', url: 'https://sportzonoline.to/channels/in/star-sports-1.php', quality: '1080p' },
+        { name: 'SuperSport', url: 'https://yashintv.xyz', quality: '720p' }
+      )
+    } else if (leagueLower.includes('big bash') || leagueLower.includes('bbl')) {
+      streams.push(
+        { name: 'Fox Cricket', url: 'https://sportzonoline.to/channels/au/fox-sports-cricket.php', quality: '1080p' },
+        { name: 'Channel 7', url: 'https://yashintv.xyz', quality: '720p' }
+      )
+    } else {
+      streams.push(
+        { name: 'Sky Sports Cricket', url: 'https://sportzonoline.to/channels/uk/sky-sports-cricket.php', quality: '1080p' },
+        { name: 'Willow TV', url: 'https://yashintv.xyz', quality: '720p' }
+      )
+    }
+  }
+  
+  // Tennis streams
+  else if (sportLower.includes('tennis')) {
+    streams.push(
+      { name: 'Tennis Channel', url: 'https://sportzonoline.to/channels/us/tennis-channel.php', quality: '1080p' },
+      { name: 'Eurosport', url: 'https://sportzonoline.to/channels/eu/eurosport-1.php', quality: '1080p' },
+      { name: 'ESPN', url: 'https://sportzonoline.to/channels/us/espn.php', quality: '1080p' },
+      { name: 'beIN Sports', url: 'https://yashintv.xyz', quality: '720p' }
+    )
+  }
+  
+  // American Football streams
+  else if (sportLower.includes('american football') || leagueLower.includes('nfl')) {
+    streams.push(
+      { name: 'NFL Network', url: 'https://sportzonoline.to/channels/us/nfl-network.php', quality: '1080p' },
+      { name: 'ESPN', url: 'https://sportzonoline.to/channels/us/espn.php', quality: '1080p' },
+      { name: 'FOX Sports', url: 'https://sportzonoline.to/channels/us/fox-sports-1.php', quality: '1080p' },
+      { name: 'CBS Sports', url: 'https://yashintv.xyz', quality: '720p' }
+    )
+  }
+  
+  // Baseball streams
+  else if (sportLower.includes('baseball') || leagueLower.includes('mlb')) {
+    streams.push(
+      { name: 'MLB Network', url: 'https://sportzonoline.to/channels/us/mlb-network.php', quality: '1080p' },
+      { name: 'ESPN', url: 'https://sportzonoline.to/channels/us/espn.php', quality: '1080p' },
+      { name: 'FOX Sports', url: 'https://yashintv.xyz', quality: '720p' }
+    )
+  }
+  
+  // Ice Hockey streams
+  else if (sportLower.includes('ice hockey') || sportLower.includes('hockey') || leagueLower.includes('nhl')) {
+    streams.push(
+      { name: 'NHL Network', url: 'https://sportzonoline.to/channels/us/nhl-network.php', quality: '1080p' },
+      { name: 'ESPN+', url: 'https://sportzonoline.to/channels/us/espn2.php', quality: '1080p' },
+      { name: 'TNT', url: 'https://yashintv.xyz', quality: '720p' }
+    )
+  }
+  
+  // Motor Sports streams
+  else if (sportLower.includes('motor') || sportLower.includes('racing') || leagueLower.includes('f1') || leagueLower.includes('formula')) {
+    streams.push(
+      { name: 'Sky Sports F1', url: 'https://sportzonoline.to/channels/uk/sky-sports-f1.php', quality: '1080p' },
+      { name: 'ESPN', url: 'https://sportzonoline.to/channels/us/espn.php', quality: '1080p' },
+      { name: 'DAZN', url: 'https://yashintv.xyz', quality: '720p' }
+    )
+  }
+  
+  // Boxing/MMA streams
+  else if (sportLower.includes('boxing') || sportLower.includes('fighting') || sportLower.includes('mma') || leagueLower.includes('ufc')) {
+    streams.push(
+      { name: 'DAZN', url: 'https://sportzonoline.to/channels/de/dazn-1-de.php', quality: '1080p' },
+      { name: 'ESPN+', url: 'https://sportzonoline.to/channels/us/espn.php', quality: '1080p' },
+      { name: 'BT Sport', url: 'https://sportzonoline.to/channels/uk/bt-sport-1.php', quality: '1080p' },
+      { name: 'PPV', url: 'https://yashintv.xyz', quality: '720p' }
+    )
+  }
+  
+  // Rugby streams
+  else if (sportLower.includes('rugby')) {
+    streams.push(
+      { name: 'Sky Sports', url: 'https://sportzonoline.to/channels/uk/sky-sports-main-event.php', quality: '1080p' },
+      { name: 'BT Sport', url: 'https://sportzonoline.to/channels/uk/bt-sport-1.php', quality: '1080p' },
+      { name: 'SuperSport', url: 'https://yashintv.xyz', quality: '720p' }
+    )
+  }
+  
+  // Default/Other sports
+  else {
+    streams.push(
+      { name: 'Eurosport', url: 'https://sportzonoline.to/channels/eu/eurosport-1.php', quality: '1080p' },
+      { name: 'ESPN', url: 'https://sportzonoline.to/channels/us/espn.php', quality: '1080p' },
+      { name: 'DAZN', url: 'https://yashintv.xyz', quality: '720p' }
+    )
+  }
+  
+  // Add universal backup streams
+  streams.push(
+    { name: 'Stream2Watch', url: 'https://www.stream2watch.com', quality: '720p' },
+    { name: 'LiveTV', url: 'https://livetv.sx', quality: '480p' }
+  )
   
   return streams
 }
