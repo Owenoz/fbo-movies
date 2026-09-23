@@ -268,11 +268,12 @@ export default function WatchClient({ slug }: { slug: string }) {
     <div className="fixed inset-0 bg-black">
       <div
         ref={containerRef}
-        className="relative w-full h-full flex items-center justify-center"
+        className="relative w-full h-full"
         onMouseMove={showControls}
         onTouchStart={showControls}
         onClick={togglePlay}
       >
+        {/* Video */}
         <video
           ref={videoRef}
           src={data.mp4}
@@ -284,12 +285,12 @@ export default function WatchClient({ slug }: { slug: string }) {
 
         {/* Buffering */}
         {buffering && (
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none bg-black/50">
             <Loader2 className="w-16 h-16 text-white animate-spin drop-shadow-2xl" />
           </div>
         )}
 
-        {/* Center controls when paused or on tap */}
+        {/* Center controls - Always visible when controls are shown */}
         <AnimatePresence>
           {showCtrl && (
             <motion.div
@@ -299,28 +300,31 @@ export default function WatchClient({ slug }: { slug: string }) {
               className="absolute inset-0 pointer-events-none"
               onClick={e => e.stopPropagation()}
             >
-              {/* Top center: Rewind/Play/Forward */}
-              <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-8 pointer-events-auto">
+              {/* Center: Rewind/Play/Forward */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-8 pointer-events-auto">
                 {/* Rewind 15s */}
                 <motion.button
-                  onClick={() => { if (videoRef.current) videoRef.current.currentTime -= 15 }}
+                  onClick={(e) => { 
+                    e.stopPropagation();
+                    if (videoRef.current) videoRef.current.currentTime -= 15;
+                  }}
                   whileTap={{ scale: 0.9 }}
-                  className="w-16 h-16 rounded-full bg-black/60 backdrop-blur-sm flex items-center justify-center"
+                  className="w-12 h-12 flex items-center justify-center"
                 >
-                  <div className="relative">
-                    <SkipBack className="w-7 h-7 text-white" />
-                    <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 text-[10px] text-white font-bold">15</span>
-                  </div>
+                  <SkipBack className="w-10 h-10 text-white drop-shadow-2xl" strokeWidth={2} />
                 </motion.button>
 
                 {/* Play/Pause */}
                 <motion.button
-                  onClick={togglePlay}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    togglePlay();
+                  }}
                   whileTap={{ scale: 0.9 }}
                   className="w-20 h-20 rounded-full bg-white flex items-center justify-center shadow-2xl"
                 >
                   {playing ? (
-                    <Pause className="w-10 h-10 text-black" />
+                    <Pause className="w-10 h-10 text-black" fill="black" />
                   ) : (
                     <Play className="w-10 h-10 text-black fill-black ml-1" />
                   )}
@@ -328,51 +332,42 @@ export default function WatchClient({ slug }: { slug: string }) {
 
                 {/* Forward 15s */}
                 <motion.button
-                  onClick={() => { if (videoRef.current) videoRef.current.currentTime += 15 }}
+                  onClick={(e) => { 
+                    e.stopPropagation();
+                    if (videoRef.current) videoRef.current.currentTime += 15;
+                  }}
                   whileTap={{ scale: 0.9 }}
-                  className="w-16 h-16 rounded-full bg-black/60 backdrop-blur-sm flex items-center justify-center"
+                  className="w-12 h-12 flex items-center justify-center"
                 >
-                  <div className="relative">
-                    <SkipForward className="w-7 h-7 text-white" />
-                    <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 text-[10px] text-white font-bold">15</span>
-                  </div>
+                  <SkipForward className="w-10 h-10 text-white drop-shadow-2xl" strokeWidth={2} />
                 </motion.button>
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
 
-        {/* Controls */}
-        <AnimatePresence>
-          {showCtrl && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent pointer-events-none"
-              onClick={e => e.stopPropagation()}
-            >
-              {/* Bottom controls - Simple like screenshot */}
-              <div className="absolute bottom-0 left-0 right-0 p-4 space-y-2 pointer-events-auto">
+              {/* Bottom: Progress bar, time, and fullscreen */}
+              <div className="absolute bottom-0 left-0 right-0 p-4 space-y-2 pointer-events-auto bg-gradient-to-t from-black/80 via-black/40 to-transparent">
                 {/* Progress bar */}
                 <div
-                  className="relative h-1 bg-white/30 rounded-full cursor-pointer hover:h-1.5 transition-all"
-                  onClick={seek}
+                  className="relative h-1 bg-white/30 rounded-full cursor-pointer"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    seek(e);
+                  }}
                 >
                   {/* Buffered progress */}
-                  <div className="absolute h-full bg-white/50 rounded-full transition-all" style={{ width: `${bufPct}%` }} />
+                  <div className="absolute h-full bg-white/50 rounded-full" style={{ width: `${bufPct}%` }} />
                   {/* Current progress */}
                   <div className="absolute h-full bg-white rounded-full" style={{ width: `${pct}%` }} />
                 </div>
 
                 {/* Time and fullscreen */}
                 <div className="flex justify-between items-center text-white text-sm">
-                  <span>{fmtTime(current)}</span>
-                  <span>{fmtTime(duration)}</span>
+                  <span className="font-medium drop-shadow">{fmtTime(current)}</span>
                   <button 
-                    onClick={toggleFullscreen} 
-                    className="p-1 hover:bg-white/10 rounded transition-all ml-auto"
-                    title={fullscreen ? 'Exit fullscreen' : 'Fullscreen'}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleFullscreen();
+                    }}
+                    className="p-1 hover:bg-white/10 rounded transition-all"
                   >
                     {fullscreen ? <Minimize className="w-5 h-5" /> : <Maximize className="w-5 h-5" />}
                   </button>

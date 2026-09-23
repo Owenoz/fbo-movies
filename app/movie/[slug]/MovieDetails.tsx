@@ -139,6 +139,23 @@ export default function MovieDetails({ slug }: MovieDetailsProps) {
           </motion.button>
           
           <motion.button
+            onClick={async () => {
+              if (!movie.mp4) return;
+              try {
+                // Download the video
+                const a = document.createElement('a');
+                a.href = movie.mp4;
+                a.download = `${movie.title.replace(/[^a-z0-9]/gi, '_')}.mp4`;
+                a.target = '_blank';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+              } catch (error) {
+                console.error('Download error:', error);
+                // Fallback: open in new tab
+                window.open(movie.mp4, '_blank');
+              }
+            }}
             whileTap={{ scale: 0.9 }}
             className="w-14 h-14 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center backdrop-blur-sm border border-white/20"
           >
