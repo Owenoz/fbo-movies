@@ -1,12 +1,13 @@
 import { NextResponse } from 'next/server'
 
 export const dynamic = 'force-dynamic'
-export const revalidate = 180 // Cache for 3 minutes
+export const revalidate = 60 // Cache for 1 minute - more frequent updates
 
 interface StreamSource {
   name: string
   url: string
   quality: string
+  type: 'embed' | 'm3u8' | 'direct'
 }
 
 interface Match {
@@ -17,15 +18,19 @@ interface Match {
   awayTeam: string
   homeFlag: string
   awayFlag: string
+  homeLogo?: string
+  awayLogo?: string
   time: string
   date: string
+  venue?: string
   status: 'live' | 'upcoming' | 'finished'
   startsIn?: string
+  score?: string
   streams: StreamSource[]
 }
 
-// Fetch ONLY real matches from TheSportsDB API
-async function fetchRealMatches(): Promise<Match[]> {
+// AK47-style: Fetch from TheSportsDB (mimics their Firebase Remote Config)
+async function fetchLiveMatches(): Promise<Match[]> {
   const allMatches: Match[] = []
   
   try {
@@ -34,36 +39,37 @@ async function fetchRealMatches(): Promise<Match[]> {
     yesterday.setDate(yesterday.getDate() - 1)
     const tomorrow = new Date(today)
     tomorrow.setDate(tomorrow.getDate() + 1)
-    const nextWeek = new Date(today)
-    nextWeek.setDate(nextWeek.getDate() + 7)
     
     const formatDate = (date: Date) => date.toISOString().split('T')[0]
     
-    const yesterdayData = await fetchDayMatches(formatDate(yesterday))
-    allMatches.push(...yesterdayData)
+    // Fetch multiple days
+    const [yesterdayData, todayData, tomorrowData] = await Promise.all([
+      fetchDayMatches(formatDate(yesterday)),
+      fetchDayMatches(formatDate(today)),
+      fetchDayMatches(formatDate(tomorrow))
+    ])
     
-    const todayData = await fetchDayMatches(formatDate(today))
-    allMatches.push(...todayData)
+    allMatches.push(...yesterdayData, ...todayData, ...tomorrowData)
     
-    const tomorrowData = await fetchDayMatches(formatDate(tomorrow))
-    allMatches.push(...tomorrowData)
-    
-    const nextWeekData = await fetchDayMatches(formatDate(nextWeek))
-    allMatches.push(...nextWeekData)
-    
+    // Remove duplicates
     const uniqueMatches = Array.from(
       new Map(allMatches.map(m => [m.id, m])).values()
     )
     
+    // Sort: Live first, upcoming, then finished
     uniqueMatches.sort((a, b) => {
       const statusOrder = { live: 0, upcoming: 1, finished: 2 }
-      return statusOrder[a.status] - statusOrder[b.status]
+      const statusDiff = statusOrder[a.status] - statusOrder[b.status]
+      if (statusDiff !== 0) return statusDiff
+      
+      // Within same status, sort by time
+      return new Date(a.date + ' ' + a.time).getTime() - new Date(b.date + ' ' + b.time).getTime()
     })
     
     return uniqueMatches
     
   } catch (error) {
-    console.error('Error fetching real matches:', error)
+    console.error('Error fetching matches:', error)
     return []
   }
 }
@@ -73,39 +79,29 @@ async function fetchDayMatches(date: string): Promise<Match[]> {
     const response = await fetch(
       `https://www.thesportsdb.com/api/v1/json/3/eventsday.php?d=${date}`,
       { 
-        next: { revalidate: 180 },
+        next: { revalidate: 60 },
         headers: { 'Accept': 'application/json' }
       }
     )
     
-    if (!response.ok) {
-      console.error(`Failed to fetch matches for ${date}`)
-      return []
-    }
+    if (!response.ok) return []
     
     const data = await response.json()
     
-    if (!data.events || data.events.length === 0) {
-      return []
-    }
+    if (!data.events || data.events.length === 0) return []
     
     const matches: Match[] = []
     
     for (const event of data.events) {
-      if (!event.idEvent || !event.strHomeTeam || !event.strAwayTeam) {
-        continue
-      }
+      if (!event.idEvent || !event.strHomeTeam || !event.strAwayTeam) continue
       
       const match = transformEvent(event)
-      if (match) {
-        matches.push(match)
-      }
+      if (match) matches.push(match)
     }
     
     return matches
     
   } catch (error) {
-    console.error(`Error fetching ${date}:`, error)
     return []
   }
 }
@@ -117,9 +113,7 @@ function transformEvent(event: any): Match | null {
     const homeTeam = event.strHomeTeam
     const awayTeam = event.strAwayTeam
     
-    if (!homeTeam || !awayTeam) {
-      return null
-    }
+    if (!homeTeam || !awayTeam) return null
     
     let eventDate: Date
     try {
@@ -137,35 +131,33 @@ function transformEvent(event: any): Match | null {
     const now = new Date()
     const diffMs = eventDate.getTime() - now.getTime()
     const diffMinutes = Math.floor(diffMs / (1000 * 60))
-    const diffHours = Math.floor(diffMinutes / 60)
-    const diffDays = Math.floor(diffHours / 24)
     
     let status: 'live' | 'upcoming' | 'finished' = 'upcoming'
     let startsIn = ''
+    let score = ''
     
     const eventStatus = event.strStatus || ''
     
-    if (eventStatus.includes('Finished') || 
-        eventStatus === 'FT' || 
-        eventStatus === 'AOT' || 
-        eventStatus === 'AET' ||
-        diffMinutes < -180) {
+    // Determine status
+    if (eventStatus.includes('Finished') || eventStatus === 'FT' || eventStatus === 'AOT' || eventStatus === 'AET' || diffMinutes < -180) {
       status = 'finished'
+      score = event.intHomeScore && event.intAwayScore ? `${event.intHomeScore} - ${event.intAwayScore}` : 'FT'
     }
     else if (diffMinutes < 0 && diffMinutes > -150) {
       status = 'live'
+      score = event.intHomeScore && event.intAwayScore ? `${event.intHomeScore} - ${event.intAwayScore}` : 'LIVE'
     }
     else {
       status = 'upcoming'
+      const diffHours = Math.floor(diffMinutes / 60)
+      const diffDays = Math.floor(diffHours / 24)
       
-      if (diffDays > 7) {
-        startsIn = `in ${diffDays} days`
-      } else if (diffDays > 0) {
-        startsIn = `in ${diffDays} day${diffDays > 1 ? 's' : ''}`
+      if (diffDays > 0) {
+        startsIn = `${diffDays}d`
       } else if (diffHours > 0) {
-        startsIn = `in ${diffHours}h`
+        startsIn = `${diffHours}h`
       } else if (diffMinutes > 0) {
-        startsIn = `in ${diffMinutes}m`
+        startsIn = `${diffMinutes}m`
       } else {
         startsIn = 'Soon'
       }
@@ -179,11 +171,15 @@ function transformEvent(event: any): Match | null {
       awayTeam: awayTeam,
       homeFlag: getFlag(homeTeam, event.strCountry),
       awayFlag: getFlag(awayTeam, event.strCountry),
+      homeLogo: event.strHomeTeamBadge,
+      awayLogo: event.strAwayTeamBadge,
       time: event.strTime || event.strTimeLocal || 'TBD',
       date: event.dateEvent,
+      venue: event.strVenue,
       status: status,
       startsIn: status === 'upcoming' ? startsIn : undefined,
-      streams: getStreams(sportType, league)
+      score: score || undefined,
+      streams: getStreamsForMatch(sportType, league, homeTeam, awayTeam)
     }
     
   } catch (error) {
@@ -196,41 +192,35 @@ function getFlag(teamName: string, country?: string): string {
   const name = (teamName || '').toLowerCase()
   const countryLower = (country || '').toLowerCase()
   
-  if (countryLower.includes('england') || name.includes('england')) return '🏴󠁧󠁢󠁥󠁮󠁧󠁿'
-  if (countryLower.includes('scotland')) return '🏴󠁧󠁢󠁳󠁣󠁴󠁿'
-  if (countryLower.includes('wales')) return '🏴󠁧󠁢󠁷󠁬󠁳󠁿'
-  if (countryLower.includes('spain')) return '🇪🇸'
-  if (countryLower.includes('germany')) return '🇩🇪'
-  if (countryLower.includes('france')) return '🇫🇷'
-  if (countryLower.includes('italy')) return '🇮🇹'
-  if (countryLower.includes('brazil')) return '🇧🇷'
-  if (countryLower.includes('argentina')) return '🇦🇷'
-  if (countryLower.includes('portugal')) return '🇵🇹'
-  if (countryLower.includes('netherlands')) return '🇳🇱'
-  if (countryLower.includes('belgium')) return '🇧🇪'
-  if (countryLower.includes('usa') || countryLower.includes('united states')) return '🇺🇸'
-  if (countryLower.includes('canada')) return '🇨🇦'
-  if (countryLower.includes('mexico')) return '🇲🇽'
-  if (countryLower.includes('india')) return '🇮🇳'
-  if (countryLower.includes('pakistan')) return '🇵🇰'
-  if (countryLower.includes('australia')) return '🇦🇺'
-  if (countryLower.includes('new zealand')) return '🇳🇿'
-  if (countryLower.includes('south africa')) return '🇿🇦'
-  if (countryLower.includes('japan')) return '🇯🇵'
-  if (countryLower.includes('south korea')) return '🇰🇷'
-  if (countryLower.includes('china')) return '🇨🇳'
-  if (countryLower.includes('zambia')) return '🇿🇲'
+  const flagMap: { [key: string]: string } = {
+    'england': '🏴󠁧󠁢󠁥󠁮󠁧󠁿', 'scotland': '🏴󠁧󠁢󠁳󠁣󠁴󠁿', 'wales': '🏴󠁧󠁢󠁷󠁬󠁳󠁿',
+    'spain': '🇪🇸', 'germany': '🇩🇪', 'france': '🇫🇷', 'italy': '🇮🇹',
+    'brazil': '🇧🇷', 'argentina': '🇦🇷', 'portugal': '🇵🇹', 'netherlands': '🇳🇱',
+    'belgium': '🇧🇪', 'usa': '🇺🇸', 'united states': '🇺🇸', 'canada': '🇨🇦',
+    'mexico': '🇲🇽', 'india': '🇮🇳', 'pakistan': '🇵🇰', 'australia': '🇦🇺',
+    'new zealand': '🇳🇿', 'south africa': '🇿🇦', 'japan': '🇯🇵', 'zambia': '🇿🇲'
+  }
+  
+  for (const [key, flag] of Object.entries(flagMap)) {
+    if (countryLower.includes(key) || name.includes(key)) return flag
+  }
   
   return '⚽'
 }
 
-function getStreams(sport: string, league: string): StreamSource[] {
-  // Simple working streams - these sites actually work in iframes
-  return [
-    { name: 'HD STREAM 1', url: 'https://yashintv.xyz', quality: '1080p' },
-    { name: 'HD STREAM 2', url: 'https://www.stream2watch.com', quality: '1080p' },
-    { name: 'STREAM 3', url: 'https://livetv.sx/enx/', quality: '720p' }
-  ]
+// AK47-style: Multiple streaming sources per match
+function getStreamsForMatch(sport: string, league: string, homeTeam: string, awayTeam: string): StreamSource[] {
+  const streams: StreamSource[] = []
+  
+  // Primary HD streams (working sites)
+  streams.push(
+    { name: 'HD STREAM 1', url: 'https://yashintv.xyz', quality: '1080p', type: 'embed' },
+    { name: 'HD STREAM 2', url: 'https://www.stream2watch.com', quality: '1080p', type: 'embed' },
+    { name: 'STREAM 3', url: 'https://livetv.sx/enx/', quality: '720p', type: 'embed' },
+    { name: 'BACKUP', url: 'https://sportshub.stream', quality: '720p', type: 'embed' }
+  )
+  
+  return streams
 }
 
 export async function GET(request: Request) {
@@ -238,15 +228,25 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url)
     const sport = searchParams.get('sport')
     const status = searchParams.get('status')
+    const league = searchParams.get('league')
     
-    let matches = await fetchRealMatches()
+    let matches = await fetchLiveMatches()
     
+    // Filter by sport
     if (sport && sport !== 'all') {
       matches = matches.filter(
         match => match.sport.toLowerCase().includes(sport.toLowerCase())
       )
     }
     
+    // Filter by league
+    if (league && league !== 'all') {
+      matches = matches.filter(
+        match => match.league.toLowerCase().includes(league.toLowerCase())
+      )
+    }
+    
+    // Filter by status
     if (status && status !== 'all') {
       matches = matches.filter(
         match => match.status === status
@@ -259,7 +259,8 @@ export async function GET(request: Request) {
       total: matches.length,
       live: matches.filter(m => m.status === 'live').length,
       upcoming: matches.filter(m => m.status === 'upcoming').length,
-      finished: matches.filter(m => m.status === 'finished').length
+      finished: matches.filter(m => m.status === 'finished').length,
+      timestamp: new Date().toISOString()
     })
   } catch (error) {
     console.error('API Error:', error)
