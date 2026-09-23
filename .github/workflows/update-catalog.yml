@@ -2,7 +2,7 @@ name: Update NaraBox Movie Catalog
 
 on:
   schedule:
-    - cron: '0 3 * * 0'  # Every Sunday at 3am UTC
+    - cron: '0 3 * * *'  # Every day at 3am UTC
   workflow_dispatch:       # Allow manual trigger from GitHub UI
 
 jobs:

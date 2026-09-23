@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Search, Film, Tv, Home, Menu, X, Crown } from 'lucide-react'
+import { Search, Film, Tv, Home, Menu, X, Crown, Trophy } from 'lucide-react'
 import Logo from './Logo'
 import { checkSubscriptionStatus } from '@/lib/subscription'
 
@@ -12,6 +12,7 @@ const navLinks = [
   { href: '/',        label: 'Home',     icon: Home },
   { href: '/movies',  label: 'Movies',   icon: Film },
   { href: '/tv',      label: 'TV Shows', icon: Tv },
+  { href: '/sports',  label: 'Sports',   icon: Trophy },
   { href: '/search',  label: 'Search',   icon: Search },
 ]
 
