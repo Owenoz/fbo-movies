@@ -1,13 +1,14 @@
 import { NextResponse } from 'next/server'
 
 export const dynamic = 'force-dynamic'
-export const revalidate = 60 // Cache for 1 minute - more frequent updates
+export const revalidate = 30 // 30 seconds - very frequent updates like AK47
 
 interface StreamSource {
   name: string
   url: string
   quality: string
-  type: 'embed' | 'm3u8' | 'direct'
+  language?: string
+  requiresVPN?: boolean
 }
 
 interface Match {
@@ -26,11 +27,54 @@ interface Match {
   status: 'live' | 'upcoming' | 'finished'
   startsIn?: string
   score?: string
+  minute?: string
   streams: StreamSource[]
 }
 
-// AK47-style: Fetch from TheSportsDB (mimics their Firebase Remote Config)
-async function fetchLiveMatches(): Promise<Match[]> {
+// AK47 Sports-style streaming servers
+const STREAMING_SERVERS = {
+  // HD Servers
+  sportDigital: {
+    name: 'SportDigital Fussball',
+    baseUrl: 'https://yashintv.xyz',
+    quality: '1080p',
+    language: 'DE'
+  },
+  omanSports: {
+    name: 'OMAN SPORTS HD',
+    baseUrl: 'https://www.stream2watch.com',
+    quality: '1080p',
+    language: 'AR'
+  },
+  kuwaitSport: {
+    name: 'KUWAIT SPORT',
+    baseUrl: 'https://livetv.sx/enx/',
+    quality: '1080p',
+    language: 'AR'
+  },
+  alkass: {
+    name: 'ALKASS',
+    baseUrl: 'https://sportshub.stream',
+    quality: '1080p',
+    language: 'AR'
+  },
+  hdQuality4: {
+    name: 'HD QUALITY4',
+    baseUrl: 'https://sportzonline.to',
+    quality: '720p',
+    language: 'EN'
+  },
+  lowQuality: {
+    name: 'LOW QUALITY (USE VPN)',
+    baseUrl: 'https://cricfree.live',
+    quality: '480p',
+    language: 'EN',
+    requiresVPN: true
+  }
+}
+
+// Fetch real matches from TheSportsDB (mimics Firebase Remote Config)
+async function fetchMatches(): Promise<Match[]> {
   const allMatches: Match[] = []
   
   try {
@@ -42,7 +86,7 @@ async function fetchLiveMatches(): Promise<Match[]> {
     
     const formatDate = (date: Date) => date.toISOString().split('T')[0]
     
-    // Fetch multiple days
+    // Parallel fetch for speed
     const [yesterdayData, todayData, tomorrowData] = await Promise.all([
       fetchDayMatches(formatDate(yesterday)),
       fetchDayMatches(formatDate(today)),
@@ -56,14 +100,19 @@ async function fetchLiveMatches(): Promise<Match[]> {
       new Map(allMatches.map(m => [m.id, m])).values()
     )
     
-    // Sort: Live first, upcoming, then finished
+    // Sort: Live first, then upcoming by time, then finished
     uniqueMatches.sort((a, b) => {
       const statusOrder = { live: 0, upcoming: 1, finished: 2 }
       const statusDiff = statusOrder[a.status] - statusOrder[b.status]
       if (statusDiff !== 0) return statusDiff
       
-      // Within same status, sort by time
-      return new Date(a.date + ' ' + a.time).getTime() - new Date(b.date + ' ' + b.time).getTime()
+      try {
+        const aTime = new Date(`${a.date} ${a.time}`).getTime()
+        const bTime = new Date(`${b.date} ${b.time}`).getTime()
+        return aTime - bTime
+      } catch {
+        return 0
+      }
     })
     
     return uniqueMatches
@@ -79,7 +128,7 @@ async function fetchDayMatches(date: string): Promise<Match[]> {
     const response = await fetch(
       `https://www.thesportsdb.com/api/v1/json/3/eventsday.php?d=${date}`,
       { 
-        next: { revalidate: 60 },
+        next: { revalidate: 30 },
         headers: { 'Accept': 'application/json' }
       }
     )
@@ -87,7 +136,6 @@ async function fetchDayMatches(date: string): Promise<Match[]> {
     if (!response.ok) return []
     
     const data = await response.json()
-    
     if (!data.events || data.events.length === 0) return []
     
     const matches: Match[] = []
@@ -119,7 +167,7 @@ function transformEvent(event: any): Match | null {
     try {
       const dateStr = event.dateEvent
       const timeStr = event.strTime || event.strTimeLocal || '00:00:00'
-      eventDate = new Date(`${dateStr}T${timeStr}`)
+      eventDate = new Date(`${dateStr}T${timeStr}Z`)
       
       if (isNaN(eventDate.getTime())) {
         eventDate = new Date(dateStr)
@@ -135,24 +183,27 @@ function transformEvent(event: any): Match | null {
     let status: 'live' | 'upcoming' | 'finished' = 'upcoming'
     let startsIn = ''
     let score = ''
+    let minute = ''
     
     const eventStatus = event.strStatus || ''
     
-    // Determine status
+    // Determine status with better accuracy
     if (eventStatus.includes('Finished') || eventStatus === 'FT' || eventStatus === 'AOT' || eventStatus === 'AET' || diffMinutes < -180) {
       status = 'finished'
-      score = event.intHomeScore && event.intAwayScore ? `${event.intHomeScore} - ${event.intAwayScore}` : 'FT'
+      score = event.intHomeScore != null && event.intAwayScore != null ? `${event.intHomeScore} - ${event.intAwayScore}` : 'FT'
     }
     else if (diffMinutes < 0 && diffMinutes > -150) {
       status = 'live'
-      score = event.intHomeScore && event.intAwayScore ? `${event.intHomeScore} - ${event.intAwayScore}` : 'LIVE'
+      const elapsed = Math.abs(diffMinutes)
+      minute = elapsed <= 90 ? `${elapsed}'` : '90+' 
+      score = event.intHomeScore != null && event.intAwayScore != null ? `${event.intHomeScore} - ${event.intAwayScore}` : '0 - 0'
     }
     else {
       status = 'upcoming'
       const diffHours = Math.floor(diffMinutes / 60)
       const diffDays = Math.floor(diffHours / 24)
       
-      if (diffDays > 0) {
+      if (diffDays > 1) {
         startsIn = `${diffDays}d`
       } else if (diffHours > 0) {
         startsIn = `${diffHours}h`
@@ -179,7 +230,8 @@ function transformEvent(event: any): Match | null {
       status: status,
       startsIn: status === 'upcoming' ? startsIn : undefined,
       score: score || undefined,
-      streams: getStreamsForMatch(sportType, league, homeTeam, awayTeam)
+      minute: minute || undefined,
+      streams: getStreamsForMatch(sportType, league)
     }
     
   } catch (error) {
@@ -192,32 +244,75 @@ function getFlag(teamName: string, country?: string): string {
   const name = (teamName || '').toLowerCase()
   const countryLower = (country || '').toLowerCase()
   
-  const flagMap: { [key: string]: string } = {
+  const flags: { [key: string]: string } = {
     'england': '🏴󠁧󠁢󠁥󠁮󠁧󠁿', 'scotland': '🏴󠁧󠁢󠁳󠁣󠁴󠁿', 'wales': '🏴󠁧󠁢󠁷󠁬󠁳󠁿',
     'spain': '🇪🇸', 'germany': '🇩🇪', 'france': '🇫🇷', 'italy': '🇮🇹',
     'brazil': '🇧🇷', 'argentina': '🇦🇷', 'portugal': '🇵🇹', 'netherlands': '🇳🇱',
     'belgium': '🇧🇪', 'usa': '🇺🇸', 'united states': '🇺🇸', 'canada': '🇨🇦',
     'mexico': '🇲🇽', 'india': '🇮🇳', 'pakistan': '🇵🇰', 'australia': '🇦🇺',
-    'new zealand': '🇳🇿', 'south africa': '🇿🇦', 'japan': '🇯🇵', 'zambia': '🇿🇲'
+    'new zealand': '🇳🇿', 'south africa': '🇿🇦', 'japan': '🇯🇵', 'south korea': '🇰🇷',
+    'china': '🇨🇳', 'russia': '🇷🇺', 'poland': '🇵🇱', 'turkey': '🇹🇷',
+    'croatia': '🇭🇷', 'serbia': '🇷🇸', 'denmark': '🇩🇰', 'sweden': '🇸🇪',
+    'norway': '🇳🇴', 'finland': '🇫🇮', 'switzerland': '🇨🇭', 'austria': '🇦🇹',
+    'greece': '🇬🇷', 'czech': '🇨🇿', 'ukraine': '🇺🇦', 'romania': '🇷🇴',
+    'hungary': '🇭🇺', 'ireland': '🇮🇪', 'colombia': '🇨🇴', 'chile': '🇨🇱',
+    'uruguay': '🇺🇾', 'peru': '🇵🇪', 'ecuador': '🇪🇨', 'venezuela': '🇻🇪',
+    'egypt': '🇪🇬', 'morocco': '🇲🇦', 'algeria': '🇩🇿', 'tunisia': '🇹🇳',
+    'nigeria': '🇳🇬', 'ghana': '🇬🇭', 'senegal': '🇸🇳', 'cameroon': '🇨🇲',
+    'ivory coast': '🇨🇮', 'kenya': '🇰🇪', 'uganda': '🇺🇬', 'tanzania': '🇹🇿',
+    'zambia': '🇿🇲', 'zimbabwe': '🇿🇼'
   }
   
-  for (const [key, flag] of Object.entries(flagMap)) {
+  for (const [key, flag] of Object.entries(flags)) {
     if (countryLower.includes(key) || name.includes(key)) return flag
   }
   
   return '⚽'
 }
 
-// AK47-style: Multiple streaming sources per match
-function getStreamsForMatch(sport: string, league: string, homeTeam: string, awayTeam: string): StreamSource[] {
+// AK47-style: Multiple streaming sources with proper server names
+function getStreamsForMatch(sport: string, league: string): StreamSource[] {
   const streams: StreamSource[] = []
   
-  // Primary HD streams (working sites)
+  // Add all available servers (like AK47 does)
   streams.push(
-    { name: 'HD STREAM 1', url: 'https://yashintv.xyz', quality: '1080p', type: 'embed' },
-    { name: 'HD STREAM 2', url: 'https://www.stream2watch.com', quality: '1080p', type: 'embed' },
-    { name: 'STREAM 3', url: 'https://livetv.sx/enx/', quality: '720p', type: 'embed' },
-    { name: 'BACKUP', url: 'https://sportshub.stream', quality: '720p', type: 'embed' }
+    {
+      name: STREAMING_SERVERS.sportDigital.name,
+      url: STREAMING_SERVERS.sportDigital.baseUrl,
+      quality: STREAMING_SERVERS.sportDigital.quality,
+      language: STREAMING_SERVERS.sportDigital.language
+    },
+    {
+      name: STREAMING_SERVERS.omanSports.name,
+      url: STREAMING_SERVERS.omanSports.baseUrl,
+      quality: STREAMING_SERVERS.omanSports.quality,
+      language: STREAMING_SERVERS.omanSports.language
+    },
+    {
+      name: STREAMING_SERVERS.kuwaitSport.name,
+      url: STREAMING_SERVERS.kuwaitSport.baseUrl,
+      quality: STREAMING_SERVERS.kuwaitSport.quality,
+      language: STREAMING_SERVERS.kuwaitSport.language
+    },
+    {
+      name: STREAMING_SERVERS.alkass.name,
+      url: STREAMING_SERVERS.alkass.baseUrl,
+      quality: STREAMING_SERVERS.alkass.quality,
+      language: STREAMING_SERVERS.alkass.language
+    },
+    {
+      name: STREAMING_SERVERS.hdQuality4.name,
+      url: STREAMING_SERVERS.hdQuality4.baseUrl,
+      quality: STREAMING_SERVERS.hdQuality4.quality,
+      language: STREAMING_SERVERS.hdQuality4.language
+    },
+    {
+      name: STREAMING_SERVERS.lowQuality.name,
+      url: STREAMING_SERVERS.lowQuality.baseUrl,
+      quality: STREAMING_SERVERS.lowQuality.quality,
+      language: STREAMING_SERVERS.lowQuality.language,
+      requiresVPN: STREAMING_SERVERS.lowQuality.requiresVPN
+    }
   )
   
   return streams
@@ -230,42 +325,48 @@ export async function GET(request: Request) {
     const status = searchParams.get('status')
     const league = searchParams.get('league')
     
-    let matches = await fetchLiveMatches()
+    let matches = await fetchMatches()
     
-    // Filter by sport
+    // Apply filters
     if (sport && sport !== 'all') {
-      matches = matches.filter(
-        match => match.sport.toLowerCase().includes(sport.toLowerCase())
+      matches = matches.filter(m => 
+        m.sport.toLowerCase().includes(sport.toLowerCase())
       )
     }
     
-    // Filter by league
     if (league && league !== 'all') {
-      matches = matches.filter(
-        match => match.league.toLowerCase().includes(league.toLowerCase())
+      matches = matches.filter(m => 
+        m.league.toLowerCase().includes(league.toLowerCase())
       )
     }
     
-    // Filter by status
     if (status && status !== 'all') {
-      matches = matches.filter(
-        match => match.status === status
-      )
+      matches = matches.filter(m => m.status === status)
+    }
+    
+    const stats = {
+      total: matches.length,
+      live: matches.filter(m => m.status === 'live').length,
+      upcoming: matches.filter(m => m.status === 'upcoming').length,
+      finished: matches.filter(m => m.status === 'finished').length
     }
     
     return NextResponse.json({
       success: true,
-      matches: matches,
-      total: matches.length,
-      live: matches.filter(m => m.status === 'live').length,
-      upcoming: matches.filter(m => m.status === 'upcoming').length,
-      finished: matches.filter(m => m.status === 'finished').length,
+      matches,
+      stats,
       timestamp: new Date().toISOString()
     })
+    
   } catch (error) {
     console.error('API Error:', error)
     return NextResponse.json(
-      { success: false, error: 'Failed to fetch matches', matches: [] },
+      { 
+        success: false, 
+        error: 'Failed to fetch matches', 
+        matches: [],
+        stats: { total: 0, live: 0, upcoming: 0, finished: 0 }
+      },
       { status: 200 }
     )
   }
