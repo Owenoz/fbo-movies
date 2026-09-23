@@ -2,137 +2,60 @@
 
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Trophy, PlayCircle, Tv, Calendar, ArrowLeft, Maximize2, X } from 'lucide-react'
+import { Trophy, PlayCircle, Tv, ArrowLeft, Radio } from 'lucide-react'
 import { initAdBlocker } from './ad-blocker'
-import Link from 'next/link'
+import HLSPlayer from '@/components/HLSPlayer'
 
-interface StreamSource {
-  name: string
-  url: string
-  quality: string
-  icon: string
-}
-
-interface Match {
+interface SportsChannel {
   id: string
+  name: string
   sport: string
   league: string
-  home: string
-  away: string
-  time: string
-  status: 'live' | 'upcoming'
-  sources: StreamSource[]
+  logo: string
+  streamUrl: string
+  quality: string
+  language: string
+  status: 'live' | 'offline'
 }
 
 export default function SportsPage() {
   const [loading, setLoading] = useState(true)
-  const [selectedMatch, setSelectedMatch] = useState<Match | null>(null)
-  const [selectedSource, setSelectedSource] = useState<StreamSource | null>(null)
-  const [activeTab, setActiveTab] = useState<'all' | 'football' | 'basketball' | 'other'>('all')
+  const [channels, setChannels] = useState<SportsChannel[]>([])
+  const [selectedChannel, setSelectedChannel] = useState<SportsChannel | null>(null)
+  const [activeTab, setActiveTab] = useState<'all' | 'football' | 'basketball' | 'cricket' | 'other'>('all')
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     initAdBlocker()
-    const timer = setTimeout(() => setLoading(false), 1500)
-    return () => clearTimeout(timer)
+    fetchChannels()
   }, [])
 
-  // Mock live matches - In production, fetch from API
-  const matches: Match[] = [
-    {
-      id: '1',
-      sport: 'Football',
-      league: 'Premier League',
-      home: 'Manchester United',
-      away: 'Liverpool',
-      time: 'LIVE',
-      status: 'live',
-      sources: [
-        { name: 'HD Stream 1', url: 'https://sportzonline.to', quality: '1080p', icon: '⚡' },
-        { name: 'HD Stream 2', url: 'https://yashintv.xyz', quality: '720p', icon: '🎯' },
-        { name: 'Stream 3', url: 'https://www.stream2watch.com', quality: '720p', icon: '📺' },
-      ]
-    },
-    {
-      id: '2',
-      sport: 'Football',
-      league: 'La Liga',
-      home: 'Real Madrid',
-      away: 'Barcelona',
-      time: 'LIVE',
-      status: 'live',
-      sources: [
-        { name: 'HD Stream 1', url: 'https://sportzonline.to', quality: '1080p', icon: '⚡' },
-        { name: 'HD Stream 2', url: 'https://yashintv.xyz', quality: '720p', icon: '🎯' },
-      ]
-    },
-    {
-      id: '3',
-      sport: 'Football',
-      league: 'Champions League',
-      home: 'Bayern Munich',
-      away: 'PSG',
-      time: '20:00',
-      status: 'upcoming',
-      sources: [
-        { name: 'HD Stream 1', url: 'https://sportzonline.to', quality: '1080p', icon: '⚡' },
-        { name: 'HD Stream 2', url: 'https://yashintv.xyz', quality: '720p', icon: '🎯' },
-      ]
-    },
-    {
-      id: '4',
-      sport: 'Basketball',
-      league: 'NBA',
-      home: 'Lakers',
-      away: 'Warriors',
-      time: 'LIVE',
-      status: 'live',
-      sources: [
-        { name: 'HD Stream 1', url: 'https://sportzonline.to', quality: '1080p', icon: '⚡' },
-        { name: 'Stream 2', url: 'https://www.stream2watch.com', quality: '720p', icon: '📺' },
-      ]
-    },
-    {
-      id: '5',
-      sport: 'Football',
-      league: 'Serie A',
-      home: 'AC Milan',
-      away: 'Juventus',
-      time: '18:30',
-      status: 'upcoming',
-      sources: [
-        { name: 'HD Stream 1', url: 'https://sportzonline.to', quality: '1080p', icon: '⚡' },
-        { name: 'HD Stream 2', url: 'https://yashintv.xyz', quality: '720p', icon: '🎯' },
-      ]
-    },
-  ]
-
-  const filteredMatches = matches.filter(match => {
-    if (activeTab === 'all') return true
-    if (activeTab === 'football') return match.sport === 'Football'
-    if (activeTab === 'basketball') return match.sport === 'Basketball'
-    return match.sport !== 'Football' && match.sport !== 'Basketball'
-  })
-
-  const handleStreamSelect = (match: Match, source: StreamSource) => {
-    setSelectedMatch(match)
-    setSelectedSource(source)
-  }
-
-  const closeStream = () => {
-    setSelectedMatch(null)
-    setSelectedSource(null)
-  }
-
-  const toggleFullscreen = () => {
-    const iframe = document.getElementById('sports-iframe')
-    if (!iframe) return
-    
-    if (!document.fullscreenElement) {
-      iframe.requestFullscreen()
-    } else {
-      document.exitFullscreen()
+  const fetchChannels = async () => {
+    try {
+      setLoading(true)
+      const response = await fetch('/api/sports-channels')
+      const data = await response.json()
+      
+      if (data.success) {
+        setChannels(data.channels)
+      } else {
+        setError('Failed to load channels')
+      }
+    } catch (err) {
+      setError('Network error')
+      console.error('Failed to fetch channels:', err)
+    } finally {
+      setLoading(false)
     }
   }
+
+  const filteredChannels = channels.filter(channel => {
+    if (activeTab === 'all') return true
+    if (activeTab === 'football') return channel.sport === 'Football'
+    if (activeTab === 'basketball') return channel.sport === 'Basketball'
+    if (activeTab === 'cricket') return channel.sport === 'Cricket'
+    return channel.sport !== 'Football' && channel.sport !== 'Basketball' && channel.sport !== 'Cricket'
+  })
 
   return (
     <div className="min-h-screen pt-20 pb-12 px-4 bg-gradient-to-b from-black via-gray-900 to-black">
@@ -159,48 +82,49 @@ export default function SportsPage() {
         )}
       </AnimatePresence>
 
-      {/* Stream Player */}
+      {/* Channel Player */}
       <AnimatePresence>
-        {selectedMatch && selectedSource && (
+        {selectedChannel && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black z-50 flex flex-col"
+            className="fixed inset-0 bg-black z-50 flex flex-col p-4"
           >
-            {/* Player Controls */}
-            <div className="bg-gradient-to-b from-black/90 to-transparent p-4 flex items-center justify-between">
+            {/* Player Header */}
+            <div className="mb-4 flex items-center justify-between">
               <button
-                onClick={closeStream}
+                onClick={() => setSelectedChannel(null)}
                 className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold transition-all"
               >
                 <ArrowLeft className="w-4 h-4" />
-                Back
+                Back to Channels
               </button>
 
-              <div className="text-center flex-1">
-                <h2 className="text-white font-bold text-lg">{selectedMatch.home} vs {selectedMatch.away}</h2>
-                <p className="text-white/60 text-sm">{selectedSource.name} • {selectedSource.quality}</p>
+              <div className="text-center flex-1 px-4">
+                <h2 className="text-white font-bold text-xl">{selectedChannel.name}</h2>
+                <p className="text-white/60 text-sm">{selectedChannel.league} • {selectedChannel.language}</p>
               </div>
 
-              <button
-                onClick={toggleFullscreen}
-                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold transition-all"
-              >
-                <Maximize2 className="w-4 h-4" />
-              </button>
+              <div className="flex items-center gap-2 px-3 py-2 rounded-full bg-red-600/80">
+                <Radio className="w-4 h-4 text-white animate-pulse" />
+                <span className="text-white text-sm font-bold">LIVE</span>
+              </div>
             </div>
 
-            {/* Iframe Player */}
-            <iframe
-              id="sports-iframe"
-              src={selectedSource.url}
-              className="flex-1 w-full border-0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-              allowFullScreen
-              sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-modals"
-              title="Live Sports Stream"
-            />
+            {/* Video Player */}
+            <div className="flex-1 flex items-center justify-center">
+              <div className="w-full max-w-6xl">
+                <iframe
+                  src={selectedChannel.streamUrl}
+                  className="w-full aspect-video rounded-xl border-0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                  allowFullScreen
+                  sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+                  title={selectedChannel.name}
+                />
+              </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -215,8 +139,8 @@ export default function SportsPage() {
           <Trophy className="w-5 h-5 text-green-400" />
           <span className="text-green-300 font-bold text-sm">LIVE SPORTS HD</span>
         </div>
-        <h1 className="font-bold text-4xl md:text-5xl text-white mb-2">Sports Streaming</h1>
-        <p className="text-white/70">Watch live matches in HD quality</p>
+        <h1 className="font-bold text-4xl md:text-5xl text-white mb-2">Sports Channels</h1>
+        <p className="text-white/70">Watch live sports in HD quality - {channels.length} channels available</p>
       </motion.div>
 
       {/* Tabs */}
@@ -229,6 +153,7 @@ export default function SportsPage() {
           { key: 'all', label: 'All Sports', icon: '🏆' },
           { key: 'football', label: 'Football', icon: '⚽' },
           { key: 'basketball', label: 'Basketball', icon: '🏀' },
+          { key: 'cricket', label: 'Cricket', icon: '🏏' },
           { key: 'other', label: 'Other', icon: '🎾' },
         ].map((tab) => (
           <button
@@ -246,77 +171,71 @@ export default function SportsPage() {
         ))}
       </motion.div>
 
-      {/* Matches Grid */}
-      <div className="grid gap-4">
-        {filteredMatches.map((match, index) => (
+      {/* Error Message */}
+      {error && (
+        <div className="bg-red-500/20 border border-red-500/50 rounded-xl p-4 mb-6">
+          <p className="text-red-400 text-center">{error}</p>
+        </div>
+      )}
+
+      {/* Channels Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {filteredChannels.map((channel, index) => (
           <motion.div
-            key={match.id}
+            key={channel.id}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1 }}
-            className="glass-card p-6 rounded-2xl border border-white/10 hover:border-green-500/30 transition-all"
+            transition={{ delay: index * 0.05 }}
+            onClick={() => setSelectedChannel(channel)}
+            className="glass-card p-6 rounded-2xl border border-white/10 hover:border-green-500/50 cursor-pointer transition-all group"
           >
-            {/* Match Header */}
+            {/* Channel Header */}
             <div className="flex items-start justify-between mb-4">
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-2xl">{match.sport === 'Football' ? '⚽' : '🏀'}</span>
-                  <span className="text-white/60 text-sm">{match.league}</span>
+              <div className="flex items-center gap-3">
+                <div className="text-4xl">{channel.logo}</div>
+                <div>
+                  <h3 className="text-white font-bold text-lg group-hover:text-green-400 transition-colors">
+                    {channel.name}
+                  </h3>
+                  <p className="text-white/60 text-sm">{channel.league}</p>
                 </div>
-                <h3 className="text-white font-bold text-xl mb-1">
-                  {match.home} vs {match.away}
-                </h3>
               </div>
               
-              {match.status === 'live' ? (
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-500/20 border border-red-500/50">
+              {channel.status === 'live' && (
+                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-red-500/20 border border-red-500/50">
                   <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-                  <span className="text-red-400 font-bold text-sm">LIVE</span>
-                </div>
-              ) : (
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/20 border border-blue-500/50">
-                  <Calendar className="w-4 h-4 text-blue-400" />
-                  <span className="text-blue-400 font-semibold text-sm">{match.time}</span>
+                  <span className="text-red-400 font-bold text-xs">LIVE</span>
                 </div>
               )}
             </div>
 
-            {/* Stream Sources */}
-            <div className="space-y-2">
-              <p className="text-white/50 text-sm mb-3">Available Streams:</p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-                {match.sources.map((source, idx) => (
-                  <motion.button
-                    key={idx}
-                    onClick={() => handleStreamSelect(match, source)}
-                    whileTap={{ scale: 0.95 }}
-                    className="p-4 rounded-xl bg-gradient-to-br from-white/5 to-white/10 hover:from-green-600/20 hover:to-green-500/20 border border-white/10 hover:border-green-500/50 transition-all group"
-                  >
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-2xl">{source.icon}</span>
-                      <span className="px-2 py-1 rounded-lg bg-green-500/20 text-green-400 text-xs font-bold">
-                        {source.quality}
-                      </span>
-                    </div>
-                    <div className="text-left">
-                      <p className="text-white font-semibold mb-1">{source.name}</p>
-                      <div className="flex items-center gap-1 text-white/60 text-xs">
-                        <PlayCircle className="w-3 h-3" />
-                        Click to watch
-                      </div>
-                    </div>
-                  </motion.button>
-                ))}
+            {/* Channel Info */}
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4 text-sm">
+                <div className="flex items-center gap-1.5">
+                  <span className="text-white/50">Quality:</span>
+                  <span className="px-2 py-0.5 rounded bg-green-500/20 text-green-400 font-semibold text-xs">
+                    {channel.quality}
+                  </span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <span className="text-white/50">Lang:</span>
+                  <span className="text-white/80">{channel.language}</span>
+                </div>
               </div>
+              
+              <button className="w-10 h-10 rounded-full bg-gradient-to-r from-green-600 to-green-500 group-hover:from-green-500 group-hover:to-green-400 flex items-center justify-center transition-all">
+                <PlayCircle className="w-5 h-5 text-white" />
+              </button>
             </div>
           </motion.div>
         ))}
       </div>
 
-      {filteredMatches.length === 0 && (
+      {filteredChannels.length === 0 && !loading && (
         <div className="text-center py-12">
           <Tv className="w-16 h-16 text-white/30 mx-auto mb-4" />
-          <p className="text-white/60">No matches available in this category</p>
+          <p className="text-white/60">No channels available in this category</p>
         </div>
       )}
     </div>
