@@ -2,194 +2,167 @@ import { NextResponse } from 'next/server'
 
 export const dynamic = 'force-dynamic'
 
-interface SportsChannel {
-  id: string
+interface StreamSource {
   name: string
-  sport: string
-  league: string
-  logo: string
-  streamUrl: string
+  url: string
   quality: string
-  language: string
-  status: 'live' | 'offline'
 }
 
-// Sports channels with M3U8 streams
-// These are example streams - you can update them via Firebase or your own API
-const channels: SportsChannel[] = [
-  // Football Channels
+interface Match {
+  id: string
+  sport: string
+  league: string
+  homeTeam: string
+  awayTeam: string
+  homeFlag: string
+  awayFlag: string
+  time: string
+  date: string
+  status: 'live' | 'upcoming' | 'finished'
+  startsIn?: string
+  streams: StreamSource[]
+}
+
+// Live sports matches - Based on AK47 Sports structure
+const matches: Match[] = [
+  // Live Football Matches
   {
     id: '1',
-    name: 'Sky Sports Football',
     sport: 'Football',
     league: 'Premier League',
-    logo: '⚽',
-    streamUrl: 'https://sportzonline.to/channels/uk/sky-sports-football.php',
-    quality: '1080p',
-    language: 'English',
-    status: 'live'
+    homeTeam: 'Manchester United',
+    awayTeam: 'Liverpool',
+    homeFlag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿',
+    awayFlag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿',
+    time: 'LIVE',
+    date: new Date().toISOString(),
+    status: 'live',
+    streams: [
+      { name: 'XTREME HD', url: 'https://sportzonline.to/channels/uk/sky-sports-football.php', quality: '1080p' },
+      { name: 'SERVER 1', url: 'https://yashintv.xyz', quality: '720p' },
+      { name: 'SERVER 2', url: 'https://www.stream2watch.com', quality: '720p' }
+    ]
   },
   {
     id: '2',
-    name: 'BT Sport 1',
     sport: 'Football',
-    league: 'Champions League',
-    logo: '⚽',
-    streamUrl: 'https://sportzonline.to/channels/uk/bt-sport-1.php',
-    quality: '1080p',
-    language: 'English',
-    status: 'live'
+    league: 'La Liga',
+    homeTeam: 'Real Madrid',
+    awayTeam: 'Barcelona',
+    homeFlag: '🇪🇸',
+    awayFlag: '🇪🇸',
+    time: 'LIVE',
+    date: new Date().toISOString(),
+    status: 'live',
+    streams: [
+      { name: 'XTREME HD', url: 'https://sportzonline.to/channels/es/movistar-laliga.php', quality: '1080p' },
+      { name: 'SERVER 1', url: 'https://yashintv.xyz', quality: '720p' }
+    ]
   },
   {
     id: '3',
-    name: 'BeIN Sports 1',
     sport: 'Football',
-    league: 'La Liga',
-    logo: '⚽',
-    streamUrl: 'https://sportzonline.to/channels/fr/bein-sports-1-fr.php',
-    quality: '720p',
-    language: 'French',
-    status: 'live'
-  },
-  {
-    id: '4',
-    name: 'ESPN',
-    sport: 'Football',
-    league: 'Multiple',
-    logo: '⚽',
-    streamUrl: 'https://sportzonline.to/channels/us/espn.php',
-    quality: '1080p',
-    language: 'English',
-    status: 'live'
-  },
-  {
-    id: '5',
-    name: 'SuperSport Football',
-    sport: 'Football',
-    league: 'African Football',
-    logo: '⚽',
-    streamUrl: 'https://sportzonline.to/channels/za/supersport-football.php',
-    quality: '720p',
-    language: 'English',
-    status: 'live'
+    league: 'Champions League',
+    homeTeam: 'Bayern Munich',
+    awayTeam: 'PSG',
+    homeFlag: '🇩🇪',
+    awayFlag: '🇫🇷',
+    time: '20:00',
+    date: new Date(Date.now() + 3600000).toISOString(),
+    status: 'upcoming',
+    startsIn: '1 hour',
+    streams: [
+      { name: 'XTREME HD', url: 'https://sportzonline.to/channels/uk/bt-sport-1.php', quality: '1080p' },
+      { name: 'SERVER 1', url: 'https://yashintv.xyz', quality: '720p' }
+    ]
   },
   
   // Basketball
   {
-    id: '6',
-    name: 'NBA TV',
+    id: '4',
     sport: 'Basketball',
     league: 'NBA',
-    logo: '🏀',
-    streamUrl: 'https://sportzonline.to/channels/us/nba-tv.php',
-    quality: '1080p',
-    language: 'English',
-    status: 'live'
-  },
-  {
-    id: '7',
-    name: 'ESPN Basketball',
-    sport: 'Basketball',
-    league: 'NBA',
-    logo: '🏀',
-    streamUrl: 'https://sportzonline.to/channels/us/espn2.php',
-    quality: '1080p',
-    language: 'English',
-    status: 'live'
-  },
-  
-  // Tennis
-  {
-    id: '8',
-    name: 'Tennis Channel',
-    sport: 'Tennis',
-    league: 'ATP/WTA',
-    logo: '🎾',
-    streamUrl: 'https://sportzonline.to/channels/us/tennis-channel.php',
-    quality: '720p',
-    language: 'English',
-    status: 'live'
+    homeTeam: 'Los Angeles Lakers',
+    awayTeam: 'Golden State Warriors',
+    homeFlag: '🇺🇸',
+    awayFlag: '🇺🇸',
+    time: 'LIVE',
+    date: new Date().toISOString(),
+    status: 'live',
+    streams: [
+      { name: 'XTREME HD', url: 'https://sportzonline.to/channels/us/nba-tv.php', quality: '1080p' },
+      { name: 'SERVER 1', url: 'https://yashintv.xyz', quality: '720p' }
+    ]
   },
   
   // Cricket
   {
-    id: '9',
-    name: 'Sky Sports Cricket',
+    id: '5',
     sport: 'Cricket',
     league: 'International Cricket',
-    logo: '🏏',
-    streamUrl: 'https://sportzonline.to/channels/uk/sky-sports-cricket.php',
-    quality: '1080p',
-    language: 'English',
-    status: 'live'
+    homeTeam: 'England',
+    awayTeam: 'India',
+    homeFlag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿',
+    awayFlag: '🇮🇳',
+    time: '14:00',
+    date: new Date(Date.now() + 7200000).toISOString(),
+    status: 'upcoming',
+    startsIn: '2 hours',
+    streams: [
+      { name: 'XTREME HD', url: 'https://sportzonline.to/channels/uk/sky-sports-cricket.php', quality: '1080p' },
+      { name: 'SERVER 1', url: 'https://yashintv.xyz', quality: '720p' }
+    ]
   },
   {
-    id: '10',
-    name: 'Star Sports 1',
+    id: '6',
     sport: 'Cricket',
     league: 'IPL',
-    logo: '🏏',
-    streamUrl: 'https://sportzonline.to/channels/in/star-sports-1.php',
-    quality: '720p',
-    language: 'Hindi',
-    status: 'live'
+    homeTeam: 'Mumbai Indians',
+    awayTeam: 'Chennai Super Kings',
+    homeFlag: '🇮🇳',
+    awayFlag: '🇮🇳',
+    time: 'LIVE',
+    date: new Date().toISOString(),
+    status: 'live',
+    streams: [
+      { name: 'XTREME HD', url: 'https://sportzonline.to/channels/in/star-sports-1.php', quality: '1080p' },
+      { name: 'SERVER 1', url: 'https://yashintv.xyz', quality: '720p' }
+    ]
   },
   
-  // More Sports
+  // More matches
   {
-    id: '11',
-    name: 'Eurosport 1',
-    sport: 'Multiple',
-    league: 'Various',
-    logo: '🏆',
-    streamUrl: 'https://sportzonline.to/channels/eu/eurosport-1.php',
-    quality: '720p',
-    language: 'English',
-    status: 'live'
-  },
-  {
-    id: '12',
-    name: 'Fox Sports',
-    sport: 'Multiple',
-    league: 'Various',
-    logo: '🏆',
-    streamUrl: 'https://sportzonline.to/channels/us/fox-sports-1.php',
-    quality: '1080p',
-    language: 'English',
-    status: 'live'
-  },
-  {
-    id: '13',
-    name: 'DAZN 1',
-    sport: 'Multiple',
-    league: 'Boxing/MMA',
-    logo: '🥊',
-    streamUrl: 'https://sportzonline.to/channels/de/dazn-1-de.php',
-    quality: '1080p',
-    language: 'German',
-    status: 'live'
-  },
-  {
-    id: '14',
-    name: 'beIN Sports USA',
+    id: '7',
     sport: 'Football',
-    league: 'Multiple',
-    logo: '⚽',
-    streamUrl: 'https://sportzonline.to/channels/us/bein-sports-usa.php',
-    quality: '720p',
-    language: 'English',
-    status: 'live'
+    league: 'Serie A',
+    homeTeam: 'AC Milan',
+    awayTeam: 'Juventus',
+    homeFlag: '🇮🇹',
+    awayFlag: '🇮🇹',
+    time: '18:30',
+    date: new Date(Date.now() + 10800000).toISOString(),
+    status: 'upcoming',
+    startsIn: '3 hours',
+    streams: [
+      { name: 'XTREME HD', url: 'https://sportzonline.to/channels/it/sky-sport-calcio.php', quality: '1080p' },
+      { name: 'SERVER 1', url: 'https://yashintv.xyz', quality: '720p' }
+    ]
   },
   {
-    id: '15',
-    name: 'TSN 1',
-    sport: 'Multiple',
-    league: 'Canadian Sports',
-    logo: '🏒',
-    streamUrl: 'https://sportzonline.to/channels/ca/tsn1.php',
-    quality: '720p',
-    language: 'English',
-    status: 'live'
+    id: '8',
+    sport: 'Football',
+    league: 'Bundesliga',
+    homeTeam: 'Borussia Dortmund',
+    awayTeam: 'RB Leipzig',
+    homeFlag: '🇩🇪',
+    awayFlag: '🇩🇪',
+    time: 'LIVE',
+    date: new Date().toISOString(),
+    status: 'live',
+    streams: [
+      { name: 'XTREME HD', url: 'https://sportzonline.to/channels/de/sky-sport-bundesliga-1.php', quality: '1080p' },
+      { name: 'SERVER 1', url: 'https://yashintv.xyz', quality: '720p' }
+    ]
   }
 ]
 
@@ -197,23 +170,34 @@ export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url)
     const sport = searchParams.get('sport')
+    const status = searchParams.get('status')
     
-    // Filter by sport if specified
-    let filteredChannels = channels
+    // Filter matches
+    let filteredMatches = matches
+    
     if (sport && sport !== 'all') {
-      filteredChannels = channels.filter(
-        channel => channel.sport.toLowerCase() === sport.toLowerCase()
+      filteredMatches = filteredMatches.filter(
+        match => match.sport.toLowerCase() === sport.toLowerCase()
+      )
+    }
+    
+    if (status && status !== 'all') {
+      filteredMatches = filteredMatches.filter(
+        match => match.status === status
       )
     }
     
     return NextResponse.json({
       success: true,
-      channels: filteredChannels,
-      total: filteredChannels.length
+      matches: filteredMatches,
+      total: filteredMatches.length,
+      live: matches.filter(m => m.status === 'live').length,
+      upcoming: matches.filter(m => m.status === 'upcoming').length,
+      finished: matches.filter(m => m.status === 'finished').length
     })
   } catch (error) {
     return NextResponse.json(
-      { success: false, error: 'Failed to fetch channels' },
+      { success: false, error: 'Failed to fetch matches' },
       { status: 500 }
     )
   }
