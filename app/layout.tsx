@@ -5,6 +5,7 @@ import Footer from '@/components/Footer'
 import GalaxyBackground from '@/components/GalaxyBackground'
 import { SubscriptionBanner } from '@/components/SubscriptionPaywall'
 import { AuthProvider } from '@/lib/AuthContext'
+import InstallPrompt from '@/components/InstallPrompt'
 
 export const metadata: Metadata = {
   title: { default: 'FBO Movies', template: '%s | FBO Movies' },
@@ -51,6 +52,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <GalaxyBackground />
           <Navbar />
           <SubscriptionBanner />
+          <InstallPrompt />
           <main className="relative pt-16 min-h-screen" style={{ zIndex: 10 }}>
             {children}
           </main>

@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Trophy, ExternalLink } from 'lucide-react'
+import { Trophy } from 'lucide-react'
 import { initAdBlocker } from './ad-blocker'
 
 export default function SportsPage() {
@@ -32,12 +32,8 @@ export default function SportsPage() {
         >
           <Trophy className="w-10 h-10 text-white" />
         </motion.div>
-        <h1 className="text-white font-bold text-2xl mb-2">Opening Live Sports...</h1>
-        <p className="text-white/60 mb-4">Taking you to Yashin TV</p>
-        <div className="flex items-center justify-center gap-2 text-green-400 text-sm">
-          <ExternalLink className="w-4 h-4" />
-          <span>yashintv.xyz</span>
-        </div>
+        <h1 className="text-white font-bold text-2xl mb-2">Loading Live Sports...</h1>
+        <p className="text-white/60">Please wait</p>
       </motion.div>
     </div>
   )
