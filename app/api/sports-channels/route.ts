@@ -483,6 +483,220 @@ function getStreams(sport: string, league: string): StreamSource[] {
   return streams
 }
 
+// 24/7 Live TV Channels - Always available
+function get247Channels(): Match[] {
+  const now = new Date()
+  const timeStr = now.toTimeString().slice(0, 5)
+  const dateStr = now.toISOString().split('T')[0]
+  
+  return [
+    {
+      id: '247-sky-sports-football',
+      sport: 'Football',
+      league: '24/7 Live TV',
+      homeTeam: 'Sky Sports',
+      awayTeam: 'Football',
+      homeFlag: '📺',
+      awayFlag: '⚽',
+      time: '24/7',
+      date: dateStr,
+      status: 'live',
+      streams: [
+        { name: 'Sky Sports Football', url: 'https://sportzonline.to/channels/uk/sky-sports-football.php', quality: '1080p' },
+        { name: 'Backup 1', url: 'https://yashintv.xyz', quality: '720p' },
+        { name: 'Backup 2', url: 'https://www.stream2watch.com', quality: '720p' }
+      ]
+    },
+    {
+      id: '247-sky-sports-pl',
+      sport: 'Football',
+      league: '24/7 Live TV',
+      homeTeam: 'Sky Sports',
+      awayTeam: 'Premier League',
+      homeFlag: '📺',
+      awayFlag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿',
+      time: '24/7',
+      date: dateStr,
+      status: 'live',
+      streams: [
+        { name: 'Sky Sports PL', url: 'https://sportzonline.to/channels/uk/sky-sports-premier-league.php', quality: '1080p' },
+        { name: 'NBC Sports', url: 'https://sportzonline.to/channels/us/nbc-sports.php', quality: '1080p' },
+        { name: 'Backup', url: 'https://yashintv.xyz', quality: '720p' }
+      ]
+    },
+    {
+      id: '247-bt-sport',
+      sport: 'Football',
+      league: '24/7 Live TV',
+      homeTeam: 'BT Sport',
+      awayTeam: 'Multi Sports',
+      homeFlag: '📺',
+      awayFlag: '⚽',
+      time: '24/7',
+      date: dateStr,
+      status: 'live',
+      streams: [
+        { name: 'BT Sport 1', url: 'https://sportzonline.to/channels/uk/bt-sport-1.php', quality: '1080p' },
+        { name: 'BT Sport 2', url: 'https://sportzonline.to/channels/uk/bt-sport-2.php', quality: '1080p' },
+        { name: 'Backup', url: 'https://yashintv.xyz', quality: '720p' }
+      ]
+    },
+    {
+      id: '247-espn',
+      sport: 'Football',
+      league: '24/7 Live TV',
+      homeTeam: 'ESPN',
+      awayTeam: 'Sports Network',
+      homeFlag: '📺',
+      awayFlag: '🏆',
+      time: '24/7',
+      date: dateStr,
+      status: 'live',
+      streams: [
+        { name: 'ESPN', url: 'https://sportzonline.to/channels/us/espn.php', quality: '1080p' },
+        { name: 'ESPN 2', url: 'https://sportzonline.to/channels/us/espn2.php', quality: '1080p' },
+        { name: 'Backup', url: 'https://yashintv.xyz', quality: '720p' }
+      ]
+    },
+    {
+      id: '247-bein-sports',
+      sport: 'Football',
+      league: '24/7 Live TV',
+      homeTeam: 'beIN Sports',
+      awayTeam: 'La Liga',
+      homeFlag: '📺',
+      awayFlag: '🇪🇸',
+      time: '24/7',
+      date: dateStr,
+      status: 'live',
+      streams: [
+        { name: 'beIN Sports 1', url: 'https://sportzonline.to/channels/fr/bein-sports-1-fr.php', quality: '1080p' },
+        { name: 'beIN Sports 2', url: 'https://sportzonline.to/channels/fr/bein-sports-2-fr.php', quality: '1080p' },
+        { name: 'Backup', url: 'https://yashintv.xyz', quality: '720p' }
+      ]
+    },
+    {
+      id: '247-dazn',
+      sport: 'Football',
+      league: '24/7 Live TV',
+      homeTeam: 'DAZN',
+      awayTeam: 'Global Sports',
+      homeFlag: '📺',
+      awayFlag: '🌍',
+      time: '24/7',
+      date: dateStr,
+      status: 'live',
+      streams: [
+        { name: 'DAZN 1', url: 'https://sportzonline.to/channels/de/dazn-1-de.php', quality: '1080p' },
+        { name: 'DAZN 2', url: 'https://sportzonline.to/channels/de/dazn-2-de.php', quality: '1080p' },
+        { name: 'Backup', url: 'https://yashintv.xyz', quality: '720p' }
+      ]
+    },
+    {
+      id: '247-fox-sports',
+      sport: 'Football',
+      league: '24/7 Live TV',
+      homeTeam: 'FOX Sports',
+      awayTeam: 'Live Action',
+      homeFlag: '📺',
+      awayFlag: '🏈',
+      time: '24/7',
+      date: dateStr,
+      status: 'live',
+      streams: [
+        { name: 'FOX Sports 1', url: 'https://sportzonline.to/channels/us/fox-sports-1.php', quality: '1080p' },
+        { name: 'FOX Sports 2', url: 'https://sportzonline.to/channels/us/fox-sports-2.php', quality: '1080p' },
+        { name: 'Backup', url: 'https://yashintv.xyz', quality: '720p' }
+      ]
+    },
+    {
+      id: '247-eurosport',
+      sport: 'Football',
+      league: '24/7 Live TV',
+      homeTeam: 'Eurosport',
+      awayTeam: 'All Sports',
+      homeFlag: '📺',
+      awayFlag: '🇪🇺',
+      time: '24/7',
+      date: dateStr,
+      status: 'live',
+      streams: [
+        { name: 'Eurosport 1', url: 'https://sportzonline.to/channels/eu/eurosport-1.php', quality: '1080p' },
+        { name: 'Eurosport 2', url: 'https://sportzonline.to/channels/eu/eurosport-2.php', quality: '1080p' },
+        { name: 'Backup', url: 'https://yashintv.xyz', quality: '720p' }
+      ]
+    },
+    {
+      id: '247-sky-sports-main',
+      sport: 'Football',
+      league: '24/7 Live TV',
+      homeTeam: 'Sky Sports',
+      awayTeam: 'Main Event',
+      homeFlag: '📺',
+      awayFlag: '🏆',
+      time: '24/7',
+      date: dateStr,
+      status: 'live',
+      streams: [
+        { name: 'Sky Main Event', url: 'https://sportzonline.to/channels/uk/sky-sports-main-event.php', quality: '1080p' },
+        { name: 'Sky Mix', url: 'https://sportzonline.to/channels/uk/sky-sports-mix.php', quality: '1080p' },
+        { name: 'Backup', url: 'https://yashintv.xyz', quality: '720p' }
+      ]
+    },
+    {
+      id: '247-star-sports',
+      sport: 'Cricket',
+      league: '24/7 Live TV',
+      homeTeam: 'Star Sports',
+      awayTeam: 'Cricket',
+      homeFlag: '📺',
+      awayFlag: '🏏',
+      time: '24/7',
+      date: dateStr,
+      status: 'live',
+      streams: [
+        { name: 'Star Sports 1', url: 'https://sportzonline.to/channels/in/star-sports-1.php', quality: '1080p' },
+        { name: 'Star Sports 2', url: 'https://sportzonline.to/channels/in/star-sports-2.php', quality: '1080p' },
+        { name: 'Backup', url: 'https://yashintv.xyz', quality: '720p' }
+      ]
+    },
+    {
+      id: '247-nba-tv',
+      sport: 'Basketball',
+      league: '24/7 Live TV',
+      homeTeam: 'NBA TV',
+      awayTeam: 'Basketball',
+      homeFlag: '📺',
+      awayFlag: '🏀',
+      time: '24/7',
+      date: dateStr,
+      status: 'live',
+      streams: [
+        { name: 'NBA TV', url: 'https://sportzonline.to/channels/us/nba-tv.php', quality: '1080p' },
+        { name: 'TNT', url: 'https://sportzonline.to/channels/us/tnt.php', quality: '1080p' },
+        { name: 'Backup', url: 'https://yashintv.xyz', quality: '720p' }
+      ]
+    },
+    {
+      id: '247-tennis-channel',
+      sport: 'Tennis',
+      league: '24/7 Live TV',
+      homeTeam: 'Tennis Channel',
+      awayTeam: 'Live Tennis',
+      homeFlag: '📺',
+      awayFlag: '🎾',
+      time: '24/7',
+      date: dateStr,
+      status: 'live',
+      streams: [
+        { name: 'Tennis Channel', url: 'https://sportzonline.to/channels/us/tennis-channel.php', quality: '1080p' },
+        { name: 'Eurosport', url: 'https://sportzonline.to/channels/eu/eurosport-1.php', quality: '1080p' },
+        { name: 'Backup', url: 'https://yashintv.xyz', quality: '720p' }
+      ]
+    }
+  ]
+}
+
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url)
@@ -491,6 +705,10 @@ export async function GET(request: Request) {
     
     // Fetch ONLY real matches
     let matches = await fetchRealMatches()
+    
+    // Add 24/7 live TV channels at the top
+    const liveChannels = get247Channels()
+    matches = [...liveChannels, ...matches]
     
     // Filter by sport
     if (sport && sport !== 'all') {
