@@ -89,12 +89,12 @@ export default async function HomeContent() {
         <div className="flex flex-wrap items-center gap-3">
           <div className="glass-card px-5 py-3 rounded-2xl flex items-center gap-3">
             <span className="text-3xl font-bold text-gradient">{catalog.length}</span>
-            <span className="text-white/50 text-sm leading-tight">VJ Movies<br/>Ready to Watch</span>
+            <span className="text-white/50 text-sm leading-tight">VJ Movies<br/>Available</span>
           </div>
-          {vjStats.slice(0, 4).map(({ vj, count }) => (
+          {vjStats.slice(0, 4).map(({ vj }) => (
             <div key={vj} className="glass-card px-4 py-2 rounded-xl text-center">
               <p className="text-white font-semibold text-sm">{vj}</p>
-              <p className="text-white/40 text-xs">{count} movies</p>
+              <p className="text-white/40 text-xs">Collection</p>
             </div>
           ))}
         </div>

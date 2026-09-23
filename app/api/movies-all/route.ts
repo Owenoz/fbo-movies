@@ -14,7 +14,7 @@ export async function GET(req: NextRequest) {
 
     let allMovies: any[] = []
 
-    // Fetch from NaraBox (462 verified movies)
+    // Fetch from NaraBox verified catalog
     if (source === 'all' || source === 'narabox') {
       const narabox = await getNaraCatalogServer()
       const sevenDaysAgo = Date.now() - (7 * 24 * 60 * 60 * 1000)
@@ -37,7 +37,7 @@ export async function GET(req: NextRequest) {
       allMovies.push(...naraMapped)
     }
 
-    // Fetch from LugaFlix (53,000+ movies)
+    // Fetch from LugaFlix streaming catalog
     if (source === 'all' || source === 'lugaflix') {
       try {
         const lugaflix = await getLugaFlixMovies(page, limit * 2)  // Fetch more for filtering

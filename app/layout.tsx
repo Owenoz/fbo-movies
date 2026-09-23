@@ -8,7 +8,7 @@ import { AuthProvider } from '@/lib/AuthContext'
 
 export const metadata: Metadata = {
   title: { default: 'FBO Movies', template: '%s | FBO Movies' },
-  description: 'Watch 462+ VJ-translated Ugandan movies with full streaming. Install as an app on your phone.',
+  description: 'Watch VJ-translated Ugandan movies with full streaming. Install as an app on your phone.',
   keywords: ['movies', 'tv shows', 'vj', 'uganda', 'fbo movies', 'kawogo', 'vj junior', 'vj emmy', 'vj mark'],
   manifest: '/manifest.json',
   appleWebApp: {

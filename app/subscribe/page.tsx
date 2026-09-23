@@ -320,7 +320,7 @@ export default function SubscribePage() {
           transition={{ delay: 0.2 }}
           className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-3"
         >
-          {['462+ VJ Movies', '53K+ Explore', 'HD Quality', 'Any Device'].map((feature, i) => (
+          {['Unlimited Access', 'VJ Movies', 'HD Quality', 'Any Device'].map((feature, i) => (
             <div key={i} className="glass-card p-4 rounded-xl border border-white/10 text-center">
               <Check className="w-5 h-5 text-green-400 mx-auto mb-2" />
               <p className="text-white/80 text-sm font-medium">{feature}</p>
