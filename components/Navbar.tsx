@@ -4,10 +4,11 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Search, Film, Tv, Home, Menu, X, Crown, Trophy, LogOut } from 'lucide-react'
+import { Search, Film, Tv, Home, Menu, X, Crown, Trophy, LogOut, Shield } from 'lucide-react'
 import Logo from './Logo'
 import { checkSubscriptionStatus } from '@/lib/subscription'
 import { supabase } from '@/lib/supabase'
+import { isAdminEmail } from '@/lib/admin-config'
 
 const navLinks = [
   { href: '/',        label: 'Home',     icon: Home },
@@ -24,6 +25,8 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [searchVal, setSearchVal] = useState('')
   const [hasSubscription, setHasSubscription] = useState(false)
+  const [isAdmin, setIsAdmin] = useState(false)
+  const [userEmail, setUserEmail] = useState<string | null>(null)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10)
@@ -34,7 +37,18 @@ export default function Navbar() {
   useEffect(() => {
     const { hasAccess } = checkSubscriptionStatus()
     setHasSubscription(hasAccess)
+    
+    // Check if user is admin
+    checkAdminStatus()
   }, [])
+
+  const checkAdminStatus = async () => {
+    const { data: { session } } = await supabase.auth.getSession()
+    if (session?.user?.email) {
+      setUserEmail(session.user.email)
+      setIsAdmin(isAdminEmail(session.user.email))
+    }
+  }
 
   const handleLogout = async () => {
     await supabase.auth.signOut()
@@ -112,6 +126,17 @@ export default function Navbar() {
                 >
                   <Crown className="w-4 h-4" />
                   Subscribe
+                </Link>
+              )}
+
+              {isAdmin && (
+                <Link
+                  href="/admin/users"
+                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-bold text-sm shadow-lg shadow-blue-500/30 transition-all hover:scale-105"
+                  title="Admin Panel"
+                >
+                  <Shield className="w-4 h-4" />
+                  Admin
                 </Link>
               )}
 
@@ -203,6 +228,22 @@ export default function Navbar() {
                 {label}
               </Link>
             ))}
+
+            {isAdmin && (
+              <Link
+                href="/admin/users"
+                onClick={() => setMobileOpen(false)}
+                className={[
+                  'flex items-center gap-3 px-4 py-3 rounded-xl mb-1 text-sm font-medium transition-all duration-200',
+                  pathname.startsWith('/admin')
+                    ? 'text-white border border-blue-500/30 bg-blue-500/15'
+                    : 'text-blue-400 hover:text-blue-300 hover:bg-blue-500/10 border border-blue-500/20',
+                ].join(' ')}
+              >
+                <Shield className="w-4 h-4" />
+                Admin Panel
+              </Link>
+            )}
 
             <button
               onClick={() => {
