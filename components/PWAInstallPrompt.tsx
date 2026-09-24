@@ -18,6 +18,7 @@ export default function PWAInstallPrompt() {
     // Check if already installed
     if (window.matchMedia('(display-mode: standalone)').matches) {
       setIsInstalled(true)
+      console.log('[PWA] Already installed')
       return
     }
 
@@ -28,21 +29,38 @@ export default function PWAInstallPrompt() {
       const dayInMs = 24 * 60 * 60 * 1000
       // Show again after 7 days
       if (Date.now() - dismissedTime < 7 * dayInMs) {
+        console.log('[PWA] User dismissed recently')
         return
       }
     }
 
     // Listen for the beforeinstallprompt event
     const handler = (e: Event) => {
+      console.log('[PWA] beforeinstallprompt event fired')
       e.preventDefault()
       setDeferredPrompt(e as BeforeInstallPromptEvent)
-      // Show prompt after 3 seconds
+      // Show prompt after 1 second for testing
       setTimeout(() => {
+        console.log('[PWA] Showing install prompt')
         setShowPrompt(true)
-      }, 3000)
+      }, 1000)
     }
 
     window.addEventListener('beforeinstallprompt', handler)
+
+    // For testing - show after 3 seconds even without the event (on supported browsers)
+    setTimeout(() => {
+      if (!deferredPrompt && !isInstalled) {
+        console.log('[PWA] No install event yet, checking if installable...')
+        // Check if we can detect installation capability
+        const isStandalone = window.matchMedia('(display-mode: standalone)').matches
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
+        
+        if (!isStandalone && !isIOS) {
+          console.log('[PWA] Browser may support installation')
+        }
+      }
+    }, 3000)
 
     return () => {
       window.removeEventListener('beforeinstallprompt', handler)

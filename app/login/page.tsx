@@ -25,19 +25,43 @@ function LoginForm() {
     setError('')
 
     try {
+      console.log('Attempting login with:', email)
+      
       const { data, error: signInError } = await supabase.auth.signInWithPassword({
-        email,
-        password,
+        email: email.trim(),
+        password: password,
       })
 
-      if (signInError) throw signInError
+      console.log('Login response:', { data, error: signInError })
+
+      if (signInError) {
+        console.error('Login error:', signInError)
+        throw signInError
+      }
 
       if (data.user) {
-        router.push(redirectTo)
-        router.refresh()
+        console.log('Login successful, redirecting to:', redirectTo)
+        // Small delay to ensure session is set
+        setTimeout(() => {
+          window.location.href = redirectTo
+        }, 500)
+      } else {
+        throw new Error('Login failed - no user returned')
       }
     } catch (err: any) {
-      setError(err.message || 'Failed to login')
+      console.error('Catch error:', err)
+      const errorMessage = err.message || 'Failed to login'
+      
+      // Show helpful error messages
+      if (errorMessage.includes('Invalid login credentials')) {
+        setError('Invalid email or password. Please check and try again.')
+      } else if (errorMessage.includes('Email not confirmed')) {
+        setError('Please check your email to confirm your account first.')
+      } else if (errorMessage.includes('User not found')) {
+        setError('No account found with this email. Please sign up first.')
+      } else {
+        setError(errorMessage)
+      }
     } finally {
       setLoading(false)
     }
@@ -79,7 +103,16 @@ function LoginForm() {
                 animate={{ opacity: 1, y: 0 }}
                 className="bg-red-500/10 border border-red-500/50 rounded-lg p-4 text-red-500 text-sm"
               >
-                {error}
+                <p className="font-semibold mb-1">Login Failed</p>
+                <p>{error}</p>
+                {error.includes('Invalid email or password') && (
+                  <p className="mt-2 text-xs">
+                    Don't have an account?{' '}
+                    <Link href="/signup" className="text-blue-400 underline">
+                      Sign up here
+                    </Link>
+                  </p>
+                )}
               </motion.div>
             )}
 
