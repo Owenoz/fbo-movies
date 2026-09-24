@@ -26,77 +26,93 @@ export async function middleware(request: NextRequest) {
   response.headers.set('Permissions-Policy', 'interest-cohort=()')
   response.headers.set('Referrer-Policy', 'no-referrer-when-downgrade')
 
-  // Create Supabase client
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        get(name: string) {
-          return request.cookies.get(name)?.value
-        },
-        set(name: string, value: string, options: any) {
-          request.cookies.set({
-            name,
-            value,
-            ...options,
-          })
-          response = NextResponse.next({
-            request: {
-              headers: request.headers,
-            },
-          })
-          response.cookies.set({
-            name,
-            value,
-            ...options,
-          })
-        },
-        remove(name: string, options: any) {
-          request.cookies.set({
-            name,
-            value: '',
-            ...options,
-          })
-          response = NextResponse.next({
-            request: {
-              headers: request.headers,
-            },
-          })
-          response.cookies.set({
-            name,
-            value: '',
-            ...options,
-          })
-        },
-      },
-    }
-  )
-
-  // Check authentication
-  const {
-    data: { session },
-  } = await supabase.auth.getSession()
-
   // Public routes that don't require authentication
   const publicRoutes = ['/login', '/signup']
   const isPublicRoute = publicRoutes.some(route => 
     request.nextUrl.pathname.startsWith(route)
   )
 
-  // If not authenticated and trying to access protected route
-  if (!session && !isPublicRoute) {
-    const redirectUrl = new URL('/login', request.url)
-    redirectUrl.searchParams.set('redirect', request.nextUrl.pathname)
-    return NextResponse.redirect(redirectUrl)
-  }
+  try {
+    // Get environment variables
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
-  // If authenticated and trying to access login/signup, redirect to home
-  if (session && isPublicRoute) {
-    return NextResponse.redirect(new URL('/', request.url))
-  }
+    // If env vars not available, skip auth check (development mode)
+    if (!supabaseUrl || !supabaseAnonKey) {
+      console.warn('Supabase environment variables not found in middleware')
+      return response
+    }
 
-  return response
+    // Create Supabase client
+    const supabase = createServerClient(
+      supabaseUrl,
+      supabaseAnonKey,
+      {
+        cookies: {
+          get(name: string) {
+            return request.cookies.get(name)?.value
+          },
+          set(name: string, value: string, options: any) {
+            request.cookies.set({
+              name,
+              value,
+              ...options,
+            })
+            response = NextResponse.next({
+              request: {
+                headers: request.headers,
+              },
+            })
+            response.cookies.set({
+              name,
+              value,
+              ...options,
+            })
+          },
+          remove(name: string, options: any) {
+            request.cookies.set({
+              name,
+              value: '',
+              ...options,
+            })
+            response = NextResponse.next({
+              request: {
+                headers: request.headers,
+              },
+            })
+            response.cookies.set({
+              name,
+              value: '',
+              ...options,
+            })
+          },
+        },
+      }
+    )
+
+    // Check authentication
+    const {
+      data: { session },
+    } = await supabase.auth.getSession()
+
+    // If not authenticated and trying to access protected route
+    if (!session && !isPublicRoute) {
+      const redirectUrl = new URL('/login', request.url)
+      redirectUrl.searchParams.set('redirect', request.nextUrl.pathname)
+      return NextResponse.redirect(redirectUrl)
+    }
+
+    // If authenticated and trying to access login/signup, redirect to home
+    if (session && isPublicRoute) {
+      return NextResponse.redirect(new URL('/', request.url))
+    }
+
+    return response
+  } catch (error) {
+    console.error('Middleware error:', error)
+    // On error, allow the request to continue
+    return response
+  }
 }
 
 export const config = {
