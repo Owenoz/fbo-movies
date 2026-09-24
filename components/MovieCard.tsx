@@ -6,6 +6,21 @@ import { Star, Clock, Play, Mic, Heart } from 'lucide-react'
 import { tmdbImage, formatRating, getYear } from '@/lib/api'
 import { useWatchlist } from '@/lib/useUserData'
 
+// Generate consistent gradient based on ID
+function getGradient(id: number): string {
+  const gradients = [
+    'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+    'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+    'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+    'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+    'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+    'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
+    'linear-gradient(135deg, #ff9a56 0%, #ff6a88 100%)',
+    'linear-gradient(135deg, #30cfd0 0%, #330867 100%)',
+  ]
+  return gradients[Math.abs(id) % gradients.length]
+}
+
 interface MovieCardProps {
   id: number
   title: string
@@ -38,36 +53,7 @@ export default function MovieCard({
     href = `/watch/${slug}`  // Direct to watch for LugaFlix
   }
 
-  // Fallback poster generation for NaraBox movies without posters
-  let imgSrc = posterUrl || (posterPath ? tmdbImage(posterPath, 'w342') : '')
-  
-  // If no poster and it's a NaraBox movie, try to generate a text-based poster
-  if (!imgSrc && sourceType === 'narabox') {
-    // Create a colored gradient poster with the title
-    const colors = [
-      'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-      'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-      'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-      'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
-      'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
-    ]
-    const colorIndex = Math.abs(id) % colors.length
-    imgSrc = `data:image/svg+xml,${encodeURIComponent(`
-      <svg xmlns="http://www.w3.org/2000/svg" width="342" height="513" viewBox="0 0 342 513">
-        <defs>
-          <linearGradient id="grad${id}" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
-          </linearGradient>
-        </defs>
-        <rect width="342" height="513" fill="url(#grad${id})"/>
-        <text x="50%" y="45%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="28" font-weight="bold" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5)">
-          ${title.length > 40 ? title.substring(0, 37) + '...' : title}
-        </text>
-        ${vj ? `<text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-family="Arial, sans-serif" font-size="18" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.5)">${vj}</text>` : ''}
-      </svg>
-    `)}`
-  }
+  const imgSrc = posterUrl || (posterPath ? tmdbImage(posterPath, 'w342') : '')
   const displayYear = year || (releaseDate ? getYear(releaseDate) : '')
   const vjLabel = vj?.replace(/^VJ\s*/i, '')
 
@@ -92,7 +78,10 @@ export default function MovieCard({
       <Link href={href} className="block">
         <div
           className="relative overflow-hidden rounded-xl border border-white/10"
-          style={{ aspectRatio: '2/3', background: 'linear-gradient(135deg,#1a0035,#0d001a)' }}
+          style={{ 
+            aspectRatio: '2/3', 
+            background: imgSrc ? 'linear-gradient(135deg,#1a0035,#0d001a)' : getGradient(id)
+          }}
         >
           {imgSrc ? (
             // eslint-disable-next-line @next/next/no-img-element
@@ -103,9 +92,10 @@ export default function MovieCard({
               onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
             />
           ) : (
-            <div className="w-full h-full flex flex-col items-center justify-center gap-2 px-2">
-              <Play className="w-8 h-8 text-white/10" />
-              <span className="text-white/20 text-xs text-center line-clamp-3">{title}</span>
+            <div className="w-full h-full flex flex-col items-center justify-center gap-3 px-3 py-4">
+              <Play className="w-12 h-12 text-white/30" />
+              <span className="text-white font-bold text-sm text-center line-clamp-4 leading-tight">{title}</span>
+              {vj && <span className="text-white/60 text-xs">{vj}</span>}
             </div>
           )}
 
