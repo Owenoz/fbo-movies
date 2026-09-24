@@ -2,11 +2,12 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Search, Film, Tv, Home, Menu, X, Crown, Trophy } from 'lucide-react'
+import { Search, Film, Tv, Home, Menu, X, Crown, Trophy, LogOut } from 'lucide-react'
 import Logo from './Logo'
 import { checkSubscriptionStatus } from '@/lib/subscription'
+import { supabase } from '@/lib/supabase'
 
 const navLinks = [
   { href: '/',        label: 'Home',     icon: Home },
@@ -18,6 +19,7 @@ const navLinks = [
 
 export default function Navbar() {
   const pathname = usePathname()
+  const router = useRouter()
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [searchVal, setSearchVal] = useState('')
@@ -33,6 +35,12 @@ export default function Navbar() {
     const { hasAccess } = checkSubscriptionStatus()
     setHasSubscription(hasAccess)
   }, [])
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut()
+    router.push('/login')
+    router.refresh()
+  }
 
   return (
     <>
@@ -106,6 +114,15 @@ export default function Navbar() {
                   Subscribe
                 </Link>
               )}
+
+              <button
+                onClick={handleLogout}
+                className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-white text-sm font-medium transition-all hover:scale-105 border border-white/20"
+                title="Logout"
+              >
+                <LogOut className="w-4 h-4" />
+                Logout
+              </button>
             </div>
 
             {/* ── Mobile Toggle ── */}
@@ -186,6 +203,17 @@ export default function Navbar() {
                 {label}
               </Link>
             ))}
+
+            <button
+              onClick={() => {
+                setMobileOpen(false)
+                handleLogout()
+              }}
+              className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-all duration-200 border border-red-500/20 mt-2"
+            >
+              <LogOut className="w-4 h-4" />
+              Logout
+            </button>
           </motion.div>
         )}
       </AnimatePresence>
