@@ -27,7 +27,7 @@ export async function middleware(request: NextRequest) {
   response.headers.set('Referrer-Policy', 'no-referrer-when-downgrade')
 
   // Public routes that don't require authentication
-  const publicRoutes = ['/login', '/signup']
+  const publicRoutes = ['/login', '/signup', '/test-login', '/create-account']
   const isPublicRoute = publicRoutes.some(route => 
     request.nextUrl.pathname.startsWith(route)
   )
