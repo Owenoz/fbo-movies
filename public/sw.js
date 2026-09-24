@@ -1,21 +1,27 @@
-// FBO Movies Service Worker - PWA offline support
+// Service Worker for FBO Movies PWA
 const CACHE_NAME = 'fbo-movies-v1'
-const STATIC_ASSETS = [
+const urlsToCache = [
   '/',
   '/movies',
+  '/tv',
+  '/sports',
   '/search',
   '/manifest.json',
   '/icon-192.png',
   '/icon-512.png',
 ]
 
-// Install event - cache static assets
+// Install event - cache essential files
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      console.log('[SW] Caching static assets')
-      return cache.addAll(STATIC_ASSETS)
-    })
+    caches.open(CACHE_NAME)
+      .then((cache) => {
+        console.log('[PWA] Caching app shell')
+        return cache.addAll(urlsToCache)
+      })
+      .catch((err) => {
+        console.log('[PWA] Cache failed:', err)
+      })
   )
   self.skipWaiting()
 })
@@ -25,60 +31,52 @@ self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
-        cacheNames.map((name) => {
-          if (name !== CACHE_NAME) {
-            console.log('[SW] Deleting old cache:', name)
-            return caches.delete(name)
+        cacheNames.map((cacheName) => {
+          if (cacheName !== CACHE_NAME) {
+            console.log('[PWA] Deleting old cache:', cacheName)
+            return caches.delete(cacheName)
           }
         })
       )
     })
   )
-  self.clients.claim()
+  return self.clients.claim()
 })
 
-// Fetch event - network first, fallback to cache
+// Fetch event - serve from cache, fallback to network
 self.addEventListener('fetch', (event) => {
-  // Skip cross-origin requests
-  if (!event.request.url.startsWith(self.location.origin)) {
-    return
-  }
-
-  // Skip video/streaming requests (too large to cache)
-  if (event.request.url.includes('nbxgen.naraboxtv.com') || 
-      event.request.url.includes('.mp4')) {
-    return
-  }
-
   event.respondWith(
-    fetch(event.request)
+    caches.match(event.request)
       .then((response) => {
-        // Clone the response before caching
-        const responseClone = response.clone()
-        
-        // Cache successful GET requests
-        if (event.request.method === 'GET' && response.status === 200) {
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, responseClone)
-          })
+        // Cache hit - return response
+        if (response) {
+          return response
         }
-        
-        return response
-      })
-      .catch(() => {
-        // Network failed - try cache
-        return caches.match(event.request).then((cachedResponse) => {
-          if (cachedResponse) {
-            return cachedResponse
+
+        // Clone the request
+        const fetchRequest = event.request.clone()
+
+        return fetch(fetchRequest).then((response) => {
+          // Check if valid response
+          if (!response || response.status !== 200 || response.type !== 'basic') {
+            return response
           }
-          
-          // Return offline page for navigation requests
-          if (event.request.mode === 'navigate') {
-            return caches.match('/')
+
+          // Clone the response
+          const responseToCache = response.clone()
+
+          // Cache API calls and images
+          if (event.request.url.includes('/api/') || 
+              event.request.url.match(/\.(jpg|jpeg|png|gif|svg|webp)$/)) {
+            caches.open(CACHE_NAME).then((cache) => {
+              cache.put(event.request, responseToCache)
+            })
           }
-          
-          // Return error for other requests
-          return new Response('Offline', { status: 503 })
+
+          return response
+        }).catch(() => {
+          // Return offline page or cached response
+          return caches.match('/')
         })
       })
   )

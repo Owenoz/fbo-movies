@@ -1,85 +1,48 @@
 {
-  "name": "FBO Movies - VJ Translated Movies",
+  "name": "FBO Movies - Stream Movies, TV Shows & Sports",
   "short_name": "FBO Movies",
-  "description": "Watch VJ-translated Ugandan movies with full MP4 streaming",
+  "description": "Watch unlimited movies, TV shows, and live sports streaming",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0a0118",
+  "background_color": "#000000",
   "theme_color": "#9333ea",
-  "orientation": "portrait",
-  "scope": "/",
+  "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/icon-72x72.png",
-      "sizes": "72x72",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "/icon-96x96.png",
-      "sizes": "96x96",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "/icon-128x128.png",
-      "sizes": "128x128",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "/icon-144x144.png",
-      "sizes": "144x144",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "/icon-152x152.png",
-      "sizes": "152x152",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "/icon-192x192.png",
+      "src": "/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/icon-384x384.png",
-      "sizes": "384x384",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "/icon-512x512.png",
+      "src": "/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     }
   ],
-  "screenshots": [
-    {
-      "src": "/icon-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ],
-  "categories": ["entertainment", "video"],
+  "categories": ["entertainment", "video", "streaming"],
   "shortcuts": [
     {
-      "name": "Browse Movies",
+      "name": "Movies",
       "short_name": "Movies",
-      "description": "Browse all VJ movies",
+      "description": "Browse all movies",
       "url": "/movies",
-      "icons": [{ "src": "/icon-192x192.png", "sizes": "192x192" }]
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
     },
     {
-      "name": "Search",
-      "short_name": "Search",
-      "description": "Search for movies",
-      "url": "/search",
-      "icons": [{ "src": "/icon-192x192.png", "sizes": "192x192" }]
+      "name": "TV Shows",
+      "short_name": "TV",
+      "description": "Browse TV shows",
+      "url": "/tv",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Sports",
+      "short_name": "Sports",
+      "description": "Watch live sports",
+      "url": "/sports",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
     }
   ]
 }
