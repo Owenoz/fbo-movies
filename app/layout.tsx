@@ -3,10 +3,6 @@ import './globals.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import GalaxyBackground from '@/components/GalaxyBackground'
-import { SubscriptionBanner } from '@/components/SubscriptionPaywall'
-import { AuthProvider } from '@/lib/AuthContext'
-import PWAInstallPrompt from '@/components/PWAInstallPrompt'
-import InstallButton from '@/components/InstallButton'
 
 export const metadata: Metadata = {
   title: { default: 'FBO Movies', template: '%s | FBO Movies' },
@@ -17,16 +13,6 @@ export const metadata: Metadata = {
     capable: true,
     statusBarStyle: 'black-translucent',
     title: 'FBO Movies',
-  },
-  icons: {
-    icon: [
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
-      { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
-    ],
-    apple: [
-      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
-    ],
   },
 }
 
@@ -46,20 +32,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="FBO Movies" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
       </head>
       <body className="bg-[#0d001a] text-white antialiased">
-        <AuthProvider>
-          <GalaxyBackground />
-          <Navbar />
-          <SubscriptionBanner />
-          <PWAInstallPrompt />
-          <InstallButton />
-          <main className="relative pt-16 min-h-screen" style={{ zIndex: 10 }}>
-            {children}
-          </main>
-          <Footer />
-        </AuthProvider>
+        <GalaxyBackground />
+        <Navbar />
+        <main className="relative pt-16 min-h-screen" style={{ zIndex: 10 }}>
+          {children}
+        </main>
+        <Footer />
         <script dangerouslySetInnerHTML={{
           __html: `
             if ('serviceWorker' in navigator) {

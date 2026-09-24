@@ -2,13 +2,10 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Search, Film, Tv, Home, Menu, X, Crown, Trophy, LogOut, Shield } from 'lucide-react'
+import { Search, Film, Tv, Home, Menu, X, Trophy } from 'lucide-react'
 import Logo from './Logo'
-import { checkSubscriptionStatus } from '@/lib/subscription'
-import { supabase } from '@/lib/supabase'
-import { isAdminEmail } from '@/lib/admin-config'
 
 const navLinks = [
   { href: '/',        label: 'Home',     icon: Home },
@@ -20,41 +17,15 @@ const navLinks = [
 
 export default function Navbar() {
   const pathname = usePathname()
-  const router = useRouter()
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [searchVal, setSearchVal] = useState('')
-  const [hasSubscription, setHasSubscription] = useState(false)
-  const [isAdmin, setIsAdmin] = useState(false)
-  const [userEmail, setUserEmail] = useState<string | null>(null)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10)
     window.addEventListener('scroll', onScroll)
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
-
-  useEffect(() => {
-    const { hasAccess } = checkSubscriptionStatus()
-    setHasSubscription(hasAccess)
-    
-    // Check if user is admin
-    checkAdminStatus()
-  }, [])
-
-  const checkAdminStatus = async () => {
-    const { data: { session } } = await supabase.auth.getSession()
-    if (session?.user?.email) {
-      setUserEmail(session.user.email)
-      setIsAdmin(isAdminEmail(session.user.email))
-    }
-  }
-
-  const handleLogout = async () => {
-    await supabase.auth.signOut()
-    router.push('/login')
-    router.refresh()
-  }
 
   return (
     <>
@@ -73,12 +44,12 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
 
-            {/* ── Logo ── */}
+            {/* Logo */}
             <Link href="/" className="flex items-center gap-2.5 group flex-none">
               <Logo size={45} showText={false} />
             </Link>
 
-            {/* ── Desktop Links ── */}
+            {/* Desktop Links */}
             <div className="hidden md:flex items-center gap-1">
               {navLinks.map(({ href, label, icon: Icon }) => {
                 const active = pathname === href
@@ -108,49 +79,23 @@ export default function Navbar() {
               })}
             </div>
 
-            {/* ── Desktop Search & Subscribe ── */}
+            {/* Desktop Search */}
             <div className="hidden md:flex items-center gap-3">
               <form onSubmit={e => { e.preventDefault(); if (searchVal.trim()) window.location.href=`/search?q=${encodeURIComponent(searchVal)}` }}>
                 <div className="relative flex items-center">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40 pointer-events-none" />
-                  <input value={searchVal} onChange={e => setSearchVal(e.target.value)} placeholder="Search movies…"
+                  <input 
+                    value={searchVal} 
+                    onChange={e => setSearchVal(e.target.value)} 
+                    placeholder="Search movies…"
                     className="pl-9 pr-4 py-2 rounded-full text-sm text-white placeholder-white/30 w-44 focus:w-60 transition-all duration-300 outline-none border border-white/10 focus:border-purple-500/60"
-                    style={{ background:'rgba(255,255,255,0.07)', backdropFilter:'blur(10px)' }} />
+                    style={{ background:'rgba(255,255,255,0.07)', backdropFilter:'blur(10px)' }} 
+                  />
                 </div>
               </form>
-              
-              {!hasSubscription && (
-                <Link
-                  href="/subscribe"
-                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-500 hover:to-purple-400 text-white font-bold text-sm shadow-lg shadow-purple-500/30 transition-all hover:scale-105"
-                >
-                  <Crown className="w-4 h-4" />
-                  Subscribe
-                </Link>
-              )}
-
-              {isAdmin && (
-                <Link
-                  href="/admin/users"
-                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-bold text-sm shadow-lg shadow-blue-500/30 transition-all hover:scale-105"
-                  title="Admin Panel"
-                >
-                  <Shield className="w-4 h-4" />
-                  Admin
-                </Link>
-              )}
-
-              <button
-                onClick={handleLogout}
-                className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-white text-sm font-medium transition-all hover:scale-105 border border-white/20"
-                title="Logout"
-              >
-                <LogOut className="w-4 h-4" />
-                Logout
-              </button>
             </div>
 
-            {/* ── Mobile Toggle ── */}
+            {/* Mobile Toggle */}
             <button
               className="md:hidden p-2 rounded-lg text-white/70 hover:text-white border border-white/10 hover:border-white/20 transition-all"
               style={{ background: 'rgba(255,255,255,0.07)' }}
@@ -163,7 +108,7 @@ export default function Navbar() {
         </div>
       </motion.nav>
 
-      {/* ── Mobile Menu ── */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -179,7 +124,7 @@ export default function Navbar() {
               borderBottom: '1px solid rgba(147,51,234,0.2)',
             }}
           >
-            {/* mobile search */}
+            {/* Mobile search */}
             <form
               className="relative mb-3"
               onSubmit={e => {
@@ -200,17 +145,6 @@ export default function Navbar() {
               />
             </form>
 
-            {!hasSubscription && (
-              <Link
-                href="/subscribe"
-                onClick={() => setMobileOpen(false)}
-                className="flex items-center justify-center gap-2 w-full mb-3 px-4 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-purple-500 text-white font-bold text-sm shadow-lg"
-              >
-                <Crown className="w-4 h-4" />
-                Subscribe Now
-              </Link>
-            )}
-
             {navLinks.map(({ href, label, icon: Icon }) => (
               <Link
                 key={href}
@@ -228,33 +162,6 @@ export default function Navbar() {
                 {label}
               </Link>
             ))}
-
-            {isAdmin && (
-              <Link
-                href="/admin/users"
-                onClick={() => setMobileOpen(false)}
-                className={[
-                  'flex items-center gap-3 px-4 py-3 rounded-xl mb-1 text-sm font-medium transition-all duration-200',
-                  pathname.startsWith('/admin')
-                    ? 'text-white border border-blue-500/30 bg-blue-500/15'
-                    : 'text-blue-400 hover:text-blue-300 hover:bg-blue-500/10 border border-blue-500/20',
-                ].join(' ')}
-              >
-                <Shield className="w-4 h-4" />
-                Admin Panel
-              </Link>
-            )}
-
-            <button
-              onClick={() => {
-                setMobileOpen(false)
-                handleLogout()
-              }}
-              className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-all duration-200 border border-red-500/20 mt-2"
-            >
-              <LogOut className="w-4 h-4" />
-              Logout
-            </button>
           </motion.div>
         )}
       </AnimatePresence>
