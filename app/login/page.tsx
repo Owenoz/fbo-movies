@@ -28,7 +28,7 @@ function LoginForm() {
       console.log('Attempting login with:', email)
       
       const { data, error: signInError } = await supabase.auth.signInWithPassword({
-        email: email.trim(),
+        email: email.trim().toLowerCase(),
         password: password,
       })
 
@@ -39,14 +39,14 @@ function LoginForm() {
         throw signInError
       }
 
-      if (data.user) {
-        console.log('Login successful, redirecting to:', redirectTo)
-        // Small delay to ensure session is set
-        setTimeout(() => {
-          window.location.href = redirectTo
-        }, 500)
+      if (data.session && data.user) {
+        console.log('Login successful! User:', data.user.email)
+        console.log('Session created, redirecting to:', redirectTo)
+        
+        // Force a full page reload to the redirect URL
+        window.location.href = redirectTo
       } else {
-        throw new Error('Login failed - no user returned')
+        throw new Error('Login failed - no session created')
       }
     } catch (err: any) {
       console.error('Catch error:', err)
@@ -62,7 +62,6 @@ function LoginForm() {
       } else {
         setError(errorMessage)
       }
-    } finally {
       setLoading(false)
     }
   }

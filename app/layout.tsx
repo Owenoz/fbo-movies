@@ -6,6 +6,7 @@ import GalaxyBackground from '@/components/GalaxyBackground'
 import { SubscriptionBanner } from '@/components/SubscriptionPaywall'
 import { AuthProvider } from '@/lib/AuthContext'
 import PWAInstallPrompt from '@/components/PWAInstallPrompt'
+import InstallButton from '@/components/InstallButton'
 
 export const metadata: Metadata = {
   title: { default: 'FBO Movies', template: '%s | FBO Movies' },
@@ -53,6 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Navbar />
           <SubscriptionBanner />
           <PWAInstallPrompt />
+          <InstallButton />
           <main className="relative pt-16 min-h-screen" style={{ zIndex: 10 }}>
             {children}
           </main>

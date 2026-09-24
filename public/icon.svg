@@ -1,7 +1,13 @@
 <svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="512" height="512" rx="128" fill="url(#gradient)"/>
-  <path d="M170 170H342M170 256H342M170 342H280" stroke="white" stroke-width="40" stroke-linecap="round"/>
-  <circle cx="380" cy="342" r="40" fill="white"/>
+  <rect width="512" height="512" rx="100" fill="url(#gradient)"/>
+  <g transform="translate(128, 170)">
+    <rect x="0" y="0" width="256" height="172" rx="12" fill="white" opacity="0.15"/>
+    <rect x="10" y="10" width="236" height="132" rx="8" fill="black" opacity="0.3"/>
+    <polygon points="110,66 110,86 130,76" fill="white"/>
+    <circle cx="40" cy="156" r="8" fill="white"/>
+    <circle cx="128" cy="156" r="8" fill="white"/>
+    <circle cx="216" cy="156" r="8" fill="white"/>
+  </g>
   <defs>
     <linearGradient id="gradient" x1="0" y1="0" x2="512" y2="512">
       <stop offset="0%" stop-color="#9333ea"/>
