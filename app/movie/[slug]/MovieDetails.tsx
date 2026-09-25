@@ -145,8 +145,17 @@ export default function MovieDetails({ slug }: MovieDetailsProps) {
           <motion.button
             onClick={async () => {
               if (!movie.mp4) return;
+              
+              const isKibanda = movie.mp4.includes('munoserver') || movie.mp4.includes('club');
+              
+              if (isKibanda) {
+                // Kibanda uses streaming-only servers
+                alert('⚠️ Kibanda movies use streaming servers and cannot be downloaded.\n\nYou can only watch them online. Use the "Watch Now" button to stream.');
+                return;
+              }
+              
               try {
-                // Use proxy API for Kibanda movies (they need referrer headers)
+                // For NaraBox movies, use download API
                 const downloadUrl = `/api/download?slug=${encodeURIComponent(slug)}`;
                 
                 // Create a temporary download link
