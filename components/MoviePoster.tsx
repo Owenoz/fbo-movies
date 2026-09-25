@@ -36,13 +36,40 @@ export default function MoviePoster({ title, vj, posterUrl, posterPath, id }: Mo
     if (posterUrl) {
       setImgSrc(posterUrl)
       setLoading(false)
-    } else if (posterPath) {
+      return
+    }
+    
+    if (posterPath) {
       setImgSrc(`https://image.tmdb.org/t/p/w342${posterPath}`)
       setLoading(false)
-    } else {
-      setLoading(false)
+      return
     }
-  }, [posterUrl, posterPath])
+    
+    // Fetch from TMDB using title search
+    const fetchPoster = async () => {
+      try {
+        // Clean title - remove VJ suffix
+        const cleanTitle = title
+          .replace(/\s*-?\s*VJ\s+\w+.*$/i, '')
+          .replace(/\s+Part\s+\d+$/i, '')
+          .trim()
+        
+        const res = await fetch(`/api/poster?title=${encodeURIComponent(cleanTitle)}`)
+        if (res.ok) {
+          const data = await res.json()
+          if (data.poster) {
+            setImgSrc(data.poster)
+          }
+        }
+      } catch (err) {
+        console.error('Poster fetch failed:', err)
+      } finally {
+        setLoading(false)
+      }
+    }
+    
+    fetchPoster()
+  }, [posterUrl, posterPath, title])
 
   const handleImageError = () => {
     setError(true)
