@@ -9,6 +9,7 @@ interface StreamSource {
   quality: string
   language?: string
   requiresVPN?: boolean
+  adblock?: boolean
 }
 
 interface Match {
@@ -34,11 +35,12 @@ interface Match {
 // AK47 Sports-style streaming servers
 const STREAMING_SERVERS = {
   // HD Servers
-  sportDigital: {
-    name: 'SportDigital Fussball',
-    baseUrl: 'https://yashintv.xyz',
+  fawanews: {
+    name: 'FAWANEWS HD',
+    baseUrl: 'https://fawanews.sc',
     quality: '1080p',
-    language: 'DE'
+    language: 'AR',
+    adblock: true
   },
   omanSports: {
     name: 'OMAN SPORTS HD',
@@ -277,10 +279,11 @@ function getStreamsForMatch(sport: string, league: string): StreamSource[] {
   // Add all available servers (like AK47 does)
   streams.push(
     {
-      name: STREAMING_SERVERS.sportDigital.name,
-      url: STREAMING_SERVERS.sportDigital.baseUrl,
-      quality: STREAMING_SERVERS.sportDigital.quality,
-      language: STREAMING_SERVERS.sportDigital.language
+      name: STREAMING_SERVERS.fawanews.name,
+      url: STREAMING_SERVERS.fawanews.baseUrl,
+      quality: STREAMING_SERVERS.fawanews.quality,
+      language: STREAMING_SERVERS.fawanews.language,
+      adblock: STREAMING_SERVERS.fawanews.adblock
     },
     {
       name: STREAMING_SERVERS.omanSports.name,
