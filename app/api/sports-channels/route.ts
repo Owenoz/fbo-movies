@@ -35,12 +35,18 @@ interface Match {
 // AK47 Sports-style streaming servers
 const STREAMING_SERVERS = {
   // HD Servers
+  fawanews: {
+    name: 'FAWANEWS HD',
+    baseUrl: 'http://www.fawanews.sc',
+    quality: '1080p',
+    language: 'AR',
+    adblock: true
+  },
   streameast: {
     name: 'STREAMEAST HD',
     baseUrl: 'https://streameast.io',
     quality: '1080p',
-    language: 'EN',
-    adblock: true
+    language: 'EN'
   },
   sportsurge: {
     name: 'SPORTSURGE HD',
@@ -57,12 +63,6 @@ const STREAMING_SERVERS = {
   livetv: {
     name: 'LIVETV.SX',
     baseUrl: 'https://livetv.sx/enx/',
-    quality: '720p',
-    language: 'EN'
-  },
-  stream2watch: {
-    name: 'STREAM2WATCH',
-    baseUrl: 'https://www.stream2watch.com',
     quality: '720p',
     language: 'EN'
   },
@@ -279,11 +279,17 @@ function getStreamsForMatch(sport: string, league: string): StreamSource[] {
   // Add all available servers (like AK47 does)
   streams.push(
     {
+      name: STREAMING_SERVERS.fawanews.name,
+      url: STREAMING_SERVERS.fawanews.baseUrl,
+      quality: STREAMING_SERVERS.fawanews.quality,
+      language: STREAMING_SERVERS.fawanews.language,
+      adblock: STREAMING_SERVERS.fawanews.adblock
+    },
+    {
       name: STREAMING_SERVERS.streameast.name,
       url: STREAMING_SERVERS.streameast.baseUrl,
       quality: STREAMING_SERVERS.streameast.quality,
-      language: STREAMING_SERVERS.streameast.language,
-      adblock: STREAMING_SERVERS.streameast.adblock
+      language: STREAMING_SERVERS.streameast.language
     },
     {
       name: STREAMING_SERVERS.sportsurge.name,
@@ -302,12 +308,6 @@ function getStreamsForMatch(sport: string, league: string): StreamSource[] {
       url: STREAMING_SERVERS.livetv.baseUrl,
       quality: STREAMING_SERVERS.livetv.quality,
       language: STREAMING_SERVERS.livetv.language
-    },
-    {
-      name: STREAMING_SERVERS.stream2watch.name,
-      url: STREAMING_SERVERS.stream2watch.baseUrl,
-      quality: STREAMING_SERVERS.stream2watch.quality,
-      language: STREAMING_SERVERS.stream2watch.language
     },
     {
       name: STREAMING_SERVERS.lowQuality.name,
