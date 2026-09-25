@@ -276,11 +276,16 @@ export default function WatchClient({ slug }: { slug: string }) {
         {/* Video */}
         <video
           ref={videoRef}
-          src={data.mp4}
+          src={
+            data.mp4.includes('munoserver') || data.mp4.includes('.club')
+              ? `/api/stream?url=${encodeURIComponent(data.mp4)}`
+              : data.mp4
+          }
           poster={data.poster || undefined}
           className="w-full h-full object-contain"
           playsInline
           preload="metadata"
+          crossOrigin="anonymous"
         />
 
         {/* Buffering */}
