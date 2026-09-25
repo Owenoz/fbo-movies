@@ -3,10 +3,11 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
-import { Play, Download, Bookmark, Star, Clock, ChevronDown } from 'lucide-react'
+import { Play, Download, Bookmark, Star, Clock, ChevronDown, Youtube, CheckCircle, Loader2 } from 'lucide-react'
 import { useWatchlist, useWatchHistory } from '@/lib/useUserData'
 import { getNaraCatalogServer, getKibandaCatalogServer, type NaraMovie } from '@/lib/narabox'
 import MovieCard from '@/components/MovieCard'
+import { downloadMovie, isMovieDownloaded, deleteOfflineMovie } from '@/lib/offlineMovies'
 
 interface MovieDetailsProps {
   slug: string
@@ -18,6 +19,11 @@ export default function MovieDetails({ slug }: MovieDetailsProps) {
   const [recommended, setRecommended] = useState<NaraMovie[]>([])
   const [loading, setLoading] = useState(true)
   const [showFullDescription, setShowFullDescription] = useState(false)
+  const [showTrailer, setShowTrailer] = useState(false)
+  const [trailerKey, setTrailerKey] = useState<string | null>(null)
+  const [isDownloaded, setIsDownloaded] = useState(false)
+  const [downloading, setDownloading] = useState(false)
+  const [downloadProgress, setDownloadProgress] = useState(0)
   
   const { isInWatchlist, toggleWatchlist } = useWatchlist()
   const { getProgress } = useWatchHistory()
@@ -42,6 +48,13 @@ export default function MovieDetails({ slug }: MovieDetailsProps) {
           .filter(m => m.vj === found.vj && m.slug !== slug)
           .slice(0, 4)
         setRecommended(recommendedMovies)
+
+        // Check if movie is downloaded
+        const downloaded = await isMovieDownloaded(slug)
+        setIsDownloaded(downloaded)
+
+        // Try to fetch trailer from TMDB
+        fetchTrailer(found.title)
       } catch (error) {
         console.error('Failed to load movie:', error)
       }
@@ -49,6 +62,74 @@ export default function MovieDetails({ slug }: MovieDetailsProps) {
     }
     load()
   }, [slug, router])
+
+  const fetchTrailer = async (title: string) => {
+    try {
+      const cleanTitle = title.replace(/\s*-?\s*VJ\s+\w+.*$/i, '').trim()
+      const res = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=e9e9d8da18ae29fc430845952232787c&query=${encodeURIComponent(cleanTitle)}`)
+      const data = await res.json()
+      
+      if (data.results && data.results[0]) {
+        const movieId = data.results[0].id
+        const videoRes = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=e9e9d8da18ae29fc430845952232787c`)
+        const videoData = await videoRes.json()
+        
+        const trailer = videoData.results?.find((v: any) => v.type === 'Trailer' && v.site === 'YouTube')
+        if (trailer) {
+          setTrailerKey(trailer.key)
+        }
+      }
+    } catch (error) {
+      console.error('Failed to fetch trailer:', error)
+    }
+  }
+
+  const handleDownload = async () => {
+    if (!movie || !movie.mp4) return
+
+    const isKibanda = movie.mp4.includes('munoserver') || movie.mp4.includes('club')
+    
+    if (isKibanda) {
+      alert('⚠️ Kibanda movies use streaming servers and cannot be downloaded.\n\nYou can only watch them online. Use the "Watch Now" button to stream.')
+      return
+    }
+
+    if (isDownloaded) {
+      // Delete if already downloaded
+      if (confirm('Remove this movie from offline downloads?')) {
+        try {
+          await deleteOfflineMovie(slug)
+          setIsDownloaded(false)
+          alert('✅ Movie removed from offline storage')
+        } catch (error) {
+          alert('Failed to delete movie')
+        }
+      }
+      return
+    }
+
+    // Download movie
+    setDownloading(true)
+    setDownloadProgress(0)
+
+    try {
+      await downloadMovie(
+        slug,
+        movie.title,
+        movie.vj,
+        movie.mp4,
+        (progress) => setDownloadProgress(progress)
+      )
+      setIsDownloaded(true)
+      alert('✅ Movie downloaded for offline viewing!')
+    } catch (error) {
+      console.error('Download failed:', error)
+      alert('❌ Download failed. Please try again.')
+    } finally {
+      setDownloading(false)
+      setDownloadProgress(0)
+    }
+  }
 
   if (loading) return null
   if (!movie) return null
@@ -58,9 +139,20 @@ export default function MovieDetails({ slug }: MovieDetailsProps) {
   return (
     <div className="min-h-screen bg-black">
       
-      {/* Video Player / Poster */}
+      {/* Video Player / Poster / Trailer */}
       <div className="relative w-full aspect-video bg-black">
-        {movie.poster ? (
+        {showTrailer && trailerKey ? (
+          <iframe
+            width="100%"
+            height="100%"
+            src={`https://www.youtube.com/embed/${trailerKey}?autoplay=1`}
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="absolute inset-0"
+          />
+        ) : movie.poster ? (
           <img src={movie.poster} alt={movie.title} className="w-full h-full object-cover" />
         ) : (
           <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-900/50 to-blue-900/50">
@@ -68,17 +160,44 @@ export default function MovieDetails({ slug }: MovieDetailsProps) {
           </div>
         )}
         
-        {/* Play Overlay centered */}
-        <div className="absolute inset-0 flex items-center justify-center">
+        {!showTrailer && (
+          <>
+            {/* Play Overlay centered */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <motion.button
+                onClick={() => router.push(`/watch/${slug}`)}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className="w-20 h-20 rounded-full bg-white flex items-center justify-center shadow-2xl"
+              >
+                <Play className="w-10 h-10 text-black fill-black ml-1" />
+              </motion.button>
+            </div>
+
+            {/* Trailer button - top right */}
+            {trailerKey && (
+              <motion.button
+                onClick={() => setShowTrailer(true)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="absolute top-4 right-4 px-4 py-2 rounded-full bg-red-600 hover:bg-red-700 text-white font-bold text-sm flex items-center gap-2 shadow-lg"
+              >
+                <Youtube className="w-4 h-4" />
+                Watch Trailer
+              </motion.button>
+            )}
+          </>
+        )}
+
+        {showTrailer && (
           <motion.button
-            onClick={() => router.push(`/watch/${slug}`)}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            className="w-20 h-20 rounded-full bg-white flex items-center justify-center shadow-2xl"
+            onClick={() => setShowTrailer(false)}
+            whileHover={{ scale: 1.05 }}
+            className="absolute top-4 left-4 px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white font-bold text-sm"
           >
-            <Play className="w-10 h-10 text-black fill-black ml-1" />
+            ✕ Close Trailer
           </motion.button>
-        </div>
+        )}
 
         {/* Player controls at bottom (matching screenshot) */}
         <div className="absolute bottom-0 left-0 right-0 p-4">
@@ -143,37 +262,21 @@ export default function MovieDetails({ slug }: MovieDetailsProps) {
           </motion.button>
           
           <motion.button
-            onClick={async () => {
-              if (!movie.mp4) return;
-              
-              const isKibanda = movie.mp4.includes('munoserver') || movie.mp4.includes('club');
-              
-              if (isKibanda) {
-                // Kibanda uses streaming-only servers
-                alert('⚠️ Kibanda movies use streaming servers and cannot be downloaded.\n\nYou can only watch them online. Use the "Watch Now" button to stream.');
-                return;
-              }
-              
-              try {
-                // For NaraBox movies, use download API
-                const downloadUrl = `/api/download?slug=${encodeURIComponent(slug)}`;
-                
-                // Create a temporary download link
-                const a = document.createElement('a');
-                a.href = downloadUrl;
-                a.download = `${movie.title.replace(/[^a-z0-9]/gi, '_')}.mp4`;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-              } catch (error) {
-                console.error('Download error:', error);
-                alert('Download failed. Please try again.');
-              }
-            }}
+            onClick={handleDownload}
+            disabled={downloading}
             whileTap={{ scale: 0.9 }}
-            className="w-14 h-14 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center backdrop-blur-sm border border-white/20"
+            className="w-14 h-14 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center backdrop-blur-sm border border-white/20 relative disabled:opacity-50"
           >
-            <Download className="w-6 h-6 text-white" />
+            {downloading ? (
+              <>
+                <Loader2 className="w-6 h-6 text-white animate-spin" />
+                <span className="absolute -bottom-6 text-white text-xs font-bold">{downloadProgress}%</span>
+              </>
+            ) : isDownloaded ? (
+              <CheckCircle className="w-6 h-6 text-green-500 fill-green-500" />
+            ) : (
+              <Download className="w-6 h-6 text-white" />
+            )}
           </motion.button>
           
           <motion.button

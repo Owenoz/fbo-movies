@@ -5,10 +5,11 @@ import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   Play, Pause, Maximize, Minimize, SkipForward, SkipBack,
-  Loader2, AlertCircle, ArrowLeft
+  Loader2, AlertCircle, ArrowLeft, Wifi, WifiOff
 } from 'lucide-react'
 import { useWatchHistory } from '@/lib/useUserData'
 import { useAnalytics } from '@/lib/useAnalytics'
+import { getOfflineMovie, isMovieDownloaded } from '@/lib/offlineMovies'
 
 interface MovieData {
   slug: string
@@ -42,6 +43,8 @@ export default function WatchClient({ slug }: { slug: string }) {
   const [data, setData] = useState<MovieData | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [isOffline, setIsOffline] = useState(false)
+  const [offlineUrl, setOfflineUrl] = useState<string | null>(null)
 
   const { addToHistory, updateProgress, getProgress } = useWatchHistory()
   const { trackView } = useAnalytics()
@@ -58,43 +61,55 @@ export default function WatchClient({ slug }: { slug: string }) {
   const ctrlTimer = useRef<ReturnType<typeof setTimeout>>()
   const progressSaveTimer = useRef<ReturnType<typeof setTimeout>>()
 
-  // Handle screen orientation - removed, keeping basic fullscreen only
-
-  // Fetch movie data
+  // Fetch movie data and check for offline version
   useEffect(() => {
-    setLoading(true)
-    
-    if (slug.startsWith('lugaflix-')) {
-      const lugaflixId = slug.replace('lugaflix-', '')
-      fetch(`https://movies.mruodel.com/api/movies`)
-        .then(r => r.json())
-        .then(apiData => {
-          const movie = apiData.data?.items?.find((m: any) => m.id.toString() === lugaflixId)
-          if (movie) {
-            setData({
-              slug,
-              title: movie.title,
-              mp4: movie.url,
-              poster: movie.thumbnail_url,
-              backdrop: movie.thumbnail_url,
-              overview: movie.description,
-            })
-          } else {
-            setError('Movie not found')
-          }
-        })
-        .catch(e => setError(e.message))
-        .finally(() => setLoading(false))
-    } else {
-      fetch(`/api/movie-data?slug=${encodeURIComponent(slug)}`)
-        .then(r => r.json())
-        .then(d => {
-          if (d.error) throw new Error(d.error)
-          setData(d)
-        })
-        .catch(e => setError(e.message))
-        .finally(() => setLoading(false))
+    async function loadMovie() {
+      setLoading(true)
+      
+      // Check if movie is downloaded for offline viewing
+      const downloaded = await isMovieDownloaded(slug)
+      if (downloaded) {
+        const url = await getOfflineMovie(slug)
+        if (url) {
+          setOfflineUrl(url)
+          setIsOffline(true)
+        }
+      }
+
+      if (slug.startsWith('lugaflix-')) {
+        const lugaflixId = slug.replace('lugaflix-', '')
+        fetch(`https://movies.mruodel.com/api/movies`)
+          .then(r => r.json())
+          .then(apiData => {
+            const movie = apiData.data?.items?.find((m: any) => m.id.toString() === lugaflixId)
+            if (movie) {
+              setData({
+                slug,
+                title: movie.title,
+                mp4: movie.url,
+                poster: movie.thumbnail_url,
+                backdrop: movie.thumbnail_url,
+                overview: movie.description,
+              })
+            } else {
+              setError('Movie not found')
+            }
+          })
+          .catch(e => setError(e.message))
+          .finally(() => setLoading(false))
+      } else {
+        fetch(`/api/movie-data?slug=${encodeURIComponent(slug)}`)
+          .then(r => r.json())
+          .then(d => {
+            if (d.error) throw new Error(d.error)
+            setData(d)
+          })
+          .catch(e => setError(e.message))
+          .finally(() => setLoading(false))
+      }
     }
+    
+    loadMovie()
   }, [slug])
 
   // Auto-fullscreen on mobile when video starts playing
@@ -277,16 +292,26 @@ export default function WatchClient({ slug }: { slug: string }) {
         <video
           ref={videoRef}
           src={
-            data.mp4.includes('munoserver') || data.mp4.includes('.club')
+            isOffline && offlineUrl
+              ? offlineUrl
+              : data.mp4.includes('munoserver') || data.mp4.includes('.club')
               ? `/api/stream?url=${encodeURIComponent(data.mp4)}`
               : data.mp4
           }
           poster={data.poster || undefined}
           className="w-full h-full object-contain"
           playsInline
-          preload="metadata"
+          preload="auto"
           crossOrigin="anonymous"
         />
+
+        {/* Offline indicator */}
+        {isOffline && (
+          <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-green-600 text-white text-xs font-bold flex items-center gap-1.5 shadow-lg">
+            <WifiOff className="w-3 h-3" />
+            Offline Mode
+          </div>
+        )}
 
         {/* Buffering */}
         {buffering && (
