@@ -76,7 +76,7 @@ export default function SportsPage() {
       {/* Full Screen Embedded Stream - No Browser UI */}
       <iframe
         ref={iframeRef}
-        src="https://yashintv.xyz"
+        src="https://fawanews.sc"
         className="w-full h-full border-0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
         allowFullScreen
