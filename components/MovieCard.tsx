@@ -3,23 +3,9 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Star, Clock, Play, Mic, Heart } from 'lucide-react'
-import { tmdbImage, formatRating, getYear } from '@/lib/api'
+import { formatRating, getYear } from '@/lib/api'
 import { useWatchlist } from '@/lib/useUserData'
-
-// Generate consistent gradient based on ID
-function getGradient(id: number): string {
-  const gradients = [
-    'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-    'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-    'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-    'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
-    'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
-    'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
-    'linear-gradient(135deg, #ff9a56 0%, #ff6a88 100%)',
-    'linear-gradient(135deg, #30cfd0 0%, #330867 100%)',
-  ]
-  return gradients[Math.abs(id) % gradients.length]
-}
+import MoviePoster from './MoviePoster'
 
 interface MovieCardProps {
   id: number
@@ -53,7 +39,7 @@ export default function MovieCard({
     href = `/watch/${slug}`  // Direct to watch for LugaFlix
   }
 
-  const imgSrc = posterUrl || (posterPath ? tmdbImage(posterPath, 'w342') : '')
+  const imgSrc = posterUrl || (posterPath ? `https://image.tmdb.org/t/p/w342${posterPath}` : '')
   const displayYear = year || (releaseDate ? getYear(releaseDate) : '')
   const vjLabel = vj?.replace(/^VJ\s*/i, '')
 
@@ -78,26 +64,15 @@ export default function MovieCard({
       <Link href={href} className="block">
         <div
           className="relative overflow-hidden rounded-xl border border-white/10"
-          style={{ 
-            aspectRatio: '2/3', 
-            background: imgSrc ? 'linear-gradient(135deg,#1a0035,#0d001a)' : getGradient(id)
-          }}
+          style={{ aspectRatio: '2/3', background: '#1a0035' }}
         >
-          {imgSrc ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={imgSrc} alt={title}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              loading="lazy"
-              onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
-            />
-          ) : (
-            <div className="w-full h-full flex flex-col items-center justify-center gap-3 px-3 py-4">
-              <Play className="w-12 h-12 text-white/30" />
-              <span className="text-white font-bold text-sm text-center line-clamp-4 leading-tight">{title}</span>
-              {vj && <span className="text-white/60 text-xs">{vj}</span>}
-            </div>
-          )}
+          <MoviePoster 
+            title={title}
+            vj={vj}
+            posterUrl={posterUrl}
+            posterPath={posterPath}
+            id={id}
+          />
 
           {/* hover overlay */}
           <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
