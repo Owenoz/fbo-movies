@@ -35,34 +35,34 @@ interface Match {
 // AK47 Sports-style streaming servers
 const STREAMING_SERVERS = {
   // HD Servers
-  fawanews: {
-    name: 'FAWANEWS HD',
-    baseUrl: 'https://fawanews.sc',
+  streameast: {
+    name: 'STREAMEAST HD',
+    baseUrl: 'https://streameast.io',
     quality: '1080p',
-    language: 'AR',
+    language: 'EN',
     adblock: true
   },
-  omanSports: {
-    name: 'OMAN SPORTS HD',
-    baseUrl: 'https://www.stream2watch.com',
+  sportsurge: {
+    name: 'SPORTSURGE HD',
+    baseUrl: 'https://sportsurge.club',
     quality: '1080p',
-    language: 'AR'
+    language: 'EN'
   },
-  kuwaitSport: {
-    name: 'KUWAIT SPORT',
+  buffstreams: {
+    name: 'BUFFSTREAMS',
+    baseUrl: 'https://buffstreams.app',
+    quality: '720p',
+    language: 'EN'
+  },
+  livetv: {
+    name: 'LIVETV.SX',
     baseUrl: 'https://livetv.sx/enx/',
-    quality: '1080p',
-    language: 'AR'
+    quality: '720p',
+    language: 'EN'
   },
-  alkass: {
-    name: 'ALKASS',
-    baseUrl: 'https://sportshub.stream',
-    quality: '1080p',
-    language: 'AR'
-  },
-  hdQuality4: {
-    name: 'HD QUALITY4',
-    baseUrl: 'https://sportzonline.to',
+  stream2watch: {
+    name: 'STREAM2WATCH',
+    baseUrl: 'https://www.stream2watch.com',
     quality: '720p',
     language: 'EN'
   },
@@ -279,35 +279,35 @@ function getStreamsForMatch(sport: string, league: string): StreamSource[] {
   // Add all available servers (like AK47 does)
   streams.push(
     {
-      name: STREAMING_SERVERS.fawanews.name,
-      url: STREAMING_SERVERS.fawanews.baseUrl,
-      quality: STREAMING_SERVERS.fawanews.quality,
-      language: STREAMING_SERVERS.fawanews.language,
-      adblock: STREAMING_SERVERS.fawanews.adblock
+      name: STREAMING_SERVERS.streameast.name,
+      url: STREAMING_SERVERS.streameast.baseUrl,
+      quality: STREAMING_SERVERS.streameast.quality,
+      language: STREAMING_SERVERS.streameast.language,
+      adblock: STREAMING_SERVERS.streameast.adblock
     },
     {
-      name: STREAMING_SERVERS.omanSports.name,
-      url: STREAMING_SERVERS.omanSports.baseUrl,
-      quality: STREAMING_SERVERS.omanSports.quality,
-      language: STREAMING_SERVERS.omanSports.language
+      name: STREAMING_SERVERS.sportsurge.name,
+      url: STREAMING_SERVERS.sportsurge.baseUrl,
+      quality: STREAMING_SERVERS.sportsurge.quality,
+      language: STREAMING_SERVERS.sportsurge.language
     },
     {
-      name: STREAMING_SERVERS.kuwaitSport.name,
-      url: STREAMING_SERVERS.kuwaitSport.baseUrl,
-      quality: STREAMING_SERVERS.kuwaitSport.quality,
-      language: STREAMING_SERVERS.kuwaitSport.language
+      name: STREAMING_SERVERS.buffstreams.name,
+      url: STREAMING_SERVERS.buffstreams.baseUrl,
+      quality: STREAMING_SERVERS.buffstreams.quality,
+      language: STREAMING_SERVERS.buffstreams.language
     },
     {
-      name: STREAMING_SERVERS.alkass.name,
-      url: STREAMING_SERVERS.alkass.baseUrl,
-      quality: STREAMING_SERVERS.alkass.quality,
-      language: STREAMING_SERVERS.alkass.language
+      name: STREAMING_SERVERS.livetv.name,
+      url: STREAMING_SERVERS.livetv.baseUrl,
+      quality: STREAMING_SERVERS.livetv.quality,
+      language: STREAMING_SERVERS.livetv.language
     },
     {
-      name: STREAMING_SERVERS.hdQuality4.name,
-      url: STREAMING_SERVERS.hdQuality4.baseUrl,
-      quality: STREAMING_SERVERS.hdQuality4.quality,
-      language: STREAMING_SERVERS.hdQuality4.language
+      name: STREAMING_SERVERS.stream2watch.name,
+      url: STREAMING_SERVERS.stream2watch.baseUrl,
+      quality: STREAMING_SERVERS.stream2watch.quality,
+      language: STREAMING_SERVERS.stream2watch.language
     },
     {
       name: STREAMING_SERVERS.lowQuality.name,
