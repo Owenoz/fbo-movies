@@ -1,0 +1,52 @@
+name: Update Movie Catalogs
+
+on:
+  schedule:
+    # Run daily at 3 AM UTC (11 PM Uganda time)
+    - cron: '0 3 * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  update-catalogs:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Scrape NaraBox catalog
+        run: |
+          echo "Scraping NaraBox..."
+          node scripts/scrape-posters.mjs || true
+          
+      - name: Scrape Kibanda catalog
+        run: |
+          echo "Scraping Kibanda Vibes..."
+          node scripts/scrape-kibanda.mjs
+          
+      - name: Check for changes
+        id: check_changes
+        run: |
+          git diff --quiet public/narabox_catalog.json public/kibanda_catalog.json || echo "changed=true" >> $GITHUB_OUTPUT
+          
+      - name: Commit and push if changed
+        if: steps.check_changes.outputs.changed == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add public/narabox_catalog.json public/kibanda_catalog.json
+          
+          # Count new movies
+          NARA_COUNT=$(cat public/narabox_catalog.json | grep -o '"title"' | wc -l)
+          KIBANDA_COUNT=$(cat public/kibanda_catalog.json | grep -o '"title"' | wc -l)
+          
+          git commit -m "🎬 Auto-update: $NARA_COUNT NaraBox + $KIBANDA_COUNT Kibanda movies [$(date +'%Y-%m-%d')]"
+          git push

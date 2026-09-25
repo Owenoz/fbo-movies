@@ -1,8 +1,9 @@
-// ─── NaraBox VJ Catalog ───────────────────────────────────────────────────────
-// Uses ONLY the verified static catalog (462 movies with confirmed MP4s)
-// New movies get added weekly via GitHub Actions auto-scan
+// ─── NaraBox & Kibanda VJ Catalogs ───────────────────────────────────────────
+// Uses ONLY the verified static catalogs with confirmed MP4s
+// New movies get added daily via GitHub Actions auto-scan
 
-import staticCatalog from '../public/narabox_catalog.json'
+import naraCatalog from '../public/narabox_catalog.json'
+import kibandaCatalog from '../public/kibanda_catalog.json'
 
 export interface NaraMovie {
   title: string
@@ -16,9 +17,14 @@ export interface NaraMovie {
   addedAt?: number  // timestamp when added to catalog
 }
 
-// Return verified catalog only — all movies confirmed to have working MP4
+// Return NaraBox verified catalog
 export async function getNaraCatalogServer(): Promise<NaraMovie[]> {
-  return staticCatalog as NaraMovie[]
+  return naraCatalog as NaraMovie[]
+}
+
+// Return Kibanda verified catalog
+export async function getKibandaCatalogServer(): Promise<NaraMovie[]> {
+  return kibandaCatalog as NaraMovie[]
 }
 
 export function getVJStats(catalog: NaraMovie[]) {
