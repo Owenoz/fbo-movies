@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import https from 'https'
 import zlib from 'zlib'
-import { getNaraCatalogServer } from '@/lib/narabox'
+import { getNaraCatalogServer, getKibandaCatalogServer } from '@/lib/narabox'
 
 const scrapeCache = new Map<string, { data: MovieData; ts: number }>()
 const TTL = 1000 * 60 * 60 * 6
@@ -67,9 +67,14 @@ export async function GET(req: NextRequest) {
   const slug = req.nextUrl.searchParams.get('slug')
   if (!slug) return NextResponse.json({ error: 'slug required' }, { status: 400 })
 
-  // 1. Check pre-validated catalog first (fastest path — no HTTP request needed)
-  const catalog = await getNaraCatalogServer()
-  const catalogEntry = catalog.find(m => m.slug === slug)
+  // 1. Check pre-validated catalogs first (fastest path — no HTTP request needed)
+  const [naraCatalog, kibandaCatalog] = await Promise.all([
+    getNaraCatalogServer(),
+    getKibandaCatalogServer()
+  ])
+  const allMovies = [...naraCatalog, ...kibandaCatalog]
+  const catalogEntry = allMovies.find(m => m.slug === slug)
+  
   if (catalogEntry?.mp4) {
     return NextResponse.json({
       slug:     catalogEntry.slug,

@@ -1,11 +1,15 @@
 import { Suspense } from 'react'
 import { Metadata } from 'next'
 import MovieDetails from './MovieDetails'
-import { getNaraCatalogServer } from '@/lib/narabox'
+import { getNaraCatalogServer, getKibandaCatalogServer } from '@/lib/narabox'
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const catalog = await getNaraCatalogServer()
-  const movie = catalog.find(m => m.slug === params.slug)
+  const [naraCatalog, kibandaCatalog] = await Promise.all([
+    getNaraCatalogServer(),
+    getKibandaCatalogServer()
+  ])
+  const allMovies = [...naraCatalog, ...kibandaCatalog]
+  const movie = allMovies.find(m => m.slug === params.slug)
   
   if (!movie) {
     return { title: 'Movie Not Found' }

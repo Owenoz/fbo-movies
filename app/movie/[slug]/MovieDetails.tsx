@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { Play, Download, Bookmark, Star, Clock, ChevronDown } from 'lucide-react'
 import { useWatchlist, useWatchHistory } from '@/lib/useUserData'
-import { getNaraCatalogServer, type NaraMovie } from '@/lib/narabox'
+import { getNaraCatalogServer, getKibandaCatalogServer, type NaraMovie } from '@/lib/narabox'
 import MovieCard from '@/components/MovieCard'
 
 interface MovieDetailsProps {
@@ -25,8 +25,12 @@ export default function MovieDetails({ slug }: MovieDetailsProps) {
   useEffect(() => {
     async function load() {
       try {
-        const catalog = await getNaraCatalogServer()
-        const found = catalog.find(m => m.slug === slug)
+        const [naraCatalog, kibandaCatalog] = await Promise.all([
+          getNaraCatalogServer(),
+          getKibandaCatalogServer()
+        ])
+        const allMovies = [...naraCatalog, ...kibandaCatalog]
+        const found = allMovies.find(m => m.slug === slug)
         if (!found) {
           router.push('/movies')
           return
@@ -34,7 +38,7 @@ export default function MovieDetails({ slug }: MovieDetailsProps) {
         setMovie(found)
         
         // Find recommended movies (same VJ)
-        const recommendedMovies = catalog
+        const recommendedMovies = allMovies
           .filter(m => m.vj === found.vj && m.slug !== slug)
           .slice(0, 4)
         setRecommended(recommendedMovies)
