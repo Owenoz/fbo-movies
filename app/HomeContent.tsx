@@ -4,35 +4,12 @@ import ContinueWatching from '@/components/ContinueWatching'
 import Link from 'next/link'
 import { Sparkles, ArrowRight } from 'lucide-react'
 import { getNaraCatalogServer, getVJStats, slugToId } from '@/lib/narabox'
-import { fetchTrendingMovies, fetchPopularMovies } from '@/lib/api'
 
 export const revalidate = 3600
 
 export default async function HomeContent() {
-  // Fetch TMDB movies WITH real posters
-  const [trendingRes, popularRes, naraRes] = await Promise.all([
-    fetchTrendingMovies().catch(() => ({ results: [] })),
-    fetchPopularMovies().catch(() => ({ results: [] })),
-    getNaraCatalogServer().catch(() => [])
-  ])
-  
-  const trendingMovies = trendingRes.results || []
-  const popularMovies = popularRes.results || []
-  const catalog = naraRes
+  const catalog = await getNaraCatalogServer()
   const vjStats = getVJStats(catalog)
-
-  // Map TMDB movies (these have REAL posters!)
-  const tmdbToItem = (m: any) => ({
-    id: m.id,
-    title: m.title,
-    poster_path: m.poster_path,
-    backdrop_path: m.backdrop_path,
-    vote_average: m.vote_average,
-    release_date: m.release_date,
-    overview: m.overview || '',
-    media_type: 'movie' as const,
-    type: 'movie',
-  })
 
   // Map catalog entries to the shape ContentRow / HeroBanner expect
   const toItem = (m: typeof catalog[0]) => ({
@@ -47,8 +24,8 @@ export default async function HomeContent() {
     type:         'movie',
   })
 
-  // Hero — use TMDB trending movies (they have posters!)
-  const heroMovies = trendingMovies.slice(0, 8).map(tmdbToItem)
+  // Hero — pick popular titles that have good posters
+  const heroMovies = catalog.slice(0, 8).map(toItem)
 
   // Latest 24
   const recentMovies = catalog.slice(0, 24).map(toItem)
@@ -112,18 +89,16 @@ export default async function HomeContent() {
         <div className="flex flex-wrap items-center gap-3">
           <div className="glass-card px-5 py-3 rounded-2xl flex items-center gap-3">
             <span className="text-3xl font-bold text-gradient">{catalog.length}</span>
-            <span className="text-white/50 text-sm leading-tight">VJ Movies<br/>Available</span>
+            <span className="text-white/50 text-sm leading-tight">VJ Movies<br/>Ready to Watch</span>
           </div>
-          {vjStats.slice(0, 4).map(({ vj }) => (
+          {vjStats.slice(0, 4).map(({ vj, count }) => (
             <div key={vj} className="glass-card px-4 py-2 rounded-xl text-center">
               <p className="text-white font-semibold text-sm">{vj}</p>
-              <p className="text-white/40 text-xs">Collection</p>
+              <p className="text-white/40 text-xs">{count} movies</p>
             </div>
           ))}
         </div>
 
-        <ContentRow title="🔥 Trending Now" items={trendingMovies.slice(0, 20).map(tmdbToItem)} defaultType="movie" accentColor="from-red-500 to-orange-500" sourceType="tmdb" />
-        <ContentRow title="⭐ Popular Movies" items={popularMovies.slice(0, 20).map(tmdbToItem)} defaultType="movie" accentColor="from-yellow-500 to-amber-500" sourceType="tmdb" />
         <ContentRow title="🆕 Latest VJ Movies"       items={recentMovies} defaultType="movie" accentColor="from-purple-500 to-pink-500" sourceType="narabox" />
         {vjRows.map(({ vj, movies }, i) => (
           <ContentRow key={vj} title={`🎬 ${vj} Collection`} items={movies} defaultType="movie" accentColor={ROW_COLORS[i % ROW_COLORS.length]} sourceType="narabox" />
