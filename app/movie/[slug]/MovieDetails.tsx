@@ -146,18 +146,19 @@ export default function MovieDetails({ slug }: MovieDetailsProps) {
             onClick={async () => {
               if (!movie.mp4) return;
               try {
-                // Download the video
+                // Use proxy API for Kibanda movies (they need referrer headers)
+                const downloadUrl = `/api/download?slug=${encodeURIComponent(slug)}`;
+                
+                // Create a temporary download link
                 const a = document.createElement('a');
-                a.href = movie.mp4;
+                a.href = downloadUrl;
                 a.download = `${movie.title.replace(/[^a-z0-9]/gi, '_')}.mp4`;
-                a.target = '_blank';
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
               } catch (error) {
                 console.error('Download error:', error);
-                // Fallback: open in new tab
-                window.open(movie.mp4, '_blank');
+                alert('Download failed. Please try again.');
               }
             }}
             whileTap={{ scale: 0.9 }}
