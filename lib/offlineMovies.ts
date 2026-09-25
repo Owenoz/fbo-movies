@@ -76,7 +76,7 @@ export async function downloadMovie(
     }
 
     // Combine chunks into blob
-    const blob = new Blob(chunks, { type: 'video/mp4' })
+    const blob = new Blob(chunks as BlobPart[], { type: 'video/mp4' })
 
     // Save to IndexedDB
     const db = await openDB()
