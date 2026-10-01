@@ -32,51 +32,73 @@ export default function MoviePoster({ title, vj, posterUrl, posterPath, id }: Mo
   const [error, setError] = useState(false)
 
   useEffect(() => {
-    // If we have a poster URL or path, use it directly
+    let mounted = true
+    
+    // Priority 1: Use provided poster URL
     if (posterUrl) {
       setImgSrc(posterUrl)
       setLoading(false)
       return
     }
     
+    // Priority 2: Use TMDB poster path
     if (posterPath) {
-      setImgSrc(`https://image.tmdb.org/t/p/w342${posterPath}`)
+      setImgSrc(`https://image.tmdb.org/t/p/w500${posterPath}`)
       setLoading(false)
       return
     }
     
-    // Fetch from TMDB using title search
+    // Priority 3: Fetch from TMDB API
     const fetchPoster = async () => {
       try {
-        // Clean title - remove VJ suffix
+        // Clean title - remove VJ suffix and extra text
         const cleanTitle = title
           .replace(/\s*-?\s*VJ\s+\w+.*$/i, '')
           .replace(/\s+Part\s+\d+$/i, '')
+          .replace(/\s*\([^)]*\)$/g, '')
           .trim()
         
-        const res = await fetch(`/api/poster?title=${encodeURIComponent(cleanTitle)}`)
-        if (res.ok) {
+        const controller = new AbortController()
+        const timeoutId = setTimeout(() => controller.abort(), 5000) // 5 second timeout
+        
+        const res = await fetch(`/api/poster?title=${encodeURIComponent(cleanTitle)}`, {
+          signal: controller.signal
+        })
+        
+        clearTimeout(timeoutId)
+        
+        if (res.ok && mounted) {
           const data = await res.json()
           if (data.poster) {
             setImgSrc(data.poster)
           }
         }
       } catch (err) {
-        console.error('Poster fetch failed:', err)
+        if (err instanceof Error && err.name !== 'AbortError') {
+          console.error('Poster fetch failed:', err)
+        }
       } finally {
-        setLoading(false)
+        if (mounted) {
+          setLoading(false)
+        }
       }
     }
     
     fetchPoster()
+    
+    return () => {
+      mounted = false
+    }
   }, [posterUrl, posterPath, title])
 
   const handleImageError = () => {
     setError(true)
     setImgSrc(null)
+    setLoading(false)
   }
 
-  if (imgSrc && !error) {
+  // Show image if available and no error
+  if (imgSrc && !error && !loading) {
     return (
       // eslint-disable-next-line @next/next/no-img-element
       <img
