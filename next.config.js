@@ -12,6 +12,12 @@ const nextConfig = {
   async headers() {
     return [
       {
+        source: '/sports',
+        headers: [
+          { key: 'Content-Security-Policy', value: "frame-src http://www.fawanews.sc 'self'; upgrade-insecure-requests;" },
+        ],
+      },
+      {
         source: '/api/:path*',
         headers: [
           { key: 'Access-Control-Allow-Origin', value: '*' },

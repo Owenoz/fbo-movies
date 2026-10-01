@@ -1,49 +1,42 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function SportsPage() {
-  const iframeRef = useRef<HTMLIFrameElement>(null)
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    // Block popups and ads
-    const blockPopups = (e: Event) => {
-      e.preventDefault()
-      e.stopPropagation()
-      return false
-    }
-
-    window.addEventListener('beforeunload', blockPopups)
-    
-    return () => {
-      window.removeEventListener('beforeunload', blockPopups)
-    }
+    // Auto-hide loading after 2 seconds
+    const timer = setTimeout(() => setIsLoading(false), 2000)
+    return () => clearTimeout(timer)
   }, [])
 
   return (
-    <div className="fixed inset-0 bg-black overflow-hidden">
-      {/* Fullscreen Embedded Sports Stream */}
+    <div className="fixed inset-0 bg-black">
+      {/* Smooth loading overlay */}
+      {isLoading && (
+        <div className="absolute inset-0 bg-black z-50 flex items-center justify-center transition-opacity duration-500">
+          <div className="text-center">
+            <div className="w-16 h-16 border-4 border-orange-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+            <p className="text-white/60 text-sm">Loading Sports...</p>
+          </div>
+        </div>
+      )}
+
+      {/* Fullscreen iframe */}
       <iframe
-        ref={iframeRef}
         src="http://www.fawanews.sc/"
-        className="absolute inset-0 w-full h-full border-0"
+        className="w-full h-full border-0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
         allowFullScreen
         sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-presentation allow-modals"
-        title="Live Sports Streaming - FAWANEWS"
-        loading="eager"
+        title="Live Sports"
+        onLoad={() => setIsLoading(false)}
         style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
           width: '100%',
           height: '100%',
           border: 'none',
-          margin: 0,
-          padding: 0,
-          overflow: 'hidden',
-          display: 'block',
-          backgroundColor: '#000'
+          display: 'block'
         }}
       />
     </div>
