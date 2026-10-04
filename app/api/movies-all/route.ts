@@ -1,10 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getNaraCatalogServer, getKibandaCatalogServer, slugToId } from '@/lib/narabox'
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic'
+export const runtime = 'nodejs'
+
 // NaraBox ONLY API: Returns verified NaraBox + Kibanda catalog movies
 export async function GET(req: NextRequest) {
   try {
-    const { searchParams } = new URL(req.url)
+    const { searchParams } = req.nextUrl
     const page = parseInt(searchParams.get('page') || '1')
     const limit = parseInt(searchParams.get('limit') || '50')
     const vj = searchParams.get('vj')

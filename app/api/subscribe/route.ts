@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+export const dynamic = 'force-dynamic'
+
 // Manual Mobile Money Payment - Simple & Direct
 // Admin approves payments after verifying transaction reference
 
@@ -59,7 +61,7 @@ export async function POST(request: NextRequest) {
 // Verify payment status (for checking if admin approved)
 export async function GET(request: NextRequest) {
   try {
-    const { searchParams } = new URL(request.url)
+    const { searchParams } = request.nextUrl
     const submissionId = searchParams.get('submissionId')
     const transactionRef = searchParams.get('transactionRef')
 

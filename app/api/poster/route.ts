@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic'
+
 // Multiple TMDB API keys for redundancy
 const TMDB_KEYS = [
   '577187c381c6bd81a2e6656d79af8947',
@@ -97,7 +100,7 @@ async function fetchFromWikipedia(title: string) {
 }
 
 export async function GET(req: NextRequest) {
-  const { searchParams } = new URL(req.url)
+  const { searchParams } = req.nextUrl
   const title = searchParams.get('title')
   
   if (!title) {
