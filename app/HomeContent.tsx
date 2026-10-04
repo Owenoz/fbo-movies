@@ -16,6 +16,21 @@ export default async function HomeContent() {
   
   // Combine catalogs
   const allMovies = [...naraCatalog, ...kibandaCatalog]
+  
+  // Sort: 1) Movies with posters first, 2) Newest first
+  allMovies.sort((a, b) => {
+    // First priority: Has poster
+    const aPoster = !!a.poster
+    const bPoster = !!b.poster
+    if (aPoster && !bPoster) return -1
+    if (!aPoster && bPoster) return 1
+    
+    // Second priority: Newest first (by addedAt date)
+    const aDate = a.addedAt || 0
+    const bDate = b.addedAt || 0
+    return bDate - aDate
+  })
+  
   const vjStats = getVJStats(allMovies)
 
   // Map catalog entries to the shape ContentRow / HeroBanner expect
@@ -36,9 +51,6 @@ export default async function HomeContent() {
 
   // Latest 24 from both sources
   const recentMovies = allMovies.slice(0, 24).map(toItem)
-  
-  // Latest from Kibanda specifically
-  const kibandaMovies = kibandaCatalog.slice(0, 24).map(toItem)
 
   // Top 5 VJs, 24 titles each
   const topVJs = vjStats.slice(0, 5).map(v => v.vj)
@@ -83,8 +95,8 @@ export default async function HomeContent() {
               Explore More VJ Movies
             </h2>
             <p className="text-white/70 text-lg mb-8 max-w-2xl mx-auto">
-              Discover thousands more Luganda-translated movies. 
-              Stream from VJ Junior, VJ Emmy, VJ Ice P and 20+ more translators.
+              Discover hundreds of VJ movies from NaraBox and Kibanda Vibes. 
+              Stream from VJ Junior, VJ Emmy, VJ Ice P and more.
             </p>
             <Link href="/explore" 
               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-white transition-all hover:scale-105"
@@ -105,8 +117,7 @@ export default async function HomeContent() {
           ))}
         </div>
 
-        <ContentRow title="🔥 Latest from Kibanda Vibes" items={kibandaMovies} defaultType="movie" accentColor="from-green-500 to-emerald-400" sourceType="narabox" />
-        <ContentRow title="🆕 Latest VJ Movies"       items={recentMovies} defaultType="movie" accentColor="from-purple-500 to-pink-500" sourceType="narabox" />
+        <ContentRow title="🆕 Latest VJ Movies" items={recentMovies} defaultType="movie" accentColor="from-purple-500 to-pink-500" sourceType="narabox" />
         {vjRows.map(({ vj, movies }, i) => (
           <ContentRow key={vj} title={`🎬 ${vj} Collection`} items={movies} defaultType="movie" accentColor={ROW_COLORS[i % ROW_COLORS.length]} sourceType="narabox" />
         ))}

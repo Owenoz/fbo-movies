@@ -1,351 +1,327 @@
-# FBO Movies - Deployment Guide
+# 🚀 Deployment Guide - Gen Z Corner
 
-Quick guide to deploy your app with Pesapal payment integration.
+## Current Status
+- ✅ 1,082 movies ready
+- ✅ 679 posters (63% coverage)
+- ✅ All sources unified as "Gen Z Corner"
+- ✅ Download functionality
+- ✅ Beautiful UI
 
-## Before You Deploy
+---
 
-### 1. Get Pesapal Credentials
+## Step 1: Push to GitHub
 
-#### For Testing (Sandbox)
-1. Go to https://developer.pesapal.com
-2. Sign up or log in
-3. Get your sandbox credentials:
-   - Consumer Key
-   - Consumer Secret
-4. Use sandbox for testing before going live
-
-#### For Production (Live Payments)
-1. Go to https://www.pesapal.com
-2. Sign up for merchant account
-3. Complete KYC verification (business documents)
-4. Wait for approval (1-3 business days)
-5. Get production credentials from dashboard
-
-### 2. Prepare Environment Variables
-
-You need these 3 variables:
-
+### If you already have a repository:
 ```bash
-PESAPAL_CONSUMER_KEY=your-consumer-key-here
-PESAPAL_CONSUMER_SECRET=your-consumer-secret-here
-NEXT_PUBLIC_BASE_URL=https://your-app-url.com
+cd ~/Desktop/kawogo-web
+
+# Add all files
+git add .
+
+# Commit changes
+git commit -m "Update: 1,082 movies with poster priority sorting and unified branding"
+
+# Push to GitHub
+git push origin main
 ```
 
-⚠️ **Important:** The `NEXT_PUBLIC_BASE_URL` must be your actual deployed URL for callbacks to work!
-
-## Deploy to Vercel (Recommended)
-
-Vercel is the easiest and fastest option for Next.js apps.
-
-### Step 1: Install Vercel CLI (Optional)
-
+### If you need to create a new repository:
 ```bash
-npm i -g vercel
+# On GitHub, create a new repository (e.g., "gen-z-corner")
+# Then run:
+
+cd ~/Desktop/kawogo-web
+git remote set-url origin https://github.com/YOUR_USERNAME/gen-z-corner.git
+git branch -M main
+git push -u origin main
 ```
 
-### Step 2: Deploy via GitHub (Easiest)
+---
 
-1. **Push to GitHub**
-   ```bash
-   git add .
-   git commit -m "Switched to Pesapal payment"
-   git push origin main
+## Step 2: Deploy to Vercel
+
+### Option A: Vercel Dashboard (Easiest)
+
+1. **Go to**: https://vercel.com
+2. **Sign in** with GitHub
+3. **Click**: "Add New Project"
+4. **Import** your repository
+5. **Configure**:
+   - Framework Preset: **Next.js**
+   - Root Directory: `./`
+   - Build Command: `npm run build`
+   - Output Directory: `.next`
+
+6. **Environment Variables** (Add these):
+   ```
+   NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_key
+   TMDB_API_KEY=577187c381c6bd81a2e6656d79af8947
+   NEXT_PUBLIC_ARCHIVE_API_KEY=your_archive_key (if you have one)
    ```
 
-2. **Connect to Vercel**
-   - Go to https://vercel.com
-   - Sign in with GitHub
-   - Click "New Project"
-   - Import your repository
-   - Click "Deploy"
+7. **Click**: "Deploy"
+8. **Wait**: 2-3 minutes for build
+9. **Done**: Your site is live!
 
-3. **Add Environment Variables**
-   - Go to Project Settings → Environment Variables
-   - Add all 3 variables:
-     - `PESAPAL_CONSUMER_KEY`
-     - `PESAPAL_CONSUMER_SECRET`
-     - `NEXT_PUBLIC_BASE_URL` (use your vercel.app URL)
-   
-4. **Redeploy**
-   - Go to Deployments
-   - Click "Redeploy" for changes to take effect
-
-### Step 3: Deploy via CLI
+### Option B: Vercel CLI
 
 ```bash
-# From your project directory
-cd /home/owenoz123/Desktop/kawogo-web
+# Install Vercel CLI
+npm install -g vercel
 
-# Login to Vercel
+# Login
 vercel login
 
 # Deploy
+cd ~/Desktop/kawogo-web
 vercel
 
 # Follow prompts:
-# - Set up and deploy? Yes
-# - Which scope? Your account
-# - Link to existing project? No
-# - What's your project name? fbo-movies
-# - In which directory is your code? ./
-# - Want to override settings? No
+# - Set up and deploy: Y
+# - Which scope: (choose your account)
+# - Link to existing project: N
+# - Project name: gen-z-corner
+# - Directory: ./
+# - Override settings: N
 
-# After deployment, set environment variables
-vercel env add PESAPAL_CONSUMER_KEY
-vercel env add PESAPAL_CONSUMER_SECRET
-vercel env add NEXT_PUBLIC_BASE_URL
-
-# Redeploy with environment variables
+# Production deployment
 vercel --prod
 ```
 
-### Step 4: Get Your Deployment URL
+---
 
-After deployment, you'll get a URL like:
+## Step 3: Configure Environment Variables
+
+### In Vercel Dashboard:
+
+1. Go to your project
+2. Click **Settings**
+3. Click **Environment Variables**
+4. Add these:
+
 ```
-https://fbo-movies.vercel.app
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+TMDB_API_KEY=577187c381c6bd81a2e6656d79af8947
 ```
 
-Use this as your `NEXT_PUBLIC_BASE_URL`!
+5. Redeploy if needed
 
-### Step 5: Update Environment Variable
+---
 
-If you used a temporary URL initially:
-1. Go to Vercel Dashboard
-2. Project Settings → Environment Variables
-3. Edit `NEXT_PUBLIC_BASE_URL` to your actual URL
-4. Redeploy
+## Step 4: Custom Domain (Optional)
 
-## Deploy to Other Platforms
+### In Vercel Dashboard:
 
-### Netlify
+1. Go to **Settings** → **Domains**
+2. Add your domain (e.g., `genzcorner.com`)
+3. Follow DNS configuration instructions
+4. Wait for SSL certificate (automatic)
+
+---
+
+## Important Files for Deployment
+
+### ✅ Already Configured:
+- `next.config.js` - Image domains configured
+- `vercel.json` - Deployment settings (if exists)
+- `.gitignore` - Excludes node_modules, .env
+- `package.json` - All dependencies listed
+
+### ⚠️ Don't Commit:
+- `.env.local` (contains secrets)
+- `node_modules/`
+- `.next/`
+
+---
+
+## Vercel Build Settings
+
+```json
+{
+  "framework": "nextjs",
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "installCommand": "npm install",
+  "devCommand": "npm run dev"
+}
+```
+
+---
+
+## Post-Deployment Checks
+
+### 1. Test Core Features:
+- ✅ Home page loads
+- ✅ Movies display with posters
+- ✅ Search works
+- ✅ Video playback works
+- ✅ Download functionality
+- ✅ Authentication (if enabled)
+
+### 2. Performance:
+- Check Lighthouse score
+- Test on mobile
+- Verify image optimization
+
+### 3. SEO:
+- Check meta tags
+- Verify sitemap.xml
+- Test social sharing
+
+---
+
+## Continuous Deployment
+
+### Automatic Updates:
+Every time you push to GitHub, Vercel automatically:
+1. Detects changes
+2. Builds your app
+3. Deploys to production
+4. Updates your live site
+
+### Manual Deployment:
+```bash
+cd ~/Desktop/kawogo-web
+git add .
+git commit -m "Update catalog"
+git push origin main
+# Vercel auto-deploys!
+```
+
+---
+
+## Update Catalog on Live Site
+
+### To add new movies:
 
 ```bash
-# Install Netlify CLI
-npm i -g netlify-cli
+# 1. Scrape new movies locally
+cd ~/Desktop/kawogo-web
+node scripts/puppeteer-all-sites.mjs
+node scripts/merge-all-catalogs.mjs
 
-# Deploy
-netlify deploy --prod
+# 2. Commit and push
+git add public/narabox_catalog.json
+git commit -m "Update: Added new movies"
+git push origin main
 
-# Set environment variables in Netlify Dashboard
+# Vercel will rebuild and deploy automatically!
 ```
 
-### Railway
-
-```bash
-# Install Railway CLI
-npm i -g @railway/cli
-
-# Login
-railway login
-
-# Deploy
-railway up
-
-# Set environment variables
-railway variables set PESAPAL_CONSUMER_KEY=xxx
-railway variables set PESAPAL_CONSUMER_SECRET=xxx
-railway variables set NEXT_PUBLIC_BASE_URL=xxx
-```
-
-### DigitalOcean App Platform
-
-1. Connect GitHub repository
-2. Select "Web Service"
-3. Set build command: `npm run build`
-4. Set run command: `npm start`
-5. Add environment variables in dashboard
-6. Deploy
-
-## After Deployment
-
-### 1. Test Payment Flow
-
-1. Visit your deployed URL
-2. Go to `/subscribe` page
-3. Enter test email and phone number
-4. Complete test payment (if using sandbox)
-5. Verify callback works
-6. Check subscription is created
-7. Try watching a movie
-
-### 2. Test Whitelisted Email
-
-1. Go to `/subscribe`
-2. Enter `muyanjaowen3@gmail.com`
-3. Should get instant access without payment
-4. Verify can watch movies
-
-### 3. Monitor Logs
-
-Check for errors in:
-- Vercel Dashboard → Logs
-- Browser console
-- Pesapal dashboard
-
-### 4. Configure Custom Domain (Optional)
-
-#### On Vercel:
-1. Go to Project Settings → Domains
-2. Add your custom domain
-3. Update DNS records (Vercel provides instructions)
-4. Wait for DNS propagation (few minutes to hours)
-5. Update `NEXT_PUBLIC_BASE_URL` to your custom domain
-6. Redeploy
+---
 
 ## Troubleshooting
 
-### "Payment service not configured"
-**Problem:** Environment variables not set or incorrect
+### Build Fails?
+- Check build logs in Vercel dashboard
+- Verify all dependencies in package.json
+- Check environment variables
 
-**Solution:**
-1. Check variables are spelled correctly
-2. Verify values don't have extra spaces
-3. Redeploy after adding variables
-4. Check Vercel logs for errors
+### Images Not Loading?
+- Verify image domains in next.config.js
+- Check CORS settings
+- Use Vercel Image Optimization
 
-### "Failed to authenticate with Pesapal"
-**Problem:** Invalid credentials
+### API Routes Not Working?
+- Check API route files in `/app/api/`
+- Verify environment variables
+- Check function timeout settings
 
-**Solution:**
-1. Double-check Consumer Key and Secret
-2. Ensure using correct environment (sandbox vs production)
-3. Verify credentials are active in Pesapal dashboard
-4. Try regenerating credentials
+---
 
-### Callback URL not working
-**Problem:** Wrong base URL or not HTTPS
+## Vercel Features You Get
 
-**Solution:**
-1. Ensure `NEXT_PUBLIC_BASE_URL` matches your deployed URL exactly
-2. Must use HTTPS (not HTTP)
-3. Don't include trailing slash
-4. Format: `https://your-app.vercel.app`
-5. Redeploy after fixing
+### Free Tier Includes:
+- ✅ Unlimited deployments
+- ✅ SSL certificates (automatic)
+- ✅ Global CDN
+- ✅ Automatic image optimization
+- ✅ 100GB bandwidth/month
+- ✅ Custom domains
+- ✅ Serverless functions
+- ✅ Preview deployments
 
-### Payment successful but subscription not created
-**Problem:** Callback verification failed
+### Automatic Optimizations:
+- Image optimization
+- Code splitting
+- Compression
+- Caching
+- Edge network
 
-**Solution:**
-1. Check browser console for errors
-2. Verify `/api/subscribe` GET endpoint works
-3. Check if OrderTrackingId is being passed in callback URL
-4. Test locally with mock data
+---
 
-### IPN webhook not receiving notifications
-**Problem:** Pesapal can't reach your webhook
+## Your Live URLs
 
-**Solution:**
-1. Verify IPN URL is registered in Pesapal
-2. Check URL is accessible: `https://your-app.vercel.app/api/pesapal/ipn`
-3. Test webhook endpoint manually
-4. Check server logs for incoming requests
+### After Deployment:
+- Production: `https://gen-z-corner.vercel.app`
+- Custom Domain: `https://your-domain.com` (if configured)
+- Preview: `https://gen-z-corner-git-branch.vercel.app` (for branches)
 
-## Production Checklist
-
-Before going live with real payments:
-
-- [ ] Pesapal KYC verification completed
-- [ ] Using production API credentials (not sandbox)
-- [ ] `NEXT_PUBLIC_BASE_URL` points to production domain
-- [ ] All environment variables set in production
-- [ ] Tested complete payment flow
-- [ ] Tested payment verification
-- [ ] Tested whitelisted email access
-- [ ] Tested movie playback after subscription
-- [ ] SSL certificate active (HTTPS)
-- [ ] Custom domain configured (optional)
-- [ ] Error monitoring set up (Sentry, etc.)
-- [ ] Backup/restore plan in place
-- [ ] Support contact information updated
+---
 
 ## Monitoring
 
-### Check Payment Success Rate
-1. Monitor Pesapal dashboard for transactions
-2. Track successful vs failed payments
-3. Monitor callback success rate
-4. Check IPN webhook delivery
+### In Vercel Dashboard:
+- View analytics
+- Monitor performance
+- Check build logs
+- See bandwidth usage
+- Track errors
 
-### Key Metrics to Watch
-- Payment initiation success rate
-- Payment completion rate
-- Callback verification success rate
-- Average subscription creation time
-- Failed payment reasons
-
-### Set Up Alerts
-- Failed payment verifications
-- Pesapal API errors
-- Webhook delivery failures
-- High error rates
-
-## Cost Estimate
-
-### Vercel
-- **Hobby Plan:** Free
-  - 100GB bandwidth/month
-  - Unlimited deployments
-  - Perfect for starting
-
-- **Pro Plan:** $20/month
-  - More bandwidth
-  - Better analytics
-  - Team collaboration
-
-### Pesapal Fees
-- Transaction fee: ~3-5% per transaction
-- Check Pesapal pricing for exact rates
-- No monthly fees, pay per transaction
-
-## Getting Help
-
-### Resources
-- Pesapal Docs: https://developer.pesapal.com
-- Vercel Docs: https://vercel.com/docs
-- Next.js Docs: https://nextjs.org/docs
-
-### Support Contacts
-- **App Issues:** muyanjaowen3@gmail.com
-- **Pesapal Support:** support@pesapal.com
-- **Vercel Support:** https://vercel.com/support
+---
 
 ## Quick Commands Reference
 
 ```bash
-# Build locally
-npm run build
+# Commit and push changes
+git add .
+git commit -m "Your message"
+git push origin main
 
-# Test production build locally
-npm run build && npm start
-
-# Deploy to Vercel
+# Deploy with Vercel CLI
 vercel --prod
 
-# View logs (Vercel)
+# Update environment variables
+vercel env pull
+
+# View logs
 vercel logs
 
-# List environment variables
-vercel env ls
-
-# Remove environment variable
-vercel env rm VARIABLE_NAME
-
-# Pull environment variables locally
-vercel env pull .env.local
+# Check deployment status
+vercel inspect
 ```
-
-## Next Steps After Deployment
-
-1. **Set up monitoring:** Use Vercel Analytics or Google Analytics
-2. **Add database:** Migrate from localStorage to Supabase
-3. **Email notifications:** Send subscription confirmations
-4. **Payment history:** Let users view their payment history
-5. **Subscription renewal:** Auto-renew before expiry
-6. **Admin dashboard:** Manage subscriptions and content
 
 ---
 
-**Happy Deploying! 🚀**
+## Support Links
 
-For questions: muyanjaowen3@gmail.com
+- **Vercel Docs**: https://vercel.com/docs
+- **Next.js Docs**: https://nextjs.org/docs
+- **GitHub Docs**: https://docs.github.com
+
+---
+
+## Summary
+
+1. ✅ Push code to GitHub
+2. ✅ Connect repository to Vercel
+3. ✅ Add environment variables
+4. ✅ Deploy (automatic)
+5. ✅ Done! Your site is live!
+
+**Your Gen Z Corner app with 1,082 movies will be live in minutes!** 🚀
+
+---
+
+## Next Steps After Deployment
+
+1. Share your live URL with friends
+2. Test all features on mobile
+3. Set up custom domain (optional)
+4. Enable analytics
+5. Add more movies regularly
+6. Monitor performance
+
+**Congratulations! You're going live!** 🎉✨

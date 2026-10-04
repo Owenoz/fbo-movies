@@ -2,7 +2,10 @@ import { Suspense } from 'react'
 import { Metadata } from 'next'
 import TvBrowse from './TvBrowse'
 
-export const metadata: Metadata = { title: 'Classic Movies & TV Shows' }
+export const metadata: Metadata = { 
+  title: 'TV Shows - Watch Popular Series',
+  description: 'Browse and discover popular TV shows from around the world. Watch drama, comedy, action, thriller and more genres.'
+}
 
 export default function TvPage() {
   return (

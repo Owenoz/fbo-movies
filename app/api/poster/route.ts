@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-const TMDB_KEY = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzZTBlNTIzYWFmZGFiMGIxMTk5MjYyMzhlMjVlZmM0YiIsIm5iZiI6MTczMTg1MjAzMS4wOTg4ODk4LCJzdWIiOiI2NzM3NjlkZjY4ZGY0MjEyYjdhMmNlZmMiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.H1f-3QTbGPCLhzpCPrLQDXSvPF6hGpTGqHsm8yDqVD0'
+// TMDB API v3 - Using API Key from screenshot
+const TMDB_API_KEY = '577187c381c6bd81a2e6656d79af8947'
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url)
@@ -11,12 +12,11 @@ export async function GET(req: NextRequest) {
   }
 
   try {
-    // Search TMDB for the movie using Bearer token
+    // Search TMDB for the movie using API key
     const searchRes = await fetch(
-      `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(title)}&include_adult=false&language=en-US&page=1`,
+      `https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(title)}&include_adult=false&language=en-US&page=1`,
       {
         headers: {
-          'Authorization': `Bearer ${TMDB_KEY}`,
           'accept': 'application/json'
         },
         next: { revalidate: 86400 } // Cache for 24 hours
@@ -24,8 +24,9 @@ export async function GET(req: NextRequest) {
     )
     
     if (!searchRes.ok) {
-      console.error('TMDB error:', await searchRes.text())
-      throw new Error('TMDB search failed')
+      const errorText = await searchRes.text()
+      console.error('TMDB error:', errorText)
+      return NextResponse.json({ poster: null, backdrop: null })
     }
 
     const data = await searchRes.json()
@@ -37,7 +38,7 @@ export async function GET(req: NextRequest) {
       if (posterPath) {
         return NextResponse.json({ 
           poster: `https://image.tmdb.org/t/p/w500${posterPath}`,
-          backdrop: movie.backdrop_path ? `https://image.tmdb.org/t/p/w780${movie.backdrop_path}` : null
+          backdrop: movie.backdrop_path ? `https://image.tmdb.org/t/p/w1280${movie.backdrop_path}` : null
         })
       }
     }

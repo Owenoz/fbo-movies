@@ -1,5 +1,5 @@
-// Service Worker for FBO Movies PWA
-const CACHE_NAME = 'fbo-movies-v1'
+// Service Worker for Gen Z Corner PWA
+const CACHE_NAME = 'genz-corner-v2'
 const urlsToCache = [
   '/',
   '/movies',
@@ -9,6 +9,7 @@ const urlsToCache = [
   '/manifest.json',
   '/icon-192.png',
   '/icon-512.png',
+  '/genz-logo.jpeg',
 ]
 
 // Install event - cache essential files

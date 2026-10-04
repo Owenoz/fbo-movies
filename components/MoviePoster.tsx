@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Play } from 'lucide-react'
+import { Film } from 'lucide-react'
 
 interface MoviePosterProps {
   title: string
@@ -11,55 +11,43 @@ interface MoviePosterProps {
   id: number
 }
 
-// Generate gradient based on ID
-function getGradient(id: number): string {
-  const gradients = [
-    'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-    'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-    'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-    'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
-    'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
-    'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
-    'linear-gradient(135deg, #ff9a56 0%, #ff6a88 100%)',
-    'linear-gradient(135deg, #30cfd0 0%, #330867 100%)',
-  ]
-  return gradients[Math.abs(id) % gradients.length]
-}
-
 export default function MoviePoster({ title, vj, posterUrl, posterPath, id }: MoviePosterProps) {
   const [imgSrc, setImgSrc] = useState<string | null>(null)
-  const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     let mounted = true
     
-    // Priority 1: Use provided poster URL
-    if (posterUrl) {
-      setImgSrc(posterUrl)
-      setLoading(false)
-      return
-    }
-    
-    // Priority 2: Use TMDB poster path
+    // Priority 1: Use TMDB poster path (already valid)
     if (posterPath) {
       setImgSrc(`https://image.tmdb.org/t/p/w500${posterPath}`)
       setLoading(false)
       return
     }
     
-    // Priority 3: Fetch from TMDB API
+    // Priority 2: Use provided poster URL (NaraBox, Kibanda) - check if valid
+    if (posterUrl && posterUrl.startsWith('http')) {
+      setImgSrc(posterUrl)
+      setLoading(false)
+      return
+    }
+    
+    // Priority 3: Fetch from TMDB API (for NaraBox movies without posters)
     const fetchPoster = async () => {
       try {
         // Clean title - remove VJ suffix and extra text
         const cleanTitle = title
-          .replace(/\s*-?\s*VJ\s+\w+.*$/i, '')
-          .replace(/\s+Part\s+\d+$/i, '')
-          .replace(/\s*\([^)]*\)$/g, '')
+          .replace(/\s*-?\s*vj\s+\w+.*$/i, '')  // Remove VJ suffix
+          .replace(/\s+part\s+\d+/i, '')        // Remove Part X
+          .replace(/\s*\([^)]*\)/g, '')         // Remove parentheses content
+          .replace(/\s+-\s+.*$/i, '')           // Remove everything after dash
           .trim()
         
+        if (!cleanTitle) return
+        
         const controller = new AbortController()
-        const timeoutId = setTimeout(() => controller.abort(), 5000) // 5 second timeout
+        const timeoutId = setTimeout(() => controller.abort(), 4000)
         
         const res = await fetch(`/api/poster?title=${encodeURIComponent(cleanTitle)}`, {
           signal: controller.signal
@@ -74,8 +62,9 @@ export default function MoviePoster({ title, vj, posterUrl, posterPath, id }: Mo
           }
         }
       } catch (err) {
+        // Silently fail - will show fallback
         if (err instanceof Error && err.name !== 'AbortError') {
-          console.error('Poster fetch failed:', err)
+          console.log(`Could not fetch poster for: ${title}`)
         }
       } finally {
         if (mounted) {
@@ -94,11 +83,22 @@ export default function MoviePoster({ title, vj, posterUrl, posterPath, id }: Mo
   const handleImageError = () => {
     setError(true)
     setImgSrc(null)
-    setLoading(false)
+  }
+
+  // Show loading state
+  if (loading && !imgSrc) {
+    return (
+      <div 
+        className="w-full h-full flex items-center justify-center animate-pulse"
+        style={{ background: 'linear-gradient(135deg, #1a0530 0%, #2d1b4e 100%)' }}
+      >
+        <Film className="w-12 h-12 text-purple-400/30" />
+      </div>
+    )
   }
 
   // Show image if available and no error
-  if (imgSrc && !error && !loading) {
+  if (imgSrc && !error) {
     return (
       // eslint-disable-next-line @next/next/no-img-element
       <img
@@ -111,21 +111,23 @@ export default function MoviePoster({ title, vj, posterUrl, posterPath, id }: Mo
     )
   }
 
-  // Fallback: Beautiful gradient with title
+  // Fallback: Simple poster with movie icon (only after trying to load)
   return (
     <div 
-      className="w-full h-full flex flex-col items-center justify-center gap-3 px-3 py-4"
-      style={{ background: getGradient(id) }}
+      className="w-full h-full flex flex-col items-center justify-center gap-4 px-4 py-6"
+      style={{ background: 'linear-gradient(135deg, #1a0530 0%, #2d1b4e 100%)' }}
     >
-      <Play className="w-12 h-12 text-white/40" />
-      <span className="text-white font-bold text-sm text-center line-clamp-4 leading-tight drop-shadow-lg">
-        {title}
-      </span>
-      {vj && (
-        <span className="text-white/80 text-xs font-medium drop-shadow">
-          {vj}
-        </span>
-      )}
+      <Film className="w-16 h-16 text-purple-400/40" />
+      <div className="text-center">
+        <p className="text-white font-semibold text-sm line-clamp-3 leading-tight mb-2">
+          {title}
+        </p>
+        {vj && (
+          <span className="text-purple-300/80 text-xs font-medium">
+            {vj}
+          </span>
+        )}
+      </div>
     </div>
   )
 }

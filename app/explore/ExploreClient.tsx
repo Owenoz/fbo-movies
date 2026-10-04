@@ -11,13 +11,12 @@ export default function ExploreClient() {
   const [page, setPage] = useState(1)
   const [hasMore, setHasMore] = useState(true)
   const [total, setTotal] = useState(0)
-  const [source, setSource] = useState<'all' | 'narabox' | 'lugaflix'>('all')
   const [searchQuery, setSearchQuery] = useState('')
   const [vjFilter, setVjFilter] = useState('')
 
   useEffect(() => {
     loadMovies()
-  }, [page, source, vjFilter])
+  }, [page, vjFilter])
 
   const loadMovies = async () => {
     setLoading(true)
@@ -25,7 +24,6 @@ export default function ExploreClient() {
       const params = new URLSearchParams({
         page: page.toString(),
         limit: '50',
-        source,
       })
       if (vjFilter) params.append('vj', vjFilter)
       if (searchQuery) params.append('q', searchQuery)
@@ -72,7 +70,7 @@ export default function ExploreClient() {
             </h1>
           </div>
           <p className="text-white/60 text-lg">
-            Browse {total.toLocaleString()}+ Luganda-translated movies
+            Browse {total.toLocaleString()}+ VJ movies from NaraBox & Kibanda
           </p>
         </motion.div>
 

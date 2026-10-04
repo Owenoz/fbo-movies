@@ -5,14 +5,14 @@ import Footer from '@/components/Footer'
 import GalaxyBackground from '@/components/GalaxyBackground'
 
 export const metadata: Metadata = {
-  title: { default: 'FBO Movies', template: '%s | FBO Movies' },
+  title: { default: 'Gen Z Corner', template: '%s | Gen Z Corner' },
   description: 'Watch VJ-translated Ugandan movies with full streaming. Install as an app on your phone.',
-  keywords: ['movies', 'tv shows', 'vj', 'uganda', 'fbo movies', 'kawogo', 'vj junior', 'vj emmy', 'vj mark'],
+  keywords: ['movies', 'tv shows', 'vj', 'uganda', 'gen z corner', 'kawogo', 'vj junior', 'vj emmy', 'vj mark'],
   manifest: '/manifest.json',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',
-    title: 'FBO Movies',
+    title: 'Gen Z Corner',
   },
 }
 
@@ -31,7 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="apple-mobile-web-app-title" content="FBO Movies" />
+        <meta name="apple-mobile-web-app-title" content="Gen Z Corner" />
       </head>
       <body className="bg-[#0d001a] text-white antialiased">
         <GalaxyBackground />
