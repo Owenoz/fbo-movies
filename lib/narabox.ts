@@ -15,6 +15,8 @@ export interface NaraMovie {
   overview?: string | null
   runtime?: number  // in minutes
   addedAt?: number  // timestamp when added to catalog
+  source?: string   // Source of the movie (e.g., "Gen Z Corner")
+  year?: string     // Year of release
 }
 
 // Return NaraBox verified catalog
