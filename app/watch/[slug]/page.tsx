@@ -10,7 +10,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default function WatchPage({ params }: Props) {
   return (
-    <SubscriptionPaywall requireSubscription={true}>
+    <SubscriptionPaywall requireSubscription={false}>
       <WatchClient slug={params.slug} />
     </SubscriptionPaywall>
   )
