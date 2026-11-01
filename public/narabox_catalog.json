@@ -117,6 +117,15 @@
     "overview": "Watch The Last House - VJ Junior, translated by VJ Junior, on NaraBox TV. A family suddenly sealed inside their home must work together to survive against..."
   },
   {
+    "title": "The Great Wall",
+    "vj": "VJ Mark Vj Mark",
+    "slug": "the-great-wall-vj-mark-vj-mark",
+    "url": "https://naraboxtv.com/movies/the-great-wall-vj-mark-vj-mark",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/df0fac68-a207-4407-b781-c369033c818e/faststart/m_14654_naraboxtv_com_play.mp4",
+    "poster": null,
+    "overview": "Watch The Great Wall - VJ Mark, translated by Vj mark , on NaraBox TV. European mercenaries searching for black powder become embroiled in the defense of the..."
+  },
+  {
     "title": "Fall 2 Deadpoint",
     "vj": "VJ Junior Vj Junior",
     "slug": "fall-2-deadpoint-vj-junior-vj-junior",
@@ -124,15 +133,6 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/movies/2465/fall-2-deadpoint-by-vj-junior-naraboxtvcom-720p-20261009075338-gcyf0sew.mp4",
     "poster": null,
     "overview": "Watch Fall 2: Deadpoint - VJ Junior, translated by VJ Junior, on NaraBox TV. On a perilous climb across Thailand&#x27;s Mount Kwan, two climbers become trapped..."
-  },
-  {
-    "title": "The Great Wall",
-    "vj": "VJ Mark Vj Mark",
-    "slug": "the-great-wall-vj-mark-vj-mark",
-    "url": "https://naraboxtv.com/movies/the-great-wall-vj-mark-vj-mark",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/df0fac68-a207-4407-b781-c369033c818e/faststart/m_14654_naraboxtv_com_play.mp4",
-    "poster": null,
-    "overview": "Translated by Vj mark . European mercenaries searching for black powder become embroiled in the defense of the Great Wall of China against a horde of monstro..."
   },
   {
     "title": "Clouds",
@@ -153,15 +153,6 @@
     "overview": "Watch 3 Idiots - VJ Mark, translated by Vj mark , on NaraBox TV. Rascal. Joker. Dreamer. Genius... You&#x27;ve never met a college student quite like &quot;Rancho.&quot; From..."
   },
   {
-    "title": "The Shawshank Redemption",
-    "vj": "VJ Mark Vj Mark",
-    "slug": "the-shawshank-redemption-vj-mark-vj-mark",
-    "url": "https://naraboxtv.com/movies/the-shawshank-redemption-vj-mark-vj-mark",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/1812/shawshank-redemption-720p-20260828164959-nmcewck9.mp4",
-    "poster": null,
-    "overview": "Watch The Shawshank Redemption - VJ Mark, translated by Vj mark , on NaraBox TV. Imprisoned in the 1940s for the double murder of his wife and her lover,..."
-  },
-  {
     "title": "The Boss Baby Family Business",
     "vj": "VJ Kevo Vj Kevo",
     "slug": "the-boss-baby-family-business-vj-kevo-vj-kevo",
@@ -171,13 +162,13 @@
     "overview": "Watch The Boss Baby: Family Business - VJ Kevo, translated by VJ Kevo, on NaraBox TV. The Templeton brothers — Tim and his Boss Baby little bro Ted — have..."
   },
   {
-    "title": "The End Of Oak Street",
-    "vj": "VJ Muba Vj Muba",
-    "slug": "the-end-of-oak-street-vj-muba-vj-muba",
-    "url": "https://naraboxtv.com/movies/the-end-of-oak-street-vj-muba-vj-muba",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/9872067b-0b62-4c24-98bf-20b13335fd72/faststart/The_End_of_Oak_Street_VJ_Junior_naraboxtv_com_play.mp4",
+    "title": "The Shawshank Redemption",
+    "vj": "VJ Mark Vj Mark",
+    "slug": "the-shawshank-redemption-vj-mark-vj-mark",
+    "url": "https://naraboxtv.com/movies/the-shawshank-redemption-vj-mark-vj-mark",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/1812/shawshank-redemption-720p-20260828164959-nmcewck9.mp4",
     "poster": null,
-    "overview": "Watch The End of Oak Street - VJ muba, translated by Vj Muba, on NaraBox TV. After a mysterious cosmic event rips Oak Street from suburbia and transports their..."
+    "overview": "Watch The Shawshank Redemption - VJ Mark, translated by Vj mark , on NaraBox TV. Imprisoned in the 1940s for the double murder of his wife and her lover,..."
   },
   {
     "title": "The Raid",
@@ -187,6 +178,15 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/movies/274/the-raid-2-by-vj-junior-naraboxtvcom-720p-20260901000856-udtqrdtg.mp4",
     "poster": null,
     "overview": "Watch The Raid 2 - VJ Junior, translated by VJ Junior, on NaraBox TV. After fighting his way through an apartment building populated by an army of dangerous..."
+  },
+  {
+    "title": "The End Of Oak Street",
+    "vj": "VJ Muba Vj Muba",
+    "slug": "the-end-of-oak-street-vj-muba-vj-muba",
+    "url": "https://naraboxtv.com/movies/the-end-of-oak-street-vj-muba-vj-muba",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/9872067b-0b62-4c24-98bf-20b13335fd72/faststart/The_End_of_Oak_Street_VJ_Junior_naraboxtv_com_play.mp4",
+    "poster": null,
+    "overview": "Watch The End of Oak Street - VJ muba, translated by Vj Muba, on NaraBox TV. After a mysterious cosmic event rips Oak Street from suburbia and transports their..."
   },
   {
     "title": "Facing El Chapo",
@@ -234,6 +234,15 @@
     "overview": "Watch Mayday, translated by VJ Emmy, on NaraBox TV. When a U.S. Navy pilot on a top-secret mission during the Cold War gets trapped behind enemy lines, his..."
   },
   {
+    "title": "Matchbox The Movie",
+    "vj": "VJ Junior Vj Junior",
+    "slug": "matchbox-the-movie-vj-junior-vj-junior",
+    "url": "https://naraboxtv.com/movies/matchbox-the-movie-vj-junior-vj-junior",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/2510/matchbox-the-movie-by-vj-junior-naraboxtvcom-720p-20261017114446-vo8suhvf.mp4",
+    "poster": null,
+    "overview": "Watch Matchbox the Movie - Vj Junior, translated by VJ Junior, on NaraBox TV. When a group of former childhood friends reconnect, their reunion takes a wild..."
+  },
+  {
     "title": "The Shadows Edge",
     "vj": "VJ Emmy",
     "slug": "the-shadows-edge-vj-emmy",
@@ -250,15 +259,6 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/movies/226/fighter-by-vj-junior-naraboxtvcom-720p-20260831220641-a0eode74.mp4",
     "poster": null,
     "overview": "Watch Fighter - VJ Junior, translated by VJ Junior, on NaraBox TV. He was proud of his brother who won the martial arts championship. I thought that with my..."
-  },
-  {
-    "title": "Matchbox The Movie",
-    "vj": "VJ Junior Vj Junior",
-    "slug": "matchbox-the-movie-vj-junior-vj-junior",
-    "url": "https://naraboxtv.com/movies/matchbox-the-movie-vj-junior-vj-junior",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/2510/matchbox-the-movie-by-vj-junior-naraboxtvcom-720p-20261017114446-vo8suhvf.mp4",
-    "poster": null,
-    "overview": "Watch Matchbox the Movie - Vj Junior, translated by VJ Junior, on NaraBox TV. When a group of former childhood friends reconnect, their reunion takes a wild..."
   },
   {
     "title": "The Fix",
@@ -279,15 +279,6 @@
     "overview": "Watch Red Notice - VJ Junior, translated by VJ Junior, on NaraBox TV. An Interpol-issued Red Notice is a global alert to hunt and capture the world&#x27;s most..."
   },
   {
-    "title": "Ice Cream Man",
-    "vj": "VJ Junior Vj Junior",
-    "slug": "ice-cream-man-vj-junior-vj-junior",
-    "url": "https://naraboxtv.com/movies/ice-cream-man-vj-junior-vj-junior",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/2370/ice-cream-man-by-vj-junior-naraboxtvcom-720p-20260928072022-ystsa0sz.mp4",
-    "poster": null,
-    "overview": "Watch Ice Cream Man - VJ Junior, translated by VJ Junior, on NaraBox TV. An idyllic summer town descends into madness when an ice cream man serves kids sweet..."
-  },
-  {
     "title": "Endangered Species",
     "vj": "VJ Emmy Vj Emmy",
     "slug": "endangered-species-vj-emmy-vj-emmy",
@@ -295,6 +286,15 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/movies/658/endangered-species-vj-emmy-naraboxtvcom-720p-20260826234453-lyuptpo0.mp4",
     "poster": null,
     "overview": "Watch Endangered Species - VJ Emmy, translated by VJ Emmy, on NaraBox TV. Jack Halsey takes his wife, their adult kids, and a friend for a dream vacation in..."
+  },
+  {
+    "title": "Ice Cream Man",
+    "vj": "VJ Junior Vj Junior",
+    "slug": "ice-cream-man-vj-junior-vj-junior",
+    "url": "https://naraboxtv.com/movies/ice-cream-man-vj-junior-vj-junior",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/2370/ice-cream-man-by-vj-junior-naraboxtvcom-720p-20260928072022-ystsa0sz.mp4",
+    "poster": null,
+    "overview": "Watch Ice Cream Man - VJ Junior, translated by VJ Junior, on NaraBox TV. An idyllic summer town descends into madness when an ice cream man serves kids sweet..."
   },
   {
     "title": "A Social Contract",
@@ -324,15 +324,6 @@
     "overview": "Watch Tarung: Unforgiven - VJ Emmy, translated by VJ Emmy, on NaraBox TV. After unintentionally causing the death of his opponent during a martial arts..."
   },
   {
-    "title": "Us",
-    "vj": "VJ Mark Vj Mark",
-    "slug": "us-vj-mark-vj-mark",
-    "url": "https://naraboxtv.com/movies/us-vj-mark-vj-mark",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/1816/us-by-vj-mark-luganda-translated-movie-480p-20260828172320-oyisug4x.mp4",
-    "poster": null,
-    "overview": "Watch Us - VJ Mark, translated by Vj mark , on NaraBox TV. Husband and wife Gabe and Adelaide Wilson take their kids to their beach house expecting to unplug..."
-  },
-  {
     "title": "Masterplan",
     "vj": "VJ Junior Vj Junior",
     "slug": "masterplan-vj-junior-vj-junior",
@@ -349,6 +340,15 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/movies/2369/one-last-shot-by-vj-junior-naraboxtvcom-720p-20260928071739-2tbu9ks7.mp4",
     "poster": null,
     "overview": "Watch One Last Shot - VJ Junior, translated by VJ Junior, on NaraBox TV. Navy Seal Jake Harris must stop a team of mercenaries, led by his disillusioned former..."
+  },
+  {
+    "title": "Us",
+    "vj": "VJ Mark Vj Mark",
+    "slug": "us-vj-mark-vj-mark",
+    "url": "https://naraboxtv.com/movies/us-vj-mark-vj-mark",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/1816/us-by-vj-mark-luganda-translated-movie-480p-20260828172320-oyisug4x.mp4",
+    "poster": null,
+    "overview": "Watch Us - VJ Mark, translated by Vj mark , on NaraBox TV. Husband and wife Gabe and Adelaide Wilson take their kids to their beach house expecting to unplug..."
   },
   {
     "title": "Collide",
@@ -385,6 +385,15 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/movies/2466/onslaught-by-vj-junior-naraboxtvcom-720p-20261009075614-xtv3vwcu.mp4",
     "poster": null,
     "overview": "Watch Onslaught - VJ Junior, translated by VJ Junior, on NaraBox TV. When a rogue squad of genetically engineered super soldiers break loose in the desert, a..."
+  },
+  {
+    "title": "Moana",
+    "vj": "VJ Emmy Vj Emmy",
+    "slug": "moana-vj-emmy-vj-emmy",
+    "url": "https://naraboxtv.com/movies/moana-vj-emmy-vj-emmy",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/2285/moana-by-vj-emmy-naraboxtvcom-720p-20260919134120-bi5ynb0q.mp4",
+    "poster": null,
+    "overview": "Watch Moana - VJ Emmy, translated by VJ Emmy, on NaraBox TV. Teenage Moana answers the Ocean&#x27;s call and, for the first time, voyages beyond the reef of her..."
   },
   {
     "title": "The Man Who Knew Infinity",
@@ -432,15 +441,6 @@
     "overview": "Watch xXx - VJ Mark, translated by Vj mark , on NaraBox TV. Xander Cage is your standard adrenaline junkie with no fear and a lousy attitude. When the US..."
   },
   {
-    "title": "Love On The Amazon",
-    "vj": "VJ Ham",
-    "slug": "love-on-the-amazon-vj-ham",
-    "url": "https://naraboxtv.com/movies/love-on-the-amazon-vj-ham",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/210/love-on-the-amazon-vj-ham-2026-720p-20260907091439-veuutdt4.mp4",
-    "poster": null,
-    "overview": "Watch Love on the Amazon - VJ Ham, translated by Vj Ham, on NaraBox TV. Claire travels to Brazil and hires Danny, a riverboat captain, to help her deliver an..."
-  },
-  {
     "title": "Colombiana",
     "vj": "VJ Mark Vj Mark",
     "slug": "colombiana-vj-mark-vj-mark",
@@ -450,13 +450,13 @@
     "overview": "Watch Colombiana - VJ Mark, translated by Vj mark , on NaraBox TV. After witnessing her parents’ murder as a child in Bogota, Cataleya Restrepo grows up to..."
   },
   {
-    "title": "Moana",
-    "vj": "VJ Emmy Vj Emmy",
-    "slug": "moana-vj-emmy-vj-emmy",
-    "url": "https://naraboxtv.com/movies/moana-vj-emmy-vj-emmy",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/2285/moana-by-vj-emmy-naraboxtvcom-720p-20260919134120-bi5ynb0q.mp4",
+    "title": "Love On The Amazon",
+    "vj": "VJ Ham",
+    "slug": "love-on-the-amazon-vj-ham",
+    "url": "https://naraboxtv.com/movies/love-on-the-amazon-vj-ham",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/210/love-on-the-amazon-vj-ham-2026-720p-20260907091439-veuutdt4.mp4",
     "poster": null,
-    "overview": "Watch Moana - VJ Emmy, translated by VJ Emmy, on NaraBox TV. Teenage Moana answers the Ocean&#x27;s call and, for the first time, voyages beyond the reef of her..."
+    "overview": "Watch Love on the Amazon - VJ Ham, translated by Vj Ham, on NaraBox TV. Claire travels to Brazil and hires Danny, a riverboat captain, to help her deliver an..."
   },
   {
     "title": "Mayday",
@@ -504,13 +504,13 @@
     "overview": "Watch Extraction - VJ Emmy, translated by VJ Emmy, on NaraBox TV. A hardened gun-for-hire&#x27;s latest mission becomes a soul-searching race to survive when he&#x27;s..."
   },
   {
-    "title": "Shadow Master",
-    "vj": "VJ Junior",
-    "slug": "shadow-master-vj-junior",
-    "url": "https://naraboxtv.com/movies/shadow-master-vj-junior",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/5d80c805-d673-4187-801c-83bf257122fa/faststart/Hanuman_Shadow_Master_by_Vj_Junior_naraboxtv_com_play.mp4",
+    "title": "Animals",
+    "vj": "VJ Junior Vj Junior",
+    "slug": "animals-vj-junior-vj-junior",
+    "url": "https://naraboxtv.com/movies/animals-vj-junior-vj-junior",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/2524/animals-by-vj-junior-naraboxtvcom-720p-20261025111803-fbsfzmjy.mp4",
     "poster": null,
-    "overview": "Watch Shadow Master - VJ Junior, translated by VJ Junior, on NaraBox TV. After being slain by a group of criminals, a man is reborn with animal-like..."
+    "overview": "Watch Animals - VJ Junior, translated by VJ Junior, on NaraBox TV. When the son of an L.A. mayoral candidate is kidnapped, he and his wife have a few hours to..."
   },
   {
     "title": "Young Washington",
@@ -522,13 +522,13 @@
     "overview": "Watch Young Washington - VJ Junior, translated by VJ Junior, on NaraBox TV. Before he led a nation, George Washington was a young soldier thrown into a global..."
   },
   {
-    "title": "Animals",
-    "vj": "VJ Junior Vj Junior",
-    "slug": "animals-vj-junior-vj-junior",
-    "url": "https://naraboxtv.com/movies/animals-vj-junior-vj-junior",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/2524/animals-by-vj-junior-naraboxtvcom-720p-20261025111803-fbsfzmjy.mp4",
+    "title": "Shadow Master",
+    "vj": "VJ Junior",
+    "slug": "shadow-master-vj-junior",
+    "url": "https://naraboxtv.com/movies/shadow-master-vj-junior",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/5d80c805-d673-4187-801c-83bf257122fa/faststart/Hanuman_Shadow_Master_by_Vj_Junior_naraboxtv_com_play.mp4",
     "poster": null,
-    "overview": "Watch Animals - VJ Junior, translated by VJ Junior, on NaraBox TV. When the son of an L.A. mayoral candidate is kidnapped, he and his wife have a few hours to..."
+    "overview": "Watch Shadow Master - VJ Junior, translated by VJ Junior, on NaraBox TV. After being slain by a group of criminals, a man is reborn with animal-like..."
   },
   {
     "title": "Insidious Chapter",
@@ -556,6 +556,15 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/movies/365/the-little-things-icep-naraboxtvcom-720p-20260901134132-named4vt.mp4",
     "poster": null,
     "overview": "Watch The Little Things - VJ ICE P, translated by Vj Ice P, on NaraBox TV. Deputy Sheriff Joe &quot;Deke&quot; Deacon joins forces with Sgt. Jim Baxter to search for a..."
+  },
+  {
+    "title": "Whistle",
+    "vj": "VJ Junior",
+    "slug": "whistle-vj-junior",
+    "url": "https://naraboxtv.com/movies/whistle-vj-junior",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/354/whistle-by-vj-junior-naraboxtvcom-720p-20260901132016-h6cvp0p5.mp4",
+    "poster": null,
+    "overview": "Watch Whistle - VJ Junior, translated by VJ Junior, on NaraBox TV. A misfit group of unwitting high school students stumble upon a cursed object, an ancient..."
   },
   {
     "title": "The Love Hypothesis",
@@ -594,13 +603,13 @@
     "overview": "Watch Tremors: Shrieker Island - VJ Ice P, translated by Vj Ice P, on NaraBox TV. When a group of hunters genetically modify Graboid eggs, they face an all-out..."
   },
   {
-    "title": "Whistle",
-    "vj": "VJ Junior",
-    "slug": "whistle-vj-junior",
-    "url": "https://naraboxtv.com/movies/whistle-vj-junior",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/354/whistle-by-vj-junior-naraboxtvcom-720p-20260901132016-h6cvp0p5.mp4",
+    "title": "Rango",
+    "vj": "VJ Kevo Vj Kevo",
+    "slug": "rango-vj-kevo-vj-kevo",
+    "url": "https://naraboxtv.com/movies/rango-vj-kevo-vj-kevo",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/1818/rango-vj-kevo-480-480p-20260828220918-ks5bgxtz.mp4",
     "poster": null,
-    "overview": "Watch Whistle - VJ Junior, translated by VJ Junior, on NaraBox TV. A misfit group of unwitting high school students stumble upon a cursed object, an ancient..."
+    "overview": "Watch Rango - VJ Kevo, translated by VJ Kevo, on NaraBox TV. When Rango, a lost family pet, accidentally winds up in the gritty, gun-slinging Western town of..."
   },
   {
     "title": "By Any Means",
@@ -612,13 +621,13 @@
     "overview": "Watch By Any Means - VJ Junior, translated by VJ Junior, on NaraBox TV. In 1960s Mississippi, a young Black FBI agent is forced to partner with a notorious..."
   },
   {
-    "title": "Rango",
-    "vj": "VJ Kevo Vj Kevo",
-    "slug": "rango-vj-kevo-vj-kevo",
-    "url": "https://naraboxtv.com/movies/rango-vj-kevo-vj-kevo",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/1818/rango-vj-kevo-480-480p-20260828220918-ks5bgxtz.mp4",
+    "title": "Animal",
+    "vj": "VJ Junior Vj Junior",
+    "slug": "animal-vj-junior-vj-junior",
+    "url": "https://naraboxtv.com/movies/animal-vj-junior-vj-junior",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/b123033b-f39b-47eb-bc1f-3538281beb87/faststart/ANIMAL_JR_naraboxtv_com_play.mp4",
     "poster": null,
-    "overview": "Watch Rango - VJ Kevo, translated by VJ Kevo, on NaraBox TV. When Rango, a lost family pet, accidentally winds up in the gritty, gun-slinging Western town of..."
+    "overview": "Watch Animal - VJ Junior, translated by VJ Junior, on NaraBox TV. The hardened son of a powerful industrialist returns home after years abroad and vows to take..."
   },
   {
     "title": "Bound By Honor",
@@ -628,15 +637,6 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/97fcc7f5-a618-4db8-80d7-d5ed39b817ab/original/blood_in_blood_out_1_by_vj_mark_native_naraboxtv_com.mp4",
     "poster": null,
     "overview": "Watch Bound by Honor - VJ Mark, translated by Vj mark , on NaraBox TV. Based on the true life experiences of poet Jimmy Santiago Baca, the film focuses on..."
-  },
-  {
-    "title": "Animal",
-    "vj": "VJ Junior Vj Junior",
-    "slug": "animal-vj-junior-vj-junior",
-    "url": "https://naraboxtv.com/movies/animal-vj-junior-vj-junior",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/b123033b-f39b-47eb-bc1f-3538281beb87/faststart/ANIMAL_JR_naraboxtv_com_play.mp4",
-    "poster": null,
-    "overview": "Watch Animal - VJ Junior, translated by VJ Junior, on NaraBox TV. The hardened son of a powerful industrialist returns home after years abroad and vows to take..."
   },
   {
     "title": "The Gorge",
@@ -774,6 +774,15 @@
     "overview": "Watch The Runner - VJ Ice P, translated by Vj Ice P, on NaraBox TV. Maia Marten, a brilliant London lawyer, has her life shattered by a single call on her..."
   },
   {
+    "title": "The Tournament",
+    "vj": "VJ Junior",
+    "slug": "the-tournament-vj-junior",
+    "url": "https://naraboxtv.com/movies/the-tournament-vj-junior",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/telescope/2026/10/28/9167c49b-e000-57d7-ada5-b53caa715a82/THE-TOURNAMENT-VJ-JUNIOR-Action-Thriller.mp4",
+    "poster": null,
+    "overview": "Watch The Tournament, translated by VJ Junior, on NaraBox TV. Every seven years, in an unsuspecting town, The Tournament takes place. A battle royale between..."
+  },
+  {
     "title": "The Punisher One Last Kill",
     "vj": "VJ Ice P Vj Ice P",
     "slug": "the-punisher-one-last-kill-vj-ice-p-vj-ice-p",
@@ -799,6 +808,15 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/91c46632-b902-4a0a-ad2e-bba31f692f7f/faststart/Deep_Impact_by_Vj_Emmy_naraboxtv_com_play.mp4",
     "poster": null,
     "overview": "Watch Deep Impact - VJ Emmy, translated by VJ Emmy, on NaraBox TV. A seven-mile-wide space rock is hurtling toward Earth, threatening to obliterate the planet...."
+  },
+  {
+    "title": "The Core",
+    "vj": "VJ Mark Vj Junior",
+    "slug": "the-core-vj-mark-vj-junior",
+    "url": "https://naraboxtv.com/movies/the-core-vj-mark-vj-junior",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/704e1feb-c71b-4278-9f06-38208ce645b7/faststart/The-Core-Mark_naraboxtv_com_play.mp4",
+    "poster": null,
+    "overview": "Watch The Core - VJ Mark, translated by VJ Junior, on NaraBox TV. Geophysicist Dr. Josh Keyes discovers that an unknown force has caused the earth&#x27;s inner core..."
   },
   {
     "title": "American Pie Presents Girls Rules",
@@ -873,15 +891,6 @@
     "overview": "Watch Furious Attack, translated by VJ Junior, on NaraBox TV. A former special forces soldier infiltrates northern Myanmar to rescue his missing daughter,..."
   },
   {
-    "title": "The Core",
-    "vj": "VJ Mark Vj Junior",
-    "slug": "the-core-vj-mark-vj-junior",
-    "url": "https://naraboxtv.com/movies/the-core-vj-mark-vj-junior",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/704e1feb-c71b-4278-9f06-38208ce645b7/faststart/The-Core-Mark_naraboxtv_com_play.mp4",
-    "poster": null,
-    "overview": "Watch The Core - VJ Mark, translated by VJ Junior, on NaraBox TV. Geophysicist Dr. Josh Keyes discovers that an unknown force has caused the earth&#x27;s inner core..."
-  },
-  {
     "title": "Crime",
     "vj": "VJ Junior Vj Junior",
     "slug": "crime-101-vj-junior-vj-junior",
@@ -916,15 +925,6 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/bf85c02c-4031-40ab-9ffd-c8b5c3cc0cd5/faststart/Captain_America_The_Winter_Soldier_VJ_Junior_naraboxtv_com_play.mp4",
     "poster": null,
     "overview": "Watch Captain America: The Winter Soldier, translated by VJ Junior, on NaraBox TV. After the cataclysmic events in New York with The Avengers, Steve Rogers,..."
-  },
-  {
-    "title": "The Tournament",
-    "vj": "VJ Junior",
-    "slug": "the-tournament-vj-junior",
-    "url": "https://naraboxtv.com/movies/the-tournament-vj-junior",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/telescope/2026/10/28/9167c49b-e000-57d7-ada5-b53caa715a82/THE-TOURNAMENT-VJ-JUNIOR-Action-Thriller.mp4",
-    "poster": null,
-    "overview": "Watch The Tournament, translated by VJ Junior, on NaraBox TV. Every seven years, in an unsuspecting town, The Tournament takes place. A battle royale between..."
   },
   {
     "title": "Visions",
@@ -1089,6 +1089,15 @@
     "overview": "Watch Regretting You - VJ Junior, translated by VJ Junior, on NaraBox TV. Morgan Grant and her daughter Clara explore what&#x27;s left behind after a devastating..."
   },
   {
+    "title": "Drive The Pretenders",
+    "vj": "VJ Junior",
+    "slug": "drive-the-pretenders-vj-junior",
+    "url": "https://naraboxtv.com/movies/drive-the-pretenders-vj-junior",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/telescope/2026/10/29/cd21674f-a42e-5096-95e1-9db3d4d5fd49/DRIVE-THE-PRETENDER-JR-2026.mp4",
+    "poster": null,
+    "overview": "Watch Drive – The Pretenders, translated by VJ Junior, on NaraBox TV. A young race car mechanic fakes an engagement with racing&#x27;s most scandalous star -..."
+  },
+  {
     "title": "American Hustle",
     "vj": "VJ Mark Vj Mark",
     "slug": "american-hustle-vj-mark-vj-mark",
@@ -1206,15 +1215,6 @@
     "overview": "Watch A Company Man - VJ Ulio, translated by VJ Ulio, on NaraBox TV. A contract killer becomes disenchanted with his line of work and spares the lives of his..."
   },
   {
-    "title": "The Post",
-    "vj": "VJ Mark Vj Mark",
-    "slug": "the-post-vj-mark-vj-mark",
-    "url": "https://naraboxtv.com/movies/the-post-vj-mark-vj-mark",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/c36f3cea-9e4c-4112-9680-b4adb8352e43/faststart/The.Post.2017.-vj-mark_naraboxtv_com_play.mp4",
-    "poster": null,
-    "overview": "Watch The Post - VJ Mark, translated by Vj mark , on NaraBox TV. A cover-up that spanned four U.S. Presidents pushed the country&#x27;s first female newspaper..."
-  },
-  {
     "title": "Braveheart",
     "vj": "VJ Mark Vj Mark",
     "slug": "braveheart-vj-mark-vj-mark",
@@ -1222,6 +1222,15 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/movies/1727/braveheart-jr-720p-20260825232707-yhnuis95.mp4",
     "poster": null,
     "overview": "Watch Braveheart - VJ Mark, translated by Vj mark , on NaraBox TV. Enraged at the slaughter of Murron, his new bride and childhood love, Scottish warrior..."
+  },
+  {
+    "title": "The Post",
+    "vj": "VJ Mark Vj Mark",
+    "slug": "the-post-vj-mark-vj-mark",
+    "url": "https://naraboxtv.com/movies/the-post-vj-mark-vj-mark",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/c36f3cea-9e4c-4112-9680-b4adb8352e43/faststart/The.Post.2017.-vj-mark_naraboxtv_com_play.mp4",
+    "poster": null,
+    "overview": "Watch The Post - VJ Mark, translated by Vj mark , on NaraBox TV. A cover-up that spanned four U.S. Presidents pushed the country&#x27;s first female newspaper..."
   },
   {
     "title": "Nobody",
@@ -1314,6 +1323,15 @@
     "overview": "Watch The Italian Job - VJ Mark, translated by Vj mark , on NaraBox TV. Charlie Croker pulled off the crime of a lifetime. The one thing that he didn&#x27;t plan on..."
   },
   {
+    "title": "The Amateur",
+    "vj": "VJ Junior Vj Junior",
+    "slug": "the-amateur-vj-junior-vj-junior",
+    "url": "https://naraboxtv.com/movies/the-amateur-vj-junior-vj-junior",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/404/the-amateur-by-vj-junior-naraboxtvcom-720p-20260901191547-ubyvsjkf.mp4",
+    "poster": null,
+    "overview": "Watch The Amateur - VJ Junior, translated by VJ Junior, on NaraBox TV. After his life is turned upside down when his wife is killed in a London terrorist..."
+  },
+  {
     "title": "1917",
     "vj": "VJ Ulio",
     "slug": "1917-vj-ulio",
@@ -1348,15 +1366,6 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/738b4a43-eab1-4a2e-99e3-a754b704ad2d/faststart/The_Ex_by_Vj_Emmy_naraboxtv_com_play.mp4",
     "poster": null,
     "overview": "Watch The Ex - VJ Emmy, translated by VJ Emmy, on NaraBox TV. When his lawyer wife, Sofia, becomes pregnant, chronic underachiever Tom Reilly must take a job..."
-  },
-  {
-    "title": "The Amateur",
-    "vj": "VJ Junior Vj Junior",
-    "slug": "the-amateur-vj-junior-vj-junior",
-    "url": "https://naraboxtv.com/movies/the-amateur-vj-junior-vj-junior",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/404/the-amateur-by-vj-junior-naraboxtvcom-720p-20260901191547-ubyvsjkf.mp4",
-    "poster": null,
-    "overview": "Watch The Amateur - VJ Junior, translated by VJ Junior, on NaraBox TV. After his life is turned upside down when his wife is killed in a London terrorist..."
   },
   {
     "title": "Safe House",
@@ -1413,6 +1422,24 @@
     "overview": "Watch Athena - VJ Junior, translated by VJ Junior, on NaraBox TV. Hours after the tragic death of their youngest brother in unexplained circumstances, three..."
   },
   {
+    "title": "Sakamoto Days",
+    "vj": "VJ Shield",
+    "slug": "sakamoto-days-vj-shield",
+    "url": "https://naraboxtv.com/movies/sakamoto-days-vj-shield",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/telescope/2026/10/28/e7b1850c-a07d-5c52-b68e-8c031f6557cf/SAKAMOTO-DAYS-VJ-SHIELD-2026.mp4",
+    "poster": null,
+    "overview": "Watch Sakamoto Days, translated by VJ Shield, on NaraBox TV. After getting married and having a daughter, a retired legendary hitman must protect his family..."
+  },
+  {
+    "title": "Drawn Together",
+    "vj": "VJ Junior Vj Junior",
+    "slug": "drawn-together-vj-junior-vj-junior",
+    "url": "https://naraboxtv.com/movies/drawn-together-vj-junior-vj-junior",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/telescope/2026/10/27/cd0da4d5-7fe3-536c-a4b7-bd4e8ed4b67b/DRAWN-TOGETHER-VJ-JR-2026-1080p.mp4",
+    "poster": null,
+    "overview": "Watch Drawn Together - vj junior, translated by VJ Junior, on NaraBox TV. Marfil, daughter of a powerful Spanish businessman, sees her life in New York turned..."
+  },
+  {
     "title": "Runner",
     "vj": "VJ Emmy Vj Emmy",
     "slug": "runner-vj-emmy-vj-emmy",
@@ -1458,24 +1485,6 @@
     "overview": "Watch The Stray - VJ Mark , translated by Vj mark , on NaraBox TV. A young father takes his nine year old son, the family dog, and two of his son&#x27;s friends..."
   },
   {
-    "title": "Sakamoto Days",
-    "vj": "VJ Shield",
-    "slug": "sakamoto-days-vj-shield",
-    "url": "https://naraboxtv.com/movies/sakamoto-days-vj-shield",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/telescope/2026/10/28/e7b1850c-a07d-5c52-b68e-8c031f6557cf/SAKAMOTO-DAYS-VJ-SHIELD-2026.mp4",
-    "poster": null,
-    "overview": "Watch Sakamoto Days, translated by VJ Shield, on NaraBox TV. After getting married and having a daughter, a retired legendary hitman must protect his family..."
-  },
-  {
-    "title": "Drawn Together",
-    "vj": "VJ Junior Vj Junior",
-    "slug": "drawn-together-vj-junior-vj-junior",
-    "url": "https://naraboxtv.com/movies/drawn-together-vj-junior-vj-junior",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/telescope/2026/10/27/cd0da4d5-7fe3-536c-a4b7-bd4e8ed4b67b/DRAWN-TOGETHER-VJ-JR-2026-1080p.mp4",
-    "poster": null,
-    "overview": "Watch Drawn Together - vj junior, translated by VJ Junior, on NaraBox TV. Marfil, daughter of a powerful Spanish businessman, sees her life in New York turned..."
-  },
-  {
     "title": "Butcher Boys",
     "vj": "VJ Junior Vj Junior",
     "slug": "butcher-boys-vj-junior-vj-junior",
@@ -1519,6 +1528,15 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/movies/1016/real-steel-by-vj-junior-naraboxtvcom-720p-20260910135501-nozngzwy.mp4",
     "poster": null,
     "overview": "Watch Real Steel - VJ Junior , translated by VJ Junior, on NaraBox TV. Charlie Kenton is a washed-up fighter who retired from the ring when robots took over..."
+  },
+  {
+    "title": "The Call Of The Wild",
+    "vj": "VJ Junior",
+    "slug": "the-call-of-the-wild-vj-junior",
+    "url": "https://naraboxtv.com/movies/the-call-of-the-wild-vj-junior",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/564/the-call-of-the-wild-by-vj-junior-720p-20260903090559-8czotz70.mp4",
+    "poster": null,
+    "overview": "Watch The Call of the Wild - VJ Junior, translated by VJ Junior, on NaraBox TV. Buck is a big-hearted dog whose blissful domestic life is turned upside down..."
   },
   {
     "title": "Demon City",
@@ -1638,6 +1656,15 @@
     "overview": "Watch Furious Attack - VJ Emmy, translated by VJ Emmy, on NaraBox TV. A former special forces soldier infiltrates northern Myanmar to rescue his missing..."
   },
   {
+    "title": "Kim Possible",
+    "vj": "VJ Soul Vj Soul",
+    "slug": "kim-possible-vj-soul-vj-soul",
+    "url": "https://naraboxtv.com/movies/kim-possible-vj-soul-vj-soul",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/1825/kim-possible-vj-soul-720p-20260829223218-lydwh6zm.mp4",
+    "poster": null,
+    "overview": "Watch Kim Possible - VJ Soul, translated by Vj Soul, on NaraBox TV. Everyday teen hero Kim Possible and her best friend Ron Stoppable embark on their freshman..."
+  },
+  {
     "title": "The Hunted",
     "vj": "VJ Mark Vj Mark",
     "slug": "the-hunted-vj-mark-vj-mark",
@@ -1755,15 +1782,6 @@
     "overview": "Watch Extraction 2 - VJ Junior, translated by VJ Junior, on NaraBox TV. Back from the brink of death, highly skilled commando Tyler Rake takes on another..."
   },
   {
-    "title": "The Call Of The Wild",
-    "vj": "VJ Junior",
-    "slug": "the-call-of-the-wild-vj-junior",
-    "url": "https://naraboxtv.com/movies/the-call-of-the-wild-vj-junior",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/564/the-call-of-the-wild-by-vj-junior-720p-20260903090559-8czotz70.mp4",
-    "poster": null,
-    "overview": "Watch The Call of the Wild - VJ Junior, translated by VJ Junior, on NaraBox TV. Buck is a big-hearted dog whose blissful domestic life is turned upside down..."
-  },
-  {
     "title": "Ricochet",
     "vj": "VJ Junior",
     "slug": "ricochet-vj-junior",
@@ -1771,6 +1789,15 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/0e0ea06c-fea1-4d07-bce6-ac93c96dff21/faststart/Ricochet_by_Vj_Junior_naraboxtv_com_play.mp4",
     "poster": null,
     "overview": "Watch Ricochet - VJ Junior, translated by VJ Junior, on NaraBox TV. An attorney is terrorized by the criminal he put away years ago when he was a cop."
+  },
+  {
+    "title": "Confession",
+    "vj": "VJ Ulio Vj Ulio",
+    "slug": "confession-vj-ulio-vj-ulio",
+    "url": "https://naraboxtv.com/movies/confession-vj-ulio-vj-ulio",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/2517/confession-by-vj-ulio-naraboxtvcom-720p-20261021131139-2dhym3rq.mp4",
+    "poster": null,
+    "overview": "Watch Confession - vj ulio, translated by VJ Ulio, on NaraBox TV. In 1938, in Stalin&#x27;s Moscow, a disillusioned professor, Alexei, faces brutal interrogation by..."
   },
   {
     "title": "Dirty Rotten Scoundrels",
@@ -1845,15 +1872,6 @@
     "overview": "Watch Roofman - VJ Ulio, translated by VJ Ulio, on NaraBox TV. A former Army Ranger and struggling father turns to robbing McDonald’s restaurants by cutting..."
   },
   {
-    "title": "Confession",
-    "vj": "VJ Ulio Vj Ulio",
-    "slug": "confession-vj-ulio-vj-ulio",
-    "url": "https://naraboxtv.com/movies/confession-vj-ulio-vj-ulio",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/2517/confession-by-vj-ulio-naraboxtvcom-720p-20261021131139-2dhym3rq.mp4",
-    "poster": null,
-    "overview": "Watch Confession - vj ulio, translated by VJ Ulio, on NaraBox TV. In 1938, in Stalin&#x27;s Moscow, a disillusioned professor, Alexei, faces brutal interrogation by..."
-  },
-  {
     "title": "Children Of The Corn Runaway",
     "vj": "VJ Junior",
     "slug": "children-of-the-corn-runaway-vj-junior",
@@ -1890,15 +1908,6 @@
     "overview": "Watch Pete&#x27;s Dragon - vj junior, translated by VJ Junior, on NaraBox TV. For years, old wood carver Mr. Meacham has delighted local children with his tales of..."
   },
   {
-    "title": "White Fang Part",
-    "vj": "VJ Mark Vj Mark",
-    "slug": "white-fang-part-2-vj-mark-vj-mark",
-    "url": "https://naraboxtv.com/movies/white-fang-part-2-vj-mark-vj-mark",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/telescope/2026/09/11/cc3926e3-9346-50eb-b521-6f8e9a7eb252/WHITE-FANG-2-MARK_mp4.mp4",
-    "poster": null,
-    "overview": "Watch White Fang - Part 2 - VJ Mark, translated by Vj mark , on NaraBox TV. Jack London&#x27;s classic adventure story about the friendship developed between a..."
-  },
-  {
     "title": "Argylle",
     "vj": "VJ Junior Vj Junior",
     "slug": "argylle-vj-junior-vj-junior",
@@ -1908,13 +1917,13 @@
     "overview": "Watch Argylle - VJ Junior, translated by VJ Junior, on NaraBox TV. When the plots of reclusive author Elly Conway&#x27;s fictional espionage novels begin to mirror..."
   },
   {
-    "title": "Kim Possible",
-    "vj": "VJ Soul Vj Soul",
-    "slug": "kim-possible-vj-soul-vj-soul",
-    "url": "https://naraboxtv.com/movies/kim-possible-vj-soul-vj-soul",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/1825/kim-possible-vj-soul-720p-20260829223218-lydwh6zm.mp4",
+    "title": "White Fang Part",
+    "vj": "VJ Mark Vj Mark",
+    "slug": "white-fang-part-2-vj-mark-vj-mark",
+    "url": "https://naraboxtv.com/movies/white-fang-part-2-vj-mark-vj-mark",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/telescope/2026/09/11/cc3926e3-9346-50eb-b521-6f8e9a7eb252/WHITE-FANG-2-MARK_mp4.mp4",
     "poster": null,
-    "overview": "Watch Kim Possible - VJ Soul, translated by Vj Soul, on NaraBox TV. Everyday teen hero Kim Possible and her best friend Ron Stoppable embark on their freshman..."
+    "overview": "Watch White Fang - Part 2 - VJ Mark, translated by Vj mark , on NaraBox TV. Jack London&#x27;s classic adventure story about the friendship developed between a..."
   },
   {
     "title": "The Mosquito Coast",
@@ -1942,6 +1951,15 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/c28fe89e-a121-4e95-a25b-188c6c06605f/original/The.Karate.Kid.1984.Mark-S2m-Ent_naraboxtv_com.mp4",
     "poster": null,
     "overview": "Watch The Karate Kid - VJ Markj, translated by Vj mark , on NaraBox TV. New Jersey teen Daniel LaRusso moves to Los Angeles with his mother, and soon strikes..."
+  },
+  {
+    "title": "The End Of Oak Street",
+    "vj": "VJ Emmy Vj Emmy",
+    "slug": "the-end-of-oak-street-vj-emmy-vj-emmy",
+    "url": "https://naraboxtv.com/movies/the-end-of-oak-street-vj-emmy-vj-emmy",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/2440/the-end-of-oak-street-by-vj-emmy-naraboxtvcom-720p-20261007144951-ope5dvrx.mp4",
+    "poster": null,
+    "overview": "Watch The End of Oak Street - VJ Emmy, translated by VJ Emmy, on NaraBox TV. After a mysterious cosmic event rips Oak Street from suburbia and transports their..."
   },
   {
     "title": "Fireflies At El Mozote",
@@ -2025,6 +2043,15 @@
     "overview": "Watch Icefall - VJ Junior, translated by VJ Junior, on NaraBox TV. A young Indigenous game warden arrests an infamous poacher only to discover that the poacher..."
   },
   {
+    "title": "Choose Or Die",
+    "vj": "VJ Junior",
+    "slug": "choose-or-die-vj-junior",
+    "url": "https://naraboxtv.com/movies/choose-or-die-vj-junior",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/209/choose-or-die-by-vj-junior-naraboxtvcom-720p-20260907091149-5vlprdoi.mp4",
+    "poster": null,
+    "overview": "Watch Choose or Die - VJ Junior, translated by VJ Junior, on NaraBox TV. In pursuit of an unclaimed $125,000 prize, a broke college dropout decides to play an..."
+  },
+  {
     "title": "Grimsby",
     "vj": "VJ Junior",
     "slug": "grimsby-vj-junior",
@@ -2034,15 +2061,6 @@
     "overview": "Watch Grimsby - VJ Junior, translated by VJ Junior, on NaraBox TV. Wrongfully accused and on the run, a top MI6 assassin joins forces with his long-lost,..."
   },
   {
-    "title": "The End Of Oak Street",
-    "vj": "VJ Emmy Vj Emmy",
-    "slug": "the-end-of-oak-street-vj-emmy-vj-emmy",
-    "url": "https://naraboxtv.com/movies/the-end-of-oak-street-vj-emmy-vj-emmy",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/2440/the-end-of-oak-street-by-vj-emmy-naraboxtvcom-720p-20261007144951-ope5dvrx.mp4",
-    "poster": null,
-    "overview": "Watch The End of Oak Street - VJ Emmy, translated by VJ Emmy, on NaraBox TV. After a mysterious cosmic event rips Oak Street from suburbia and transports their..."
-  },
-  {
     "title": "The Mysterious Inn",
     "vj": "VJ Muba",
     "slug": "the-mysterious-inn-vj-muba",
@@ -2050,6 +2068,15 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/ea61d443-1d73-4c70-b449-67823cea6434/original/The_Mysterious_Inn_by_Vj_Muba_naraboxtv_com.mp4",
     "poster": null,
     "overview": "Watch The Mysterious Inn, translated by Vj Muba, on NaraBox TV. The Midnight Inn, a place that operates around midnight, serving as both a mortuary and a rest..."
+  },
+  {
+    "title": "Blade",
+    "vj": "VJ Ice P Vj Ice P",
+    "slug": "blade-vj-ice-p-vj-ice-p",
+    "url": "https://naraboxtv.com/movies/blade-vj-ice-p-vj-ice-p",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/def73ced-78bc-4fd4-9389-813512e8372c/faststart/Blade_VJ_Ice_P_naraboxtv_com_play.mp4",
+    "poster": null,
+    "overview": "Watch Blade - VJ Ice P, translated by Vj Ice P, on NaraBox TV. The Daywalker known as &quot;Blade&quot; - a half-vampire, half-mortal man - becomes the protector of..."
   },
   {
     "title": "Mumbai Mirror",
@@ -2070,6 +2097,15 @@
     "overview": "Watch Dirty Grandpa - vj junior, translated by VJ Junior, on NaraBox TV. Jason Kelly is one week away from marrying his boss&#x27;s uber-controlling daughter,..."
   },
   {
+    "title": "Blank Check",
+    "vj": "VJ Jingo Vj Jingo",
+    "slug": "blank-check-vj-jingo-vj-jingo",
+    "url": "https://naraboxtv.com/movies/blank-check-vj-jingo-vj-jingo",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/1974/blank-check-vj-jingo-480-720p-20260912103823-8lxoji0x.mp4",
+    "poster": null,
+    "overview": "Watch Blank Check - VJ Jingo, translated by VJ Jingo, on NaraBox TV. Bullied by his siblings and nagged by his parents, 11-year-old Preston Waters is fed up..."
+  },
+  {
     "title": "Faceoff",
     "vj": "VJ Mark Vj Mark",
     "slug": "faceoff-vj-mark-vj-mark",
@@ -2077,6 +2113,15 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/0576715c-f146-4913-937e-a02908418425/original/Face-Off.1997_Action-Crime-Sci-Fi_-S2m-Ent-Mark_naraboxtv_com.mp4",
     "poster": null,
     "overview": "Watch Face/Off - VJ Mark, translated by Vj mark , on NaraBox TV. In order to foil a terrorist plot, an FBI agent undergoes facial transplant surgery and..."
+  },
+  {
+    "title": "Palm Springs",
+    "vj": "VJ Ulio Vj Ulio",
+    "slug": "palm-springs-vj-ulio-vj-ulio",
+    "url": "https://naraboxtv.com/movies/palm-springs-vj-ulio-vj-ulio",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/87da690e-8276-4c53-8180-e3c015cbdca4/faststart/Palm_Springs_by_Vj_Ulio_naraboxtv_com_play.mp4",
+    "poster": null,
+    "overview": "Watch Palm Springs - VJ Ulio, translated by VJ Ulio, on NaraBox TV. When carefree Nyles and reluctant maid of honor Sarah have a chance encounter at a Palm..."
   },
   {
     "title": "The School For Good And Evil",
@@ -2122,6 +2167,15 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/movies/949/thor-love-and-thunder-by-vj-junior-naraboxtvcom-720p-20260910175150-qaw1eyqn.mp4",
     "poster": null,
     "overview": "Watch Thor: Love and Thunder - VJ Junior, translated by VJ Junior, on NaraBox TV. After his retirement is interrupted by Gorr the God Butcher, a galactic..."
+  },
+  {
+    "title": "The Adam Project",
+    "vj": "VJ Emmy",
+    "slug": "the-adam-project-vj-emmy",
+    "url": "https://naraboxtv.com/movies/the-adam-project-vj-emmy",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/9c22f5fb-3697-4827-9d66-924e837322c1/faststart/The_Adam_Project_by_Vj_Emmy_naraboxtv_com_play.mp4",
+    "poster": null,
+    "overview": "Watch The Adam Project - VJ Emmy, translated by VJ Emmy, on NaraBox TV. After accidentally crash-landing in 2022, time-traveling fighter pilot Adam Reed teams..."
   },
   {
     "title": "The Foreigner",
@@ -2178,24 +2232,6 @@
     "overview": "Watch Slither - VJ Junior, translated by VJ Junior, on NaraBox TV. A small town is taken over by an alien plague, turning residents into zombies and all forms..."
   },
   {
-    "title": "Secrets Between Sisters",
-    "vj": "VJ Ulio",
-    "slug": "secrets-between-sisters-vj-ulio",
-    "url": "https://naraboxtv.com/movies/secrets-between-sisters-vj-ulio",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/245/secrets-between-sisters-by-vj-ulio-naraboxtvcom-720p-20260831231029-hu7hihyf.mp4",
-    "poster": null,
-    "overview": "Watch Secrets Between Sisters - VJ Ulio, translated by VJ Ulio, on NaraBox TV. Cassie&#x27;s sister disappears and is found murdered near a swingers club. Cassie..."
-  },
-  {
-    "title": "Choose Or Die",
-    "vj": "VJ Junior",
-    "slug": "choose-or-die-vj-junior",
-    "url": "https://naraboxtv.com/movies/choose-or-die-vj-junior",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/209/choose-or-die-by-vj-junior-naraboxtvcom-720p-20260907091149-5vlprdoi.mp4",
-    "poster": null,
-    "overview": "Watch Choose or Die - VJ Junior, translated by VJ Junior, on NaraBox TV. In pursuit of an unclaimed $125,000 prize, a broke college dropout decides to play an..."
-  },
-  {
     "title": "Joes College Road Trip",
     "vj": "VJ Emmy",
     "slug": "joes-college-road-trip-vj-emmy",
@@ -2203,6 +2239,15 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/78d53c2c-fceb-4493-bb51-1d94c85bfd17/faststart/file_naraboxtv_com_play.mp4",
     "poster": null,
     "overview": "Watch Joe&#x27;s College Road Trip - VJ Emmy, translated by VJ Emmy, on NaraBox TV. To teach his sheltered grandson about the real world, Madea&#x27;s foul-mouthed..."
+  },
+  {
+    "title": "Secrets Between Sisters",
+    "vj": "VJ Ulio",
+    "slug": "secrets-between-sisters-vj-ulio",
+    "url": "https://naraboxtv.com/movies/secrets-between-sisters-vj-ulio",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/245/secrets-between-sisters-by-vj-ulio-naraboxtvcom-720p-20260831231029-hu7hihyf.mp4",
+    "poster": null,
+    "overview": "Watch Secrets Between Sisters - VJ Ulio, translated by VJ Ulio, on NaraBox TV. Cassie&#x27;s sister disappears and is found murdered near a swingers club. Cassie..."
   },
   {
     "title": "One More Shot",
@@ -2223,13 +2268,13 @@
     "overview": "Watch Final Score - vj junior, translated by VJ Junior, on NaraBox TV. When a stadium is seized by a group of heavily armed criminals during a major sporting..."
   },
   {
-    "title": "Blade",
-    "vj": "VJ Ice P Vj Ice P",
-    "slug": "blade-vj-ice-p-vj-ice-p",
-    "url": "https://naraboxtv.com/movies/blade-vj-ice-p-vj-ice-p",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/def73ced-78bc-4fd4-9389-813512e8372c/faststart/Blade_VJ_Ice_P_naraboxtv_com_play.mp4",
+    "title": "Pele",
+    "vj": "VJ Junior Vj Junior",
+    "slug": "pele-vj-junior-vj-junior",
+    "url": "https://naraboxtv.com/movies/pele-vj-junior-vj-junior",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/2270/pele-vj-junior-720p-20260918161020-0ml1fpzj.mp4",
     "poster": null,
-    "overview": "Watch Blade - VJ Ice P, translated by Vj Ice P, on NaraBox TV. The Daywalker known as &quot;Blade&quot; - a half-vampire, half-mortal man - becomes the protector of..."
+    "overview": "Watch Pelé - VJ Junior, translated by VJ Junior, on NaraBox TV. Against the backdrop of a turbulent era in Brazil, this documentary captures Pelé&#x27;s..."
   },
   {
     "title": "Vishwanath Sons Part",
@@ -2239,15 +2284,6 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/91a24dac-c06c-40d8-b16e-8da7e0cdbd7a/faststart/Vishwanath_Sons_2_VJ_Shield_naraboxtv_com_play.mp4",
     "poster": null,
     "overview": "Watch Vishwanath &amp; Sons - Part 2 - VJ Shield, translated by VJ Shield, on NaraBox TV. A celebrated Olympian shooter travels to America looking for a donor to..."
-  },
-  {
-    "title": "Pele",
-    "vj": "VJ Junior Vj Junior",
-    "slug": "pele-vj-junior-vj-junior",
-    "url": "https://naraboxtv.com/movies/pele-vj-junior-vj-junior",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/2270/pele-vj-junior-720p-20260918161020-0ml1fpzj.mp4",
-    "poster": null,
-    "overview": "Watch Pelé - VJ Junior, translated by VJ Junior, on NaraBox TV. Against the backdrop of a turbulent era in Brazil, this documentary captures Pelé&#x27;s..."
   },
   {
     "title": "The Art Of War",
@@ -2293,15 +2329,6 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/movies/930/encounter-by-vj-emmy-naraboxtvcom-720p-20260910182924-cwwn8fm3.mp4",
     "poster": null,
     "overview": "Watch Encounter - VJ Emmy, translated by VJ Emmy, on NaraBox TV. A decorated Marine goes on a rescue mission to save his two young sons from an unhuman threat...."
-  },
-  {
-    "title": "The Adam Project",
-    "vj": "VJ Emmy",
-    "slug": "the-adam-project-vj-emmy",
-    "url": "https://naraboxtv.com/movies/the-adam-project-vj-emmy",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/9c22f5fb-3697-4827-9d66-924e837322c1/faststart/The_Adam_Project_by_Vj_Emmy_naraboxtv_com_play.mp4",
-    "poster": null,
-    "overview": "Watch The Adam Project - VJ Emmy, translated by VJ Emmy, on NaraBox TV. After accidentally crash-landing in 2022, time-traveling fighter pilot Adam Reed teams..."
   },
   {
     "title": "Vicious",
@@ -2367,15 +2394,6 @@
     "overview": "Watch Grown Ups - vj junior, translated by VJ Junior, on NaraBox TV. After their high school basketball coach passes away, five good friends and former..."
   },
   {
-    "title": "Horrible Bosses",
-    "vj": "VJ Junior Vj Junior",
-    "slug": "horrible-bosses-vj-junior-vj-junior",
-    "url": "https://naraboxtv.com/movies/horrible-bosses-vj-junior-vj-junior",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/1893551f-6173-40d0-a23f-9ebaca9a5295/faststart/Horrible_Bosses_by_Vj_Junior_naraboxtv_com_play.mp4",
-    "poster": null,
-    "overview": "Watch Horrible Bosses - vj junior, translated by VJ Junior, on NaraBox TV. For Nick, Kurt and Dale, the only thing that would make the daily grind more..."
-  },
-  {
     "title": "Pirates Of The Caribbean On Stranger Tides",
     "vj": "VJ Junior Vj Junior",
     "slug": "pirates-of-the-caribbean-on-stranger-tides-vj-junior-vj-junior",
@@ -2383,6 +2401,15 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/502d5569-a9de-4b9d-a122-7f04f730d09a/faststart/Pirates_of_the_Caribbean_4_by_Vj_Junior_naraboxtv_com_play.mp4",
     "poster": null,
     "overview": "Watch Pirates of the Caribbean: On Stranger Tides - vj junior, translated by VJ Junior, on NaraBox TV. When Jack crosses paths with a woman from his past, he&#x27;s..."
+  },
+  {
+    "title": "Horrible Bosses",
+    "vj": "VJ Junior Vj Junior",
+    "slug": "horrible-bosses-vj-junior-vj-junior",
+    "url": "https://naraboxtv.com/movies/horrible-bosses-vj-junior-vj-junior",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/1893551f-6173-40d0-a23f-9ebaca9a5295/faststart/Horrible_Bosses_by_Vj_Junior_naraboxtv_com_play.mp4",
+    "poster": null,
+    "overview": "Watch Horrible Bosses - vj junior, translated by VJ Junior, on NaraBox TV. For Nick, Kurt and Dale, the only thing that would make the daily grind more..."
   },
   {
     "title": "Fear The Invisible Man",
@@ -2421,15 +2448,6 @@
     "overview": "Watch Flight of the Phoenix - VJ Mark, translated by Vj mark , on NaraBox TV. When an oil rig in the Gobi Desert of Mongolia proves unproductive, an aircraft..."
   },
   {
-    "title": "Palm Springs",
-    "vj": "VJ Ulio Vj Ulio",
-    "slug": "palm-springs-vj-ulio-vj-ulio",
-    "url": "https://naraboxtv.com/movies/palm-springs-vj-ulio-vj-ulio",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/87da690e-8276-4c53-8180-e3c015cbdca4/faststart/Palm_Springs_by_Vj_Ulio_naraboxtv_com_play.mp4",
-    "poster": null,
-    "overview": "Watch Palm Springs - VJ Ulio, translated by VJ Ulio, on NaraBox TV. When carefree Nyles and reluctant maid of honor Sarah have a chance encounter at a Palm..."
-  },
-  {
     "title": "Violent Ends",
     "vj": "VJ Muba Vj Muba",
     "slug": "violent-ends-vj-muba-vj-muba",
@@ -2466,15 +2484,6 @@
     "overview": "Watch Everly - VJ Junior, translated by VJ Junior, on NaraBox TV. After she betrays a powerful mob boss, a woman matches wits and weaponry with a legion of..."
   },
   {
-    "title": "Drive The Pretenders",
-    "vj": "VJ Junior",
-    "slug": "drive-the-pretenders-vj-junior",
-    "url": "https://naraboxtv.com/movies/drive-the-pretenders-vj-junior",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/telescope/2026/10/29/cd21674f-a42e-5096-95e1-9db3d4d5fd49/DRIVE-THE-PRETENDER-JR-2026.mp4",
-    "poster": null,
-    "overview": "Watch Drive – The Pretenders, translated by VJ Junior, on NaraBox TV. A young race car mechanic fakes an engagement with racing&#x27;s most scandalous star -..."
-  },
-  {
     "title": "I Am Omega",
     "vj": "VJ Ice P Vj Ice P",
     "slug": "i-am-omega-vj-ice-p-vj-ice-p",
@@ -2500,15 +2509,6 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/9db8ce35-55b2-41ed-9be0-7b48869497eb/faststart/Triple_9_-_VJ_Junior_naraboxtv_com_play.mp4",
     "poster": null,
     "overview": "Watch Triple 9 - vj junior, translated by VJ Junior, on NaraBox TV. A gang of criminals and corrupt cops plan the murder of a police officer in order to pull..."
-  },
-  {
-    "title": "Blank Check",
-    "vj": "VJ Jingo Vj Jingo",
-    "slug": "blank-check-vj-jingo-vj-jingo",
-    "url": "https://naraboxtv.com/movies/blank-check-vj-jingo-vj-jingo",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/1974/blank-check-vj-jingo-480-720p-20260912103823-8lxoji0x.mp4",
-    "poster": null,
-    "overview": "Watch Blank Check - VJ Jingo, translated by VJ Jingo, on NaraBox TV. Bullied by his siblings and nagged by his parents, 11-year-old Preston Waters is fed up..."
   },
   {
     "title": "Alpha Part",
@@ -2673,15 +2673,6 @@
     "overview": "Watch Private Resort - VJ Emmy, translated by VJ Emmy, on NaraBox TV. Chasing women for the weekend at a luxurious Miami resort, teen buddies Ben and Jack get..."
   },
   {
-    "title": "Pretty Lethal",
-    "vj": "VJ Junior Vj Junior",
-    "slug": "pretty-lethal-vj-junior-vj-junior",
-    "url": "https://naraboxtv.com/movies/pretty-lethal-vj-junior-vj-junior",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/1035/pretty-lethal-by-vj-junior-naraboxtvcom-720p-20260907114923-zhpt0o1e.mp4",
-    "poster": null,
-    "overview": "Watch Pretty Lethal - VJ Junior, translated by VJ Junior, on NaraBox TV. A troupe of ballerinas find themselves fighting for survival as they attempt to escape..."
-  },
-  {
     "title": "Border Hunters",
     "vj": "VJ Emmy Vj Emmy",
     "slug": "border-hunters-vj-emmy-vj-emmy",
@@ -2689,6 +2680,15 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/movies/988/border-hunters-by-vj-emmy-naraboxtvcom-720p-20260910140502-sddfaqg8.mp4",
     "poster": null,
     "overview": "Watch Border Hunters - VJ Emmy, translated by VJ Emmy, on NaraBox TV. After his police officer brother is killed by a drug dealer who flees to the protection..."
+  },
+  {
+    "title": "Pretty Lethal",
+    "vj": "VJ Junior Vj Junior",
+    "slug": "pretty-lethal-vj-junior-vj-junior",
+    "url": "https://naraboxtv.com/movies/pretty-lethal-vj-junior-vj-junior",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/1035/pretty-lethal-by-vj-junior-naraboxtvcom-720p-20260907114923-zhpt0o1e.mp4",
+    "poster": null,
+    "overview": "Watch Pretty Lethal - VJ Junior, translated by VJ Junior, on NaraBox TV. A troupe of ballerinas find themselves fighting for survival as they attempt to escape..."
   },
   {
     "title": "Prey For The Devil",
@@ -2734,6 +2734,15 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/movies/283/the-healer-by-vj-junior-naraboxtvcom-720p-20260901004504-j9x8wdlg.mp4",
     "poster": null,
     "overview": "Watch The Healer - VJ Junior, translated by VJ Junior, on NaraBox TV. The film follows a man with an unwanted gift for healing who meets a teenager with cancer..."
+  },
+  {
+    "title": "Ninja Wars Blackfox Vs Shoguns Ninja",
+    "vj": "VJ Muba",
+    "slug": "ninja-wars-blackfox-vs-shoguns-ninja-vj-muba",
+    "url": "https://naraboxtv.com/movies/ninja-wars-blackfox-vs-shoguns-ninja-vj-muba",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/telescope/2026/10/27/70ecbe3d-7f60-5fe2-87f8-ee79a66a00e7/NINJA-WARS-BLACKFOX-VS-SHOGUN-S-NINJA-VJ-MUBA-2026.mp4",
+    "poster": null,
+    "overview": "Watch Ninja Wars: BlackFox vs Shogun&#x27;s Ninja, translated by Vj Muba, on NaraBox TV. Rikka Isurugi (Chihiro Yamamoto), head of the Fox Clan, is investigating..."
   },
   {
     "title": "Hitman",
@@ -2880,6 +2889,15 @@
     "overview": "Watch Fall - VJ Emmy, translated by VJ Emmy, on NaraBox TV. For best friends Becky and Hunter, life is all about conquering fears and pushing limits. But after..."
   },
   {
+    "title": "Spiderhead",
+    "vj": "VJ Junior",
+    "slug": "spiderhead-vj-junior",
+    "url": "https://naraboxtv.com/movies/spiderhead-vj-junior",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/959/spiderhead-by-vj-junior-naraboxtvcom-720p-20260910155039-ot5mjbe8.mp4",
+    "poster": null,
+    "overview": "Watch Spiderhead - VJ Junior, translated by VJ Junior, on NaraBox TV. A prisoner in a state-of-the-art penitentiary begins to question the purpose of the..."
+  },
+  {
     "title": "Hustle",
     "vj": "VJ Junior Vj Junior",
     "slug": "hustle-vj-junior-vj-junior",
@@ -2896,6 +2914,15 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/movies/935/beast-by-vj-junior-naraboxtvcom-720p-20260910182030-dfzubgpx.mp4",
     "poster": null,
     "overview": "Watch Beast - VJ Junior, translated by VJ Junior, on NaraBox TV. A recently widowed man and his two teenage daughters travel to a game reserve in South Africa...."
+  },
+  {
+    "title": "Fantastic Beasts The Secrets Of Dumbledore Part",
+    "vj": "VJ Junior",
+    "slug": "fantastic-beasts-the-secrets-of-dumbledore-part-2-vj-junior",
+    "url": "https://naraboxtv.com/movies/fantastic-beasts-the-secrets-of-dumbledore-part-2-vj-junior",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/775/fantastic-beasts-the-crimes-of-grindelwald-2-by-vj-junior-naraboxtvcom-720p-20260905090333-azqwfsy7.mp4",
+    "poster": null,
+    "overview": "Watch Fantastic Beasts: The Secrets of Dumbledore - Part 2, translated by VJ Junior, on NaraBox TV. Professor Albus Dumbledore knows the powerful, dark wizard..."
   },
   {
     "title": "Bloodshot",
@@ -2923,6 +2950,15 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/movies/237/keeper-by-vj-junior-naraboxtvcom-720p-20260831225621-2wzyz0vc.mp4",
     "poster": null,
     "overview": "Watch Keeper - VJ - Junior, translated by VJ Junior, on NaraBox TV. Liz and Malcolm escape for a romantic anniversary weekend at a secluded cabin. When Malcolm..."
+  },
+  {
+    "title": "Verity",
+    "vj": "VJ Junior",
+    "slug": "verity-vj-junior",
+    "url": "https://naraboxtv.com/movies/verity-vj-junior",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/telescope/2026/10/29/d68959cd-eb45-5dbd-8799-5f4044d0fa9d/VERITY-JR-2026.mp4",
+    "poster": null,
+    "overview": "Watch Verity, translated by VJ Junior, on NaraBox TV. Lowen Ashleigh, hired to ghostwrite for best-selling author Verity Crawford, uncovers Verity&#x27;s..."
   },
   {
     "title": "Tiny Fugitives",
@@ -2997,6 +3033,15 @@
     "overview": "Watch Carter - VJ Junior, translated by VJ Junior, on NaraBox TV. Carter, who awakens two months into a deadly pandemic originating from the DMZ that has..."
   },
   {
+    "title": "Cold Souls",
+    "vj": "VJ Kriss Sweet",
+    "slug": "cold-souls-vj-kriss-sweet",
+    "url": "https://naraboxtv.com/movies/cold-souls-vj-kriss-sweet",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/1871/cold-souls-vj-kriss-sweet-720p-20260904002137-9jtal2mn.mp4",
+    "poster": null,
+    "overview": "Watch Cold Souls, translated by VJ Kriss Sweet, on NaraBox TV. Paul is agonising over his interpretation of &#x27;Uncle Vanya&#x27; and, paralysed by anxiety, stumbles..."
+  },
+  {
     "title": "The Shadow Strays",
     "vj": "VJ Junior Vj Junior",
     "slug": "the-shadow-strays-vj-junior-vj-junior",
@@ -3024,15 +3069,6 @@
     "overview": "Watch Lou - VJ Junior, translated by VJ Junior, on NaraBox TV. A young girl is kidnapped during a powerful storm. Her mother joins forces with her mysterious..."
   },
   {
-    "title": "The Silent Twins",
-    "vj": "VJ Muba Vj Muba",
-    "slug": "the-silent-twins-vj-muba-vj-muba",
-    "url": "https://naraboxtv.com/movies/the-silent-twins-vj-muba-vj-muba",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/1020/the-silent-twins-by-vj-muba-naraboxtvcom-720p-20260910135121-ru75nzim.mp4",
-    "poster": null,
-    "overview": "Watch The Silent Twins - VJ Muba, translated by Vj Muba, on NaraBox TV. June and Jennifer Gibbons are twins from the only Black family in a small town in Wales..."
-  },
-  {
     "title": "The Gates",
     "vj": "VJ Junior Vj Junior",
     "slug": "the-gates-vj-junior-vj-junior",
@@ -3040,6 +3076,15 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/movies/1017/the-gates-by-vj-junior-naraboxtvcom-480p-20260910135415-x0zfyc5s.mp4",
     "poster": null,
     "overview": "Watch The Gates - VJ Junior, translated by VJ Junior, on NaraBox TV. Three friends&#x27; road trip turns terrifying when they witness a murder in a gated community...."
+  },
+  {
+    "title": "The Silent Twins",
+    "vj": "VJ Muba Vj Muba",
+    "slug": "the-silent-twins-vj-muba-vj-muba",
+    "url": "https://naraboxtv.com/movies/the-silent-twins-vj-muba-vj-muba",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/1020/the-silent-twins-by-vj-muba-naraboxtvcom-720p-20260910135121-ru75nzim.mp4",
+    "poster": null,
+    "overview": "Watch The Silent Twins - VJ Muba, translated by Vj Muba, on NaraBox TV. June and Jennifer Gibbons are twins from the only Black family in a small town in Wales..."
   },
   {
     "title": "Day Shift",
@@ -3071,11 +3116,11 @@
   {
     "title": "Fantastic Beasts The Secrets Of Dumbledore Part",
     "vj": "VJ Junior",
-    "slug": "fantastic-beasts-the-secrets-of-dumbledore-part-2-vj-junior",
-    "url": "https://naraboxtv.com/movies/fantastic-beasts-the-secrets-of-dumbledore-part-2-vj-junior",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/775/fantastic-beasts-the-crimes-of-grindelwald-2-by-vj-junior-naraboxtvcom-720p-20260905090333-azqwfsy7.mp4",
+    "slug": "fantastic-beasts-the-secrets-of-dumbledore-part-1-vj-junior",
+    "url": "https://naraboxtv.com/movies/fantastic-beasts-the-secrets-of-dumbledore-part-1-vj-junior",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/773/fantastic-beasts-the-crimes-of-grindelwald-by-vj-junior-naraboxtvcom-20260911181458-cxqc4k5a.mp4",
     "poster": null,
-    "overview": "Watch Fantastic Beasts: The Secrets of Dumbledore - Part 2, translated by VJ Junior, on NaraBox TV. Professor Albus Dumbledore knows the powerful, dark wizard..."
+    "overview": "Watch Fantastic Beasts: The Secrets of Dumbledore - Part 1, translated by VJ Junior, on NaraBox TV. Professor Albus Dumbledore knows the powerful, dark wizard..."
   },
   {
     "title": "The Guilty",
@@ -3085,6 +3130,24 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/movies/275/the-guilty-by-vj-junior-naraboxtvcom-720p-20260901001339-x0ubq1nc.mp4",
     "poster": null,
     "overview": "Watch The Guilty - VJ Junior, translated by VJ Junior, on NaraBox TV. A demoted police officer assigned to a call dispatch desk is conflicted when he receives..."
+  },
+  {
+    "title": "Angel In The Rubble The Genelle Guzman Story",
+    "vj": "VJ Jabel",
+    "slug": "angel-in-the-rubble-the-genelle-guzman-story-vj-jabel",
+    "url": "https://naraboxtv.com/movies/angel-in-the-rubble-the-genelle-guzman-story-vj-jabel",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/telescope/2026/10/26/4232caf4-96e5-5b8b-b333-bf90c4da5705/ANGEL-IN-THE-RUBBLE-VJJABEL-%28DRAMA%29.mp4",
+    "poster": null,
+    "overview": "Watch Angel in the Rubble: The Genelle Guzman Story, translated by VJ Jabel , on NaraBox TV. A Lifetime original recounting the true story of Genelle Guzman,..."
+  },
+  {
+    "title": "Pinocchio Unstrung",
+    "vj": "VJ Emmy Vj Emmy",
+    "slug": "pinocchio-unstrung-vj-emmy-vj-emmy",
+    "url": "https://naraboxtv.com/movies/pinocchio-unstrung-vj-emmy-vj-emmy",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/2516/pinocchio-unstrung-by-vj-emmy-naraboxtvcom-720p-20261021130750-fmul05gc.mp4",
+    "poster": null,
+    "overview": "Watch Pinocchio: Unstrung - vj emmy, translated by VJ Emmy, on NaraBox TV. Influenced by a sinister Cricket and created by Geppetto, Pinocchio launches a..."
   },
   {
     "title": "Ready Player One",
@@ -3105,6 +3168,15 @@
     "overview": "Watch No Hard Feelings - vj junior, translated by VJ Junior, on NaraBox TV. On the brink of losing her childhood home, Maddie discovers an intriguing job..."
   },
   {
+    "title": "I Am What I Am",
+    "vj": "VJ Neil",
+    "slug": "i-am-what-i-am-2-vj-neil",
+    "url": "https://naraboxtv.com/movies/i-am-what-i-am-2-vj-neil",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/2389/i-am-what-i-am-2-vj-neil-720p-20261002010356-heuoaq28.mp4",
+    "poster": null,
+    "overview": "Watch I Am What I Am 2 - vj neil on NaraBox TV. Gyun, an unknown person who came to Shanghai to work, agreed to represent the declining Chuanwu Boxing Gym to..."
+  },
+  {
     "title": "Ninja",
     "vj": "VJ Ice P Vj Ice P",
     "slug": "ninja-vj-ice-p-vj-ice-p",
@@ -3112,6 +3184,15 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/movies/2282/ninja-vj-ice-p-720p-20260918164709-1uutty2q.mp4",
     "poster": null,
     "overview": "Watch Ninja - VJ Ice P, translated by Vj Ice P, on NaraBox TV. A westerner named Casey, studying Ninjutsu in Japan, is asked by the Sensei to return to New..."
+  },
+  {
+    "title": "The Mother",
+    "vj": "VJ Junior Vj Junior",
+    "slug": "the-mother-vj-junior-vj-junior",
+    "url": "https://naraboxtv.com/movies/the-mother-vj-junior-vj-junior",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/a11c3163-893e-4590-b63a-f5bf1da234c8/faststart/The_Mother_by_Vj_Junior_naraboxtv_com_play.mp4",
+    "poster": null,
+    "overview": "Watch The Mother - vj junior, translated by VJ Junior, on NaraBox TV. A deadly female assassin comes out of hiding to protect the daughter that she gave up..."
   },
   {
     "title": "Stolen Girl",
@@ -3123,15 +3204,6 @@
     "overview": "Watch Stolen Girl - VJ Muba, translated by Vj Muba, on NaraBox TV. In 1993, Maureen’s six-year-old daughter Amina is snuck out of the country by her..."
   },
   {
-    "title": "Homefront",
-    "vj": "VJ Junior",
-    "slug": "homefront-vj-junior",
-    "url": "https://naraboxtv.com/movies/homefront-vj-junior",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/4ecc2f04-4d49-40d4-9a24-767de0dacd04/faststart/HomeFront_by_Vj_Junior_naraboxtv_com_play.mp4",
-    "poster": null,
-    "overview": "Watch Homefront - vj junior on NaraBox TV. Phil Broker, a retired DEA agent, leads a quiet life with his daughter Maddy, until a school bullying incident draws..."
-  },
-  {
     "title": "A Million Ways To Die In The West",
     "vj": "VJ Emmy",
     "slug": "a-million-ways-to-die-in-the-west-vj-emmy",
@@ -3141,13 +3213,13 @@
     "overview": "Watch A Million Ways to Die in the West - vj emmy on NaraBox TV. As a cowardly farmer begins to fall for the mysterious new woman in town, he must put his..."
   },
   {
-    "title": "The Hustle",
-    "vj": "VJ Emmy Vj Emmy 1",
-    "slug": "the-hustle-vj-emmy-vj-emmy-1",
-    "url": "https://naraboxtv.com/movies/the-hustle-vj-emmy-vj-emmy-1",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/1989/the-hustle-vj-emmy-480-720p-20260913014917-cynblcst.mp4",
+    "title": "Homefront",
+    "vj": "VJ Junior",
+    "slug": "homefront-vj-junior",
+    "url": "https://naraboxtv.com/movies/homefront-vj-junior",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/4ecc2f04-4d49-40d4-9a24-767de0dacd04/faststart/HomeFront_by_Vj_Junior_naraboxtv_com_play.mp4",
     "poster": null,
-    "overview": "Watch The Hustle - VJ Emmy, translated by VJ Emmy, on NaraBox TV. Disenchanted pest worker and single dad Freddie Manning unintentionally steals and then loses..."
+    "overview": "Watch Homefront - vj junior on NaraBox TV. Phil Broker, a retired DEA agent, leads a quiet life with his daughter Maddy, until a school bullying incident draws..."
   },
   {
     "title": "Dont Breathe",
@@ -3157,6 +3229,15 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/movies/1994/dont-breathe-by-vj-junior-naraboxtvcom-720p-20260913092512-5jxsqgg2.mp4",
     "poster": null,
     "overview": "Watch Don&#x27;t Breathe - VJ Junior, translated by VJ Junior, on NaraBox TV. A group of teens break into a blind man&#x27;s home thinking they&#x27;ll get away with the..."
+  },
+  {
+    "title": "The Hustle",
+    "vj": "VJ Emmy Vj Emmy 1",
+    "slug": "the-hustle-vj-emmy-vj-emmy-1",
+    "url": "https://naraboxtv.com/movies/the-hustle-vj-emmy-vj-emmy-1",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/1989/the-hustle-vj-emmy-480-720p-20260913014917-cynblcst.mp4",
+    "poster": null,
+    "overview": "Watch The Hustle - VJ Emmy, translated by VJ Emmy, on NaraBox TV. Disenchanted pest worker and single dad Freddie Manning unintentionally steals and then loses..."
   },
   {
     "title": "Romeo And Juliet",
@@ -3186,15 +3267,6 @@
     "overview": "Watch Alpha Part 2 - VJ Shield, translated by VJ Shield, on NaraBox TV. When Sita, a highly trained assassin raised in isolation as a super-soldier by a rogue..."
   },
   {
-    "title": "Cold Souls",
-    "vj": "VJ Kriss Sweet",
-    "slug": "cold-souls-vj-kriss-sweet",
-    "url": "https://naraboxtv.com/movies/cold-souls-vj-kriss-sweet",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/1871/cold-souls-vj-kriss-sweet-720p-20260904002137-9jtal2mn.mp4",
-    "poster": null,
-    "overview": "Watch Cold Souls, translated by VJ Kriss Sweet, on NaraBox TV. Paul is agonising over his interpretation of &#x27;Uncle Vanya&#x27; and, paralysed by anxiety, stumbles..."
-  },
-  {
     "title": "Bairagee Part",
     "vj": "VJ Shield Vj Shield",
     "slug": "bairagee-part-2-vj-shield-vj-shield",
@@ -3202,15 +3274,6 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/868ed736-883c-4d60-9b7d-8312136b935b/original/BAIRAGEE_01.___VJ_SHIELD.2026__Merged_naraboxtv_com.mp4",
     "poster": null,
     "overview": "Watch Bairagee Part 2 - VJ Shield, translated by VJ Shield, on NaraBox TV. Huli Shiva, a hulivesha artiste, works in a police station, doing odd jobs. When he..."
-  },
-  {
-    "title": "Bairagee Part",
-    "vj": "VJ Shield Vj Shield",
-    "slug": "bairagee-part-1-vj-shield-vj-shield",
-    "url": "https://naraboxtv.com/movies/bairagee-part-1-vj-shield-vj-shield",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/59c1cdf1-5c14-43a7-a7b9-b0f12e377ed8/original/BAIRAGEE_01.___VJ_SHIELD.2026__Merged_naraboxtv_com.mp4",
-    "poster": null,
-    "overview": "Watch Bairagee Part 1 - VJ Shield, translated by VJ Shield, on NaraBox TV. Huli Shiva, a hulivesha artiste, works in a police station, doing odd jobs. When he..."
   },
   {
     "title": "Escobank",
@@ -3222,6 +3285,15 @@
     "overview": "Watch Escobank - VJ Emmy, translated by VJ Emmy, on NaraBox TV. A ragtag group of misfits, veterans and ex-cons embark on a perilous journey in the jungles of..."
   },
   {
+    "title": "Bairagee Part",
+    "vj": "VJ Shield Vj Shield",
+    "slug": "bairagee-part-1-vj-shield-vj-shield",
+    "url": "https://naraboxtv.com/movies/bairagee-part-1-vj-shield-vj-shield",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/59c1cdf1-5c14-43a7-a7b9-b0f12e377ed8/original/BAIRAGEE_01.___VJ_SHIELD.2026__Merged_naraboxtv_com.mp4",
+    "poster": null,
+    "overview": "Watch Bairagee Part 1 - VJ Shield, translated by VJ Shield, on NaraBox TV. Huli Shiva, a hulivesha artiste, works in a police station, doing odd jobs. When he..."
+  },
+  {
     "title": "The Aeronauts",
     "vj": "VJ Emmy Vj Emmy",
     "slug": "the-aeronauts-vj-emmy-vj-emmy",
@@ -3231,15 +3303,6 @@
     "overview": "Watch The Aeronauts - VJ Emmy, translated by VJ Emmy, on NaraBox TV. In 1862, daredevil balloon pilot Amelia Wren teams up with pioneering meteorologist James..."
   },
   {
-    "title": "Spiderhead",
-    "vj": "VJ Junior",
-    "slug": "spiderhead-vj-junior",
-    "url": "https://naraboxtv.com/movies/spiderhead-vj-junior",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/959/spiderhead-by-vj-junior-naraboxtvcom-720p-20260910155039-ot5mjbe8.mp4",
-    "poster": null,
-    "overview": "Watch Spiderhead - VJ Junior, translated by VJ Junior, on NaraBox TV. A prisoner in a state-of-the-art penitentiary begins to question the purpose of the..."
-  },
-  {
     "title": "Sonic The Hedgehog",
     "vj": "VJ Kevo Vj Kevo",
     "slug": "sonic-the-hedgehog-2-vj-kevo-vj-kevo",
@@ -3247,15 +3310,6 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/movies/565/sonic-the-hedgehog-2-by-vj-kevo-naraboxtvcom-720p-20260911060756-y8e15d4a.mp4",
     "poster": null,
     "overview": "Watch Sonic the Hedgehog 2 - VJ Kevo, translated by VJ Kevo, on NaraBox TV. After settling in Green Hills, Sonic is eager to prove he has what it takes to be a..."
-  },
-  {
-    "title": "Fantastic Beasts The Secrets Of Dumbledore Part",
-    "vj": "VJ Junior",
-    "slug": "fantastic-beasts-the-secrets-of-dumbledore-part-1-vj-junior",
-    "url": "https://naraboxtv.com/movies/fantastic-beasts-the-secrets-of-dumbledore-part-1-vj-junior",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/773/fantastic-beasts-the-crimes-of-grindelwald-by-vj-junior-naraboxtvcom-20260911181458-cxqc4k5a.mp4",
-    "poster": null,
-    "overview": "Watch Fantastic Beasts: The Secrets of Dumbledore - Part 1, translated by VJ Junior, on NaraBox TV. Professor Albus Dumbledore knows the powerful, dark wizard..."
   },
   {
     "title": "Fear Street",
@@ -3312,51 +3366,6 @@
     "overview": "Watch About Time - VJ Junior, translated by VJ Junior, on NaraBox TV. The night after another unsatisfactory New Year&#x27;s party, Tim&#x27;s father tells his son that..."
   },
   {
-    "title": "Verity",
-    "vj": "VJ Junior",
-    "slug": "verity-vj-junior",
-    "url": "https://naraboxtv.com/movies/verity-vj-junior",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/telescope/2026/10/29/d68959cd-eb45-5dbd-8799-5f4044d0fa9d/VERITY-JR-2026.mp4",
-    "poster": null,
-    "overview": "Watch Verity, translated by VJ Junior, on NaraBox TV. Lowen Ashleigh, hired to ghostwrite for best-selling author Verity Crawford, uncovers Verity&#x27;s..."
-  },
-  {
-    "title": "Ninja Wars Blackfox Vs Shoguns Ninja",
-    "vj": "VJ Muba",
-    "slug": "ninja-wars-blackfox-vs-shoguns-ninja-vj-muba",
-    "url": "https://naraboxtv.com/movies/ninja-wars-blackfox-vs-shoguns-ninja-vj-muba",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/telescope/2026/10/27/70ecbe3d-7f60-5fe2-87f8-ee79a66a00e7/NINJA-WARS-BLACKFOX-VS-SHOGUN-S-NINJA-VJ-MUBA-2026.mp4",
-    "poster": null,
-    "overview": "Watch Ninja Wars: BlackFox vs Shogun&#x27;s Ninja, translated by Vj Muba, on NaraBox TV. Rikka Isurugi (Chihiro Yamamoto), head of the Fox Clan, is investigating..."
-  },
-  {
-    "title": "Angel In The Rubble The Genelle Guzman Story",
-    "vj": "VJ Jabel",
-    "slug": "angel-in-the-rubble-the-genelle-guzman-story-vj-jabel",
-    "url": "https://naraboxtv.com/movies/angel-in-the-rubble-the-genelle-guzman-story-vj-jabel",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/telescope/2026/10/26/4232caf4-96e5-5b8b-b333-bf90c4da5705/ANGEL-IN-THE-RUBBLE-VJJABEL-%28DRAMA%29.mp4",
-    "poster": null,
-    "overview": "Watch Angel in the Rubble: The Genelle Guzman Story, translated by VJ Jabel , on NaraBox TV. A Lifetime original recounting the true story of Genelle Guzman,..."
-  },
-  {
-    "title": "Pinocchio Unstrung",
-    "vj": "VJ Emmy Vj Emmy",
-    "slug": "pinocchio-unstrung-vj-emmy-vj-emmy",
-    "url": "https://naraboxtv.com/movies/pinocchio-unstrung-vj-emmy-vj-emmy",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/2516/pinocchio-unstrung-by-vj-emmy-naraboxtvcom-720p-20261021130750-fmul05gc.mp4",
-    "poster": null,
-    "overview": "Watch Pinocchio: Unstrung - vj emmy, translated by VJ Emmy, on NaraBox TV. Influenced by a sinister Cricket and created by Geppetto, Pinocchio launches a..."
-  },
-  {
-    "title": "I Am What I Am",
-    "vj": "VJ Neil",
-    "slug": "i-am-what-i-am-2-vj-neil",
-    "url": "https://naraboxtv.com/movies/i-am-what-i-am-2-vj-neil",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/2389/i-am-what-i-am-2-vj-neil-720p-20261002010356-heuoaq28.mp4",
-    "poster": null,
-    "overview": "Watch I Am What I Am 2 - vj neil on NaraBox TV. Gyun, an unknown person who came to Shanghai to work, agreed to represent the declining Chuanwu Boxing Gym to..."
-  },
-  {
     "title": "Yadang The Snitch",
     "vj": "VJ Muba",
     "slug": "yadang-the-snitch-vj-muba",
@@ -3373,15 +3382,6 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/movies/2280/insan-2-vj-mk-kisule-720p-20260918164109-qhcxm41t.mp4",
     "poster": null,
     "overview": "Watch Insan - Part 2 - VJ MK, translated by VJ MK Kisuule, on NaraBox TV. A grieving policeman and a rickshaw driver are brought together by a dark, tragic..."
-  },
-  {
-    "title": "The Mother",
-    "vj": "VJ Junior Vj Junior",
-    "slug": "the-mother-vj-junior-vj-junior",
-    "url": "https://naraboxtv.com/movies/the-mother-vj-junior-vj-junior",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/a11c3163-893e-4590-b63a-f5bf1da234c8/faststart/The_Mother_by_Vj_Junior_naraboxtv_com_play.mp4",
-    "poster": null,
-    "overview": "Watch The Mother - vj junior, translated by VJ Junior, on NaraBox TV. A deadly female assassin comes out of hiding to protect the daughter that she gave up..."
   },
   {
     "title": "Super",
@@ -3588,7 +3588,7 @@
     "url": "https://naraboxtv.com/movies/tailless-vj-uncle-t-vj-uncle-t",
     "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/ac0e579b-4d03-4cde-8037-c73cb3ba4a5d/faststart/TAILLESS_2026_-_VJ_UNCLE_T_1080p__LBM_naraboxtv_com_play.mp4",
     "poster": null,
-    "overview": "Translated by VJ Uncle T. Sam, a young lizard without a tail, is looking for a new one to win over the love of her life."
+    "overview": "Watch Tailless - VJ Uncle T, translated by VJ Uncle T, on NaraBox TV. Sam, a young lizard without a tail, is looking for a new one to win over the love of her..."
   },
   {
     "title": "The Man From Toronto",
@@ -3609,15 +3609,6 @@
     "overview": "Watch Amsterdam - VJ Muba, translated by Vj Muba, on NaraBox TV. In the 1930s, three friends—a doctor, a nurse, and an attorney—witness a murder, become..."
   },
   {
-    "title": "Barbarian",
-    "vj": "VJ Muba Vj Muba",
-    "slug": "barbarian-vj-muba-vj-muba",
-    "url": "https://naraboxtv.com/movies/barbarian-vj-muba-vj-muba",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/980/barbarians-rising-by-vj-muba-naraboxtvcom-720p-20260910144925-kkgbvt0l.mp4",
-    "poster": null,
-    "overview": "Watch Barbarian - VJ Muba, translated by Vj Muba, on NaraBox TV. In town for a job interview, a young woman arrives at her Airbnb late at night only to find..."
-  },
-  {
     "title": "Under Fire",
     "vj": "VJ Emmy Vj Emmy",
     "slug": "under-fire-vj-emmy-vj-emmy",
@@ -3625,6 +3616,15 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/movies/993/under-fire-by-vj-emmy-naraboxtvcom-720p-20260910133729-9rmwsr9j.mp4",
     "poster": null,
     "overview": "Watch Under Fire - VJ Emmy, translated by VJ Emmy, on NaraBox TV. Story unfolds in the scorching heat of the Mexico border, where rival drug dealers Griff and..."
+  },
+  {
+    "title": "Barbarian",
+    "vj": "VJ Muba Vj Muba",
+    "slug": "barbarian-vj-muba-vj-muba",
+    "url": "https://naraboxtv.com/movies/barbarian-vj-muba-vj-muba",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/980/barbarians-rising-by-vj-muba-naraboxtvcom-720p-20260910144925-kkgbvt0l.mp4",
+    "poster": null,
+    "overview": "Watch Barbarian - VJ Muba, translated by Vj Muba, on NaraBox TV. In town for a job interview, a young woman arrives at her Airbnb late at night only to find..."
   },
   {
     "title": "Pinocchio",
@@ -3663,6 +3663,15 @@
     "overview": "Watch Whitney Houston: I Wanna Dance with Somebody, translated by VJ Junior, on NaraBox TV. The joyous, emotional, heartbreaking celebration of the life and..."
   },
   {
+    "title": "Ticket To Paradise",
+    "vj": "VJ Junior Vj Junior",
+    "slug": "ticket-to-paradise-vj-junior-vj-junior",
+    "url": "https://naraboxtv.com/movies/ticket-to-paradise-vj-junior-vj-junior",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/943/ticket-to-paradise-by-vj-junior-naraboxtvcom-720p-20260910180543-80vpyiju.mp4",
+    "poster": null,
+    "overview": "Watch Ticket to Paradise - VJ Junior, translated by VJ Junior, on NaraBox TV. Divorced couple Georgia and David find themselves on a shared mission: they team..."
+  },
+  {
     "title": "Black Panther Wakanda Forever",
     "vj": "VJ Junior Vj Junior",
     "slug": "black-panther-wakanda-forever-vj-junior-vj-junior",
@@ -3672,13 +3681,13 @@
     "overview": "Watch Black Panther: Wakanda Forever - VJ Junior, translated by VJ Junior, on NaraBox TV. Queen Ramonda, Shuri, M’Baku, Okoye and the Dora Milaje fight to..."
   },
   {
-    "title": "Ticket To Paradise",
-    "vj": "VJ Junior Vj Junior",
-    "slug": "ticket-to-paradise-vj-junior-vj-junior",
-    "url": "https://naraboxtv.com/movies/ticket-to-paradise-vj-junior-vj-junior",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/943/ticket-to-paradise-by-vj-junior-naraboxtvcom-720p-20260910180543-80vpyiju.mp4",
+    "title": "Shazam Fury Of The Gods",
+    "vj": "VJ Ice P Vj Ice P",
+    "slug": "shazam-fury-of-the-gods-vj-ice-p-vj-ice-p",
+    "url": "https://naraboxtv.com/movies/shazam-fury-of-the-gods-vj-ice-p-vj-ice-p",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/822/shazam-fury-of-the-gods-by-vj-emmy-naraboxtvcom-720p-20260911174430-6tzjtegn.mp4",
     "poster": null,
-    "overview": "Watch Ticket to Paradise - VJ Junior, translated by VJ Junior, on NaraBox TV. Divorced couple Georgia and David find themselves on a shared mission: they team..."
+    "overview": "Watch Shazam! Fury of the Gods - VJ Ice P, translated by Vj Ice P, on NaraBox TV. Billy Batson and his foster siblings, who transform into superheroes by..."
   },
   {
     "title": "Reminiscence",
@@ -3733,6 +3742,15 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/movies/277/hush-by-vj-junior-naraboxtvcom-480p-20260901002419-lr9vsfsr.mp4",
     "poster": null,
     "overview": "Watch Hush - VJ Junior, translated by VJ Junior, on NaraBox TV. A deaf woman is stalked by a psychotic killer in her secluded home."
+  },
+  {
+    "title": "Practical Magic",
+    "vj": "VJ Emmy Vj Emmy",
+    "slug": "practical-magic-2-vj-emmy-vj-emmy",
+    "url": "https://naraboxtv.com/movies/practical-magic-2-vj-emmy-vj-emmy",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/2520/practical-magic-2-by-vj-emmy-naraboxtvcom-720p-20261021132426-hlfjj8mp.mp4",
+    "poster": null,
+    "overview": "Watch Practical Magic 2 - vj emmy, translated by VJ Emmy, on NaraBox TV. The Owens sisters must confront the dark curse that threatens to unravel their family..."
   },
   {
     "title": "K Pops",
@@ -3791,20 +3809,20 @@
   {
     "title": "Borbaad Part",
     "vj": "VJ Muba Vj Muba",
-    "slug": "borbaad-part-2-vj-muba-vj-muba",
-    "url": "https://naraboxtv.com/movies/borbaad-part-2-vj-muba-vj-muba",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/2142/borbaad-2-by-vj-muba-naraboxtvcom-720p-20260916120651-mj2axqts.mp4",
-    "poster": null,
-    "overview": "Watch Borbaad part 2 - VJ Muba, translated by Vj Muba, on NaraBox TV. After a heartbreak by Nitu, Ariyan Mirza seeks revenge, guided by his father Adib Mirza&#x27;s..."
-  },
-  {
-    "title": "Borbaad Part",
-    "vj": "VJ Muba Vj Muba",
     "slug": "borbaad-part-1-vj-muba-vj-muba",
     "url": "https://naraboxtv.com/movies/borbaad-part-1-vj-muba-vj-muba",
     "mp4": "https://nbxgen.naraboxtv.com/videos/movies/2140/borbaad-by-vj-muba-naraboxtvcom-720p-20260916115932-cba3eyja.mp4",
     "poster": null,
     "overview": "Watch Borbaad part 1 - VJ Muba, translated by Vj Muba, on NaraBox TV. After a heartbreak by Nitu, Ariyan Mirza seeks revenge, guided by his father Adib Mirza&#x27;s..."
+  },
+  {
+    "title": "Borbaad Part",
+    "vj": "VJ Muba Vj Muba",
+    "slug": "borbaad-part-2-vj-muba-vj-muba",
+    "url": "https://naraboxtv.com/movies/borbaad-part-2-vj-muba-vj-muba",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/2142/borbaad-2-by-vj-muba-naraboxtvcom-720p-20260916120651-mj2axqts.mp4",
+    "poster": null,
+    "overview": "Watch Borbaad part 2 - VJ Muba, translated by Vj Muba, on NaraBox TV. After a heartbreak by Nitu, Ariyan Mirza seeks revenge, guided by his father Adib Mirza&#x27;s..."
   },
   {
     "title": "Grudge Match",
@@ -3942,6 +3960,15 @@
     "overview": "Watch The Call - VJ Emmy , translated by VJ Emmy, on NaraBox TV. Jordan Turner is an experienced 911 operator but when she makes an error in judgment and a..."
   },
   {
+    "title": "Girl In The Attic",
+    "vj": "VJ Emmy Vj Emmy",
+    "slug": "girl-in-the-attic-vj-emmy-vj-emmy",
+    "url": "https://naraboxtv.com/movies/girl-in-the-attic-vj-emmy-vj-emmy",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/987/girl-in-the-attic-by-vj-emmy-naraboxtvcom-720p-20260910140021-xe8gslt1.mp4",
+    "poster": null,
+    "overview": "Watch Girl in the Attic - VJ Emmy, translated by VJ Emmy, on NaraBox TV. Kelsey honors her late mother by training for a marathon and sharing her journey..."
+  },
+  {
     "title": "One Way",
     "vj": "VJ Muba Vj Muba",
     "slug": "one-way-vj-muba-vj-muba",
@@ -3949,24 +3976,6 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/movies/977/one-way-by-vj-muba-naraboxtvcom-720p-20260910145254-kl2ryumz.mp4",
     "poster": null,
     "overview": "Watch One Way - VJ Muba, translated by Vj Muba, on NaraBox TV. On the run with a bag full of cash after a robbing his former crime boss—and a potentially..."
-  },
-  {
-    "title": "Paws Of Fury The Legend Of Hank",
-    "vj": "VJ Kevo Vj Kevo",
-    "slug": "paws-of-fury-the-legend-of-hank-vj-kevo-vj-kevo",
-    "url": "https://naraboxtv.com/movies/paws-of-fury-the-legend-of-hank-vj-kevo-vj-kevo",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/961/paws-of-fury-the-legend-of-hank-by-vj-kevo-naraboxtvcom-720p-20260910155927-krjjt25g.mp4",
-    "poster": null,
-    "overview": "Watch Paws of Fury: The Legend of Hank - VJ Kevo, translated by VJ Kevo, on NaraBox TV. A hard-on-his-luck hound finds himself in a town full of cats in need..."
-  },
-  {
-    "title": "Jurassic World Dominion",
-    "vj": "VJ Junior Vj Junior",
-    "slug": "jurassic-world-dominion-vj-junior-vj-junior",
-    "url": "https://naraboxtv.com/movies/jurassic-world-dominion-vj-junior-vj-junior",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/956/jurassic-world-dominion-by-vj-junior-naraboxtvcom-720p-20260910180829-6na7iit4.mp4",
-    "poster": null,
-    "overview": "Watch Jurassic World Dominion - VJ Junior, translated by VJ Junior, on NaraBox TV. Four years after Isla Nublar was destroyed, dinosaurs now live—and..."
   },
   {
     "title": "The Hating Game",
@@ -3978,6 +3987,24 @@
     "overview": "Watch The Hating Game - VJ Junior, translated by VJ Junior, on NaraBox TV. Resolving to achieve professional success without compromising her ethics, Lucy..."
   },
   {
+    "title": "Jurassic World Dominion",
+    "vj": "VJ Junior Vj Junior",
+    "slug": "jurassic-world-dominion-vj-junior-vj-junior",
+    "url": "https://naraboxtv.com/movies/jurassic-world-dominion-vj-junior-vj-junior",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/956/jurassic-world-dominion-by-vj-junior-naraboxtvcom-720p-20260910180829-6na7iit4.mp4",
+    "poster": null,
+    "overview": "Watch Jurassic World Dominion - VJ Junior, translated by VJ Junior, on NaraBox TV. Four years after Isla Nublar was destroyed, dinosaurs now live—and..."
+  },
+  {
+    "title": "Paws Of Fury The Legend Of Hank",
+    "vj": "VJ Kevo Vj Kevo",
+    "slug": "paws-of-fury-the-legend-of-hank-vj-kevo-vj-kevo",
+    "url": "https://naraboxtv.com/movies/paws-of-fury-the-legend-of-hank-vj-kevo-vj-kevo",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/961/paws-of-fury-the-legend-of-hank-by-vj-kevo-naraboxtvcom-720p-20260910155927-krjjt25g.mp4",
+    "poster": null,
+    "overview": "Watch Paws of Fury: The Legend of Hank - VJ Kevo, translated by VJ Kevo, on NaraBox TV. A hard-on-his-luck hound finds himself in a town full of cats in need..."
+  },
+  {
     "title": "Bullet",
     "vj": "VJ Jingo Vj Jingo",
     "slug": "bullet-vj-jingo-vj-jingo",
@@ -3985,15 +4012,6 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/movies/841/iron-fighter-by-vj-jingo-naraboxtvcom-720p-20260911173939-dgxfot3n.mp4",
     "poster": null,
     "overview": "Watch Bullet - VJ Jingo, translated by VJ Jingo, on NaraBox TV. A tough, Jewish ex-con just released from prison crosses a powerful drug dealer and former..."
-  },
-  {
-    "title": "Shazam Fury Of The Gods",
-    "vj": "VJ Ice P Vj Ice P",
-    "slug": "shazam-fury-of-the-gods-vj-ice-p-vj-ice-p",
-    "url": "https://naraboxtv.com/movies/shazam-fury-of-the-gods-vj-ice-p-vj-ice-p",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/822/shazam-fury-of-the-gods-by-vj-emmy-naraboxtvcom-720p-20260911174430-6tzjtegn.mp4",
-    "poster": null,
-    "overview": "Watch Shazam! Fury of the Gods - VJ Ice P, translated by Vj Ice P, on NaraBox TV. Billy Batson and his foster siblings, who transform into superheroes by..."
   },
   {
     "title": "The Misfits",
@@ -4095,6 +4113,15 @@
     "overview": "Watch Mission: Impossible II - VJ EMMY, translated by VJ Emmy, on NaraBox TV. With computer genius Luther Stickell at his side and a beautiful thief on his..."
   },
   {
+    "title": "Love Comes Softly",
+    "vj": "VJ Junior Vj Junior",
+    "slug": "love-comes-softly-vj-junior-vj-junior",
+    "url": "https://naraboxtv.com/movies/love-comes-softly-vj-junior-vj-junior",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/2398/love-comes-softly-vj-junior-720p-20261002014941-checoexn.mp4",
+    "poster": null,
+    "overview": "Watch Love Comes Softly - vj junior, translated by VJ Junior, on NaraBox TV. Nineteen year old pioneer woman Marty has recently married. She goes west with her..."
+  },
+  {
     "title": "Awarapan 2 Part Two",
     "vj": "VJ Shield",
     "slug": "awarapan-2-part-two-vj-shield",
@@ -4113,15 +4140,6 @@
     "overview": "Watch Awarapan 2 Part 0ne, translated by VJ Shield, on NaraBox TV. Shivam returns to the crime world, where his path forward demands redemption, love, and..."
   },
   {
-    "title": "Clash Of The Thundermans",
-    "vj": "VJ Neil Vj Neil",
-    "slug": "clash-of-the-thundermans-vj-neil-vj-neil",
-    "url": "https://naraboxtv.com/movies/clash-of-the-thundermans-vj-neil-vj-neil",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/2387/clash-of-the-thundermans-vj-neil-720p-20261002005307-126wbgdu.mp4",
-    "poster": null,
-    "overview": "Watch Clash of the Thundermans - vj Neil, translated by VJ Neil, on NaraBox TV. When Chloe develops a destructive new superpower, the Hero League orders her to..."
-  },
-  {
     "title": "Mr X Part",
     "vj": "VJ Ice P Vj Ice P",
     "slug": "mr-x-part-2-vj-ice-p-vj-ice-p",
@@ -4129,6 +4147,15 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/telescope/2026/09/27/98790908-9e7b-5103-ad37-dd57db75c8d9/MR.-X-2-VJ-ICE-P-2026-1080p-%28NO-S%29.mp4",
     "poster": null,
     "overview": "Watch Mr. X - Part 2 vj ice p, translated by Vj Ice P, on NaraBox TV. Centers on secret intelligence agency cases involving five major national threats that..."
+  },
+  {
+    "title": "Clash Of The Thundermans",
+    "vj": "VJ Neil Vj Neil",
+    "slug": "clash-of-the-thundermans-vj-neil-vj-neil",
+    "url": "https://naraboxtv.com/movies/clash-of-the-thundermans-vj-neil-vj-neil",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/2387/clash-of-the-thundermans-vj-neil-720p-20261002005307-126wbgdu.mp4",
+    "poster": null,
+    "overview": "Watch Clash of the Thundermans - vj Neil, translated by VJ Neil, on NaraBox TV. When Chloe develops a destructive new superpower, the Hero League orders her to..."
   },
   {
     "title": "Raya And The Last Dragon",
@@ -4275,6 +4302,24 @@
     "overview": "Watch Righteous Ties - VJ Soul - Part 1, translated by Vj Soul, on NaraBox TV. After learning his boss betrayed him, a mob lackey plans to break out of prison..."
   },
   {
+    "title": "Small Soldiers",
+    "vj": "VJ Soul Vj Soul",
+    "slug": "small-soldiers-vj-soul-vj-soul",
+    "url": "https://naraboxtv.com/movies/small-soldiers-vj-soul-vj-soul",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/f1e7fd93-2115-426d-988f-b9a3bd2ad8c2/faststart/SMALL_SOLDIERS.VJ_SOUL._AM24_7_.2026_naraboxtv_com_play.mp4",
+    "poster": null,
+    "overview": "Watch Small Soldiers - VJ Soul, translated by Vj Soul, on NaraBox TV. When missile technology is used to enhance toy action figures, the toys soon begin to..."
+  },
+  {
+    "title": "The Conjuring Last Rites",
+    "vj": "VJ Emmy Vj Emmy",
+    "slug": "the-conjuring-last-rites-vj-emmy-vj-emmy",
+    "url": "https://naraboxtv.com/movies/the-conjuring-last-rites-vj-emmy-vj-emmy",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/994/the-conjuring-last-rites-by-vj-emmy-naraboxtvcom-720p-20260910133520-rl0c4kuw.mp4",
+    "poster": null,
+    "overview": "Watch The Conjuring: Last Rites - VJ Emmy , translated by VJ Emmy, on NaraBox TV. Paranormal investigators Ed and Lorraine Warren take on one last terrifying..."
+  },
+  {
     "title": "Misdirection",
     "vj": "VJ Emmy Vj Emmy",
     "slug": "misdirection-vj-emmy-vj-emmy",
@@ -4291,15 +4336,6 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/movies/985/exit-speed-by-vj-emmy-naraboxtvcom-720p-20260910140601-u3tk5wip.mp4",
     "poster": null,
     "overview": "Watch Exit Speed - VJ Junior , translated by VJ Emmy, on NaraBox TV. On Christmas Eve, ten strangers board a bus traveling across Texas and are forced off the..."
-  },
-  {
-    "title": "The Conjuring Last Rites",
-    "vj": "VJ Emmy Vj Emmy",
-    "slug": "the-conjuring-last-rites-vj-emmy-vj-emmy",
-    "url": "https://naraboxtv.com/movies/the-conjuring-last-rites-vj-emmy-vj-emmy",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/994/the-conjuring-last-rites-by-vj-emmy-naraboxtvcom-720p-20260910133520-rl0c4kuw.mp4",
-    "poster": null,
-    "overview": "Watch The Conjuring: Last Rites - VJ Emmy , translated by VJ Emmy, on NaraBox TV. Paranormal investigators Ed and Lorraine Warren take on one last terrifying..."
   },
   {
     "title": "Not Without Hope",
@@ -4320,15 +4356,6 @@
     "overview": "Watch Wrong Place - VJ Junior, translated by VJ Junior, on NaraBox TV. A methamphetamine cook hunts down the former police chief of a small town in order to..."
   },
   {
-    "title": "Father Of The Bride",
-    "vj": "VJ Junior Vj Junior",
-    "slug": "father-of-the-bride-vj-junior-vj-junior",
-    "url": "https://naraboxtv.com/movies/father-of-the-bride-vj-junior-vj-junior",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/957/father-of-the-bride-by-vj-junior-naraboxtvcom-720p-20260910181308-osabafb7.mp4",
-    "poster": null,
-    "overview": "Watch Father of the Bride - VJ Junior, translated by VJ Junior, on NaraBox TV. A father comes to grips with his daughter’s upcoming wedding through the prism..."
-  },
-  {
     "title": "The Gray Man",
     "vj": "VJ Junior Vj Junior",
     "slug": "the-gray-man-vj-junior-vj-junior",
@@ -4336,6 +4363,15 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/movies/938/the-gray-man-by-vj-junior-naraboxtvcom-720p-20260910181731-gllwlgip.mp4",
     "poster": null,
     "overview": "Watch The Gray Man - VJ Junior, translated by VJ Junior, on NaraBox TV. When a shadowy CIA agent uncovers damning agency secrets, he&#x27;s hunted across the globe..."
+  },
+  {
+    "title": "Father Of The Bride",
+    "vj": "VJ Junior Vj Junior",
+    "slug": "father-of-the-bride-vj-junior-vj-junior",
+    "url": "https://naraboxtv.com/movies/father-of-the-bride-vj-junior-vj-junior",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/957/father-of-the-bride-by-vj-junior-naraboxtvcom-720p-20260910181308-osabafb7.mp4",
+    "poster": null,
+    "overview": "Watch Father of the Bride - VJ Junior, translated by VJ Junior, on NaraBox TV. A father comes to grips with his daughter’s upcoming wedding through the prism..."
   },
   {
     "title": "Glass Onion A Knives Out Mystery",
@@ -4383,15 +4419,6 @@
     "overview": "Watch Good Fortune - VJ Junior, translated by VJ Junior, on NaraBox TV. A well-meaning but rather inept angel named Gabriel meddles in the lives of a..."
   },
   {
-    "title": "Sommersby",
-    "vj": "VJ Ulio",
-    "slug": "sommersby-vj-ulio",
-    "url": "https://naraboxtv.com/movies/sommersby-vj-ulio",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/248/sommersby-by-vj-ulio-naraboxtvcom-720p-20260831231521-znvf3jpz.mp4",
-    "poster": null,
-    "overview": "Watch Sommersby - VJ Ulio, translated by VJ Ulio, on NaraBox TV. Set in the South just after the US Civil War, Laurel Sommersby is just managing to work the..."
-  },
-  {
     "title": "The Last Mimzy",
     "vj": "VJ Soul",
     "slug": "the-last-mimzy-vj-soul",
@@ -4401,6 +4428,15 @@
     "overview": "Watch The Last Mimzy - VJ Soul, translated by Vj Soul, on NaraBox TV. Two siblings begin to develop special talents after they find a mysterious box of toys,..."
   },
   {
+    "title": "Sommersby",
+    "vj": "VJ Ulio",
+    "slug": "sommersby-vj-ulio",
+    "url": "https://naraboxtv.com/movies/sommersby-vj-ulio",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/248/sommersby-by-vj-ulio-naraboxtvcom-720p-20260831231521-znvf3jpz.mp4",
+    "poster": null,
+    "overview": "Watch Sommersby - VJ Ulio, translated by VJ Ulio, on NaraBox TV. Set in the South just after the US Civil War, Laurel Sommersby is just managing to work the..."
+  },
+  {
     "title": "Anyone But You",
     "vj": "VJ Jabel",
     "slug": "anyone-but-you-vj-jabel",
@@ -4408,24 +4444,6 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/telescope/2026/10/26/571c0704-b9c4-5961-8883-485ee6a54f2f/ANYONE-BUT-YOU-VJJABEL-%28ROMANCE%29.mp4",
     "poster": null,
     "overview": "Watch Anyone but You, translated by VJ Jabel , on NaraBox TV. After an amazing first date, Bea and Ben’s fiery attraction turns ice cold — until they find..."
-  },
-  {
-    "title": "Practical Magic",
-    "vj": "VJ Emmy Vj Emmy",
-    "slug": "practical-magic-2-vj-emmy-vj-emmy",
-    "url": "https://naraboxtv.com/movies/practical-magic-2-vj-emmy-vj-emmy",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/2520/practical-magic-2-by-vj-emmy-naraboxtvcom-720p-20261021132426-hlfjj8mp.mp4",
-    "poster": null,
-    "overview": "Watch Practical Magic 2 - vj emmy, translated by VJ Emmy, on NaraBox TV. The Owens sisters must confront the dark curse that threatens to unravel their family..."
-  },
-  {
-    "title": "Love Comes Softly",
-    "vj": "VJ Junior Vj Junior",
-    "slug": "love-comes-softly-vj-junior-vj-junior",
-    "url": "https://naraboxtv.com/movies/love-comes-softly-vj-junior-vj-junior",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/2398/love-comes-softly-vj-junior-720p-20261002014941-checoexn.mp4",
-    "poster": null,
-    "overview": "Watch Love Comes Softly - vj junior, translated by VJ Junior, on NaraBox TV. Nineteen year old pioneer woman Marty has recently married. She goes west with her..."
   },
   {
     "title": "Spider Island",
@@ -4617,15 +4635,6 @@
     "overview": "Watch Hot Seat - VJ Junior, translated by VJ Junior, on NaraBox TV. An ex-hacker is forced to break into high-level banking institutions, another man must try..."
   },
   {
-    "title": "Please Dont Feed The Children",
-    "vj": "VJ Emmy Vj Emmy",
-    "slug": "please-dont-feed-the-children-vj-emmy-vj-emmy",
-    "url": "https://naraboxtv.com/movies/please-dont-feed-the-children-vj-emmy-vj-emmy",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/999/please-dont-feed-the-children-by-vj-emmy-naraboxtvcom-720p-20260910133407-toiiwoid.mp4",
-    "poster": null,
-    "overview": "Watch Please Don&#x27;t Feed the Children - VJ Emmy, translated by VJ Emmy, on NaraBox TV. After a viral outbreak ravaged the country’s adult population, a group..."
-  },
-  {
     "title": "Dust Bunny",
     "vj": "VJ Emmy Vj Emmy",
     "slug": "dust-bunny-vj-emmy-vj-emmy",
@@ -4635,13 +4644,13 @@
     "overview": "Watch Dust Bunny - VJ Emmy, translated by VJ Emmy, on NaraBox TV. Ten-year-old Aurora asks her hitman neighbor to kill the monster under her bed that she..."
   },
   {
-    "title": "Girl In The Attic",
+    "title": "Please Dont Feed The Children",
     "vj": "VJ Emmy Vj Emmy",
-    "slug": "girl-in-the-attic-vj-emmy-vj-emmy",
-    "url": "https://naraboxtv.com/movies/girl-in-the-attic-vj-emmy-vj-emmy",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/987/girl-in-the-attic-by-vj-emmy-naraboxtvcom-720p-20260910140021-xe8gslt1.mp4",
+    "slug": "please-dont-feed-the-children-vj-emmy-vj-emmy",
+    "url": "https://naraboxtv.com/movies/please-dont-feed-the-children-vj-emmy-vj-emmy",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/999/please-dont-feed-the-children-by-vj-emmy-naraboxtvcom-720p-20260910133407-toiiwoid.mp4",
     "poster": null,
-    "overview": "Watch Girl in the Attic - VJ Emmy, translated by VJ Emmy, on NaraBox TV. Kelsey honors her late mother by training for a marathon and sharing her journey..."
+    "overview": "Watch Please Don&#x27;t Feed the Children - VJ Emmy, translated by VJ Emmy, on NaraBox TV. After a viral outbreak ravaged the country’s adult population, a group..."
   },
   {
     "title": "Lightyear",
@@ -4914,6 +4923,15 @@
     "overview": "Watch The Wretched - VJ Emmy, translated by VJ Emmy, on NaraBox TV. A rebellious teenage boy, struggling with his parents&#x27; imminent divorce, encounters a..."
   },
   {
+    "title": "Why Did I Get Married Again",
+    "vj": "VJ Soul",
+    "slug": "why-did-i-get-married-again-vj-soul",
+    "url": "https://naraboxtv.com/movies/why-did-i-get-married-again-vj-soul",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/telescope/2026/10/29/6888c0a8-32ea-56c3-8837-def657c673ef/WHY-DID-I-GET-MARRIED-AGAIN-VJ-SOUL-2026.mp4",
+    "poster": null,
+    "overview": "Watch Why Did I Get Married Again?, translated by Vj Soul, on NaraBox TV. The couples reunite for the destination wedding of Marcus and Angela&#x27;s daughter,..."
+  },
+  {
     "title": "Wild Dog Emmy",
     "vj": "VJ Emmy",
     "slug": "wild-dog-emmy-vj-emmy",
@@ -4932,15 +4950,6 @@
     "overview": "Watch The Comeback - vj Tonny, translated by VJ Tonny, on NaraBox TV. Uncle Hua, an esteemed antique dealer, stands against the Green Dragon Gang to protect..."
   },
   {
-    "title": "Battle Los Angeles Part",
-    "vj": "VJ Emmy Vj Emmy",
-    "slug": "battle-los-angeles-part-2-vj-emmy-vj-emmy",
-    "url": "https://naraboxtv.com/movies/battle-los-angeles-part-2-vj-emmy-vj-emmy",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/2275/battle-los-angeles-2-vj-emmy-720p-20260918162610-dlrhh3ea.mp4",
-    "poster": null,
-    "overview": "Watch Battle: Los Angeles - Part 2 - VJ Emmy, translated by VJ Emmy, on NaraBox TV. When once distant UFOs become a terrifying threat and an alien invasion..."
-  },
-  {
     "title": "Transformers Rise Of The Beasts",
     "vj": "VJ Junior",
     "slug": "transformers-rise-of-the-beasts-vj-junior",
@@ -4948,6 +4957,15 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/83f2dd77-d298-4790-a227-eec88f11ccb9/faststart/Transformers-_Rise_of_the_Beasts_by_Vj_Junior_naraboxtv_com_play.mp4",
     "poster": null,
     "overview": "Watch Transformers: Rise of the Beasts, translated by VJ Junior, on NaraBox TV. When a new threat capable of destroying the entire planet emerges, Optimus..."
+  },
+  {
+    "title": "Battle Los Angeles Part",
+    "vj": "VJ Emmy Vj Emmy",
+    "slug": "battle-los-angeles-part-2-vj-emmy-vj-emmy",
+    "url": "https://naraboxtv.com/movies/battle-los-angeles-part-2-vj-emmy-vj-emmy",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/2275/battle-los-angeles-2-vj-emmy-720p-20260918162610-dlrhh3ea.mp4",
+    "poster": null,
+    "overview": "Watch Battle: Los Angeles - Part 2 - VJ Emmy, translated by VJ Emmy, on NaraBox TV. When once distant UFOs become a terrifying threat and an alien invasion..."
   },
   {
     "title": "Luther The Fallen Sun",
@@ -5004,15 +5022,6 @@
     "overview": "Watch The Ultimate Weapon - VJ Jingo, translated by VJ Jingo, on NaraBox TV. When mercenary &quot;Hardball&quot; Cutter discovers that the team he is working with is..."
   },
   {
-    "title": "Resident Evil Welcome To Raccoon City",
-    "vj": "VJ Kevin Vj Kevin",
-    "slug": "resident-evil-welcome-to-raccoon-city-vj-kevin-vj-kevin",
-    "url": "https://naraboxtv.com/movies/resident-evil-welcome-to-raccoon-city-vj-kevin-vj-kevin",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/925/the-unforgivable-by-vj-kevin-naraboxtvcom-720p-20260910184433-jtzhlbqa.mp4",
-    "poster": null,
-    "overview": "Watch Resident Evil: Welcome to Raccoon City - VJ Kevin, translated by VJ Kevin, on NaraBox TV. Once the booming home of pharmaceutical giant Umbrella..."
-  },
-  {
     "title": "Crawl",
     "vj": "VJ Ice P Vj Ice P",
     "slug": "crawl-vj-ice-p-vj-ice-p",
@@ -5020,6 +5029,15 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/movies/1008/crawl-by-vj-ice-p-naraboxtvcom-720p-20260910124833-soao4nnn.mp4",
     "poster": null,
     "overview": "Watch Crawl - VJ Ice P, translated by Vj Ice P, on NaraBox TV. When a huge hurricane hits her hometown in Florida, Haley ignores evacuation orders to look for..."
+  },
+  {
+    "title": "Resident Evil Welcome To Raccoon City",
+    "vj": "VJ Kevin Vj Kevin",
+    "slug": "resident-evil-welcome-to-raccoon-city-vj-kevin-vj-kevin",
+    "url": "https://naraboxtv.com/movies/resident-evil-welcome-to-raccoon-city-vj-kevin-vj-kevin",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/925/the-unforgivable-by-vj-kevin-naraboxtvcom-720p-20260910184433-jtzhlbqa.mp4",
+    "poster": null,
+    "overview": "Watch Resident Evil: Welcome to Raccoon City - VJ Kevin, translated by VJ Kevin, on NaraBox TV. Once the booming home of pharmaceutical giant Umbrella..."
   },
   {
     "title": "Consecration",
@@ -5058,15 +5076,6 @@
     "overview": "Watch Insidious: The Red Door - vj emmy, translated by VJ Emmy, on NaraBox TV. To put their demons to rest once and for all, Josh Lambert and a college-aged..."
   },
   {
-    "title": "Father Of The Year",
-    "vj": "VJ Junior Vj Junior",
-    "slug": "father-of-the-year-vj-junior-vj-junior",
-    "url": "https://naraboxtv.com/movies/father-of-the-year-vj-junior-vj-junior",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/2396/father-of-the-year-vj-junior-720p-20261002014135-hzkra2xr.mp4",
-    "poster": null,
-    "overview": "Watch Father of the Year - vj junior, translated by VJ Junior, on NaraBox TV. Two college grads return to their hometown, where a hypothetical question --..."
-  },
-  {
     "title": "Ayan Part",
     "vj": "VJ Mk Kisule Vj Mk Kisuule",
     "slug": "ayan-part-1-vj-mk-kisule-vj-mk-kisuule",
@@ -5074,6 +5083,15 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/movies/2393/ayan-2-vj-mk-kisule-720p-20261002013138-azswo1cg.mp4",
     "poster": null,
     "overview": "Watch Ayan Part 1 - vj mk kisule, translated by VJ MK Kisuule, on NaraBox TV. Deva works for Arumugam, a smuggler, who has taken care of him for many years...."
+  },
+  {
+    "title": "Father Of The Year",
+    "vj": "VJ Junior Vj Junior",
+    "slug": "father-of-the-year-vj-junior-vj-junior",
+    "url": "https://naraboxtv.com/movies/father-of-the-year-vj-junior-vj-junior",
+    "mp4": "https://nbxgen.naraboxtv.com/videos/movies/2396/father-of-the-year-vj-junior-720p-20261002014135-hzkra2xr.mp4",
+    "poster": null,
+    "overview": "Watch Father of the Year - vj junior, translated by VJ Junior, on NaraBox TV. Two college grads return to their hometown, where a hypothetical question --..."
   },
   {
     "title": "Cold House",
@@ -5130,15 +5148,6 @@
     "overview": "Watch The Machine - VJ Ice P, translated by Vj Ice P, on NaraBox TV. Bert Kreischer faces a familial crisis and the arrival of his estranged father when the..."
   },
   {
-    "title": "Small Soldiers",
-    "vj": "VJ Soul Vj Soul",
-    "slug": "small-soldiers-vj-soul-vj-soul",
-    "url": "https://naraboxtv.com/movies/small-soldiers-vj-soul-vj-soul",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/nbx/f1e7fd93-2115-426d-988f-b9a3bd2ad8c2/faststart/SMALL_SOLDIERS.VJ_SOUL._AM24_7_.2026_naraboxtv_com_play.mp4",
-    "poster": null,
-    "overview": "Watch Small Soldiers - VJ Soul, translated by Vj Soul, on NaraBox TV. When missile technology is used to enhance toy action figures, the toys soon begin to..."
-  },
-  {
     "title": "Emily The Criminal",
     "vj": "VJ Emmy Vj Emmy",
     "slug": "emily-the-criminal-vj-emmy-vj-emmy",
@@ -5146,15 +5155,6 @@
     "mp4": "https://nbxgen.naraboxtv.com/videos/movies/972/emily-the-criminal-by-vj-muba-naraboxtvcom-720p-20260910150256-kwz8hwyg.mp4",
     "poster": null,
     "overview": "Watch Emily the Criminal - VJ Emmy, translated by VJ Emmy, on NaraBox TV. Desperate for income, Emily takes a shady gig buying goods with stolen credit cards..."
-  },
-  {
-    "title": "Why Did I Get Married Again",
-    "vj": "VJ Soul",
-    "slug": "why-did-i-get-married-again-vj-soul",
-    "url": "https://naraboxtv.com/movies/why-did-i-get-married-again-vj-soul",
-    "mp4": "https://nbxgen.naraboxtv.com/videos/telescope/2026/10/29/6888c0a8-32ea-56c3-8837-def657c673ef/WHY-DID-I-GET-MARRIED-AGAIN-VJ-SOUL-2026.mp4",
-    "poster": null,
-    "overview": "Watch Why Did I Get Married Again?, translated by Vj Soul, on NaraBox TV. The couples reunite for the destination wedding of Marcus and Angela&#x27;s daughter,..."
   },
   {
     "title": "365 Days",
